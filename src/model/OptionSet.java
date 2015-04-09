@@ -5,26 +5,26 @@ public class OptionSet {
 		private String name;
 		private double price;
 		
-		protected Option() {}
-		protected Option(String Name, double Price) {
+		public Option() {}
+		public Option(String Name, double Price) {
 			name = Name;
 			price = Price;
 		}
 		
-		protected String getName() {
+		private String getName() {
 			return name;
 		}
-		protected void setName(String name) {
+		private void setName(String name) {
 			this.name = name;
 		}
-		protected double getPrice() {
+		private double getPrice() {
 			return price;
 		}
-		protected void setPrice(double price) {
+		private void setPrice(double price) {
 			this.price = price;
 		}
 		
-		protected void display() {
+		private void display() {
 			StringBuffer str = new StringBuffer();
 			
 			str.append(name + " ");
@@ -37,11 +37,11 @@ public class OptionSet {
 	private Option option[];
 	private String optionName;
 	
-	protected OptionSet() {}
-	protected OptionSet(String OptionName) {
+	public OptionSet() {}
+	public OptionSet(String OptionName) {
 		optionName = OptionName;
 	}
-	protected OptionSet(int size, String OptionName) {
+	public OptionSet(int size, String OptionName) {
 		option = new Option [size];
 		for(int i = 0; i < option.length; i++) {
 			option[i] = new Option();
@@ -66,16 +66,26 @@ public class OptionSet {
 		this.optionName = optionName;
 	}
 	
+	private int findOptionLocation(String name) {
+		int location = -1;
+		
+		for(int i = 0; i < option.length; i++) {
+			if(option[i].getName().equals(name)) {
+				location = i;
+			}
+		}
+		
+		return location;
+	}
+	
 	private Option findOption(String name) {
 		Option foundOption = new Option();
 		
 		foundOption.setName("-1");
 		foundOption.setPrice(-1);
 		
-		for(int i = 0; i < option.length; i++) {
-			if(option[i].getName().equals(name)) {
-				foundOption = option[i];
-			}
+		if(this.findOptionLocation(name) != -1) {
+				foundOption = option[this.findOptionLocation(name)];
 		}
 		
 		return foundOption;
@@ -96,7 +106,7 @@ public class OptionSet {
 		boolean deleted = false;
 		
 		if(!this.findOption(name).getName().equals("-1") && this.findOption(name).getPrice() != -1) {
-			
+			deleted = this.updateOption(this.findOptionLocation(name), "", -1);
 		}
 		
 		return deleted;
