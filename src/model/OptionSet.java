@@ -3,28 +3,28 @@ package model;
 public class OptionSet {
 	protected class Option {
 		private String name;
-		private double price;
+		private float price;
 		
 		public Option() {}
-		public Option(String Name, double Price) {
+		public Option(String Name, float Price) {
 			name = Name;
 			price = Price;
 		}
 		
-		private String getName() {
+		protected String getName() {
 			return name;
 		}
-		private void setName(String name) {
+		protected void setName(String name) {
 			this.name = name;
 		}
-		private double getPrice() {
+		protected float getPrice() {
 			return price;
 		}
-		private void setPrice(double price) {
+		protected void setPrice(float price) {
 			this.price = price;
 		}
 		
-		private void display() {
+		protected void print() {
 			StringBuffer str = new StringBuffer();
 			
 			str.append(name + " ");
@@ -34,81 +34,173 @@ public class OptionSet {
 		}
 	}
 	
-	private Option option[];
-	private String optionName;
+	private Option optionSet[];
+	private String optionSetName;
 	
 	public OptionSet() {}
-	public OptionSet(String OptionName) {
-		optionName = OptionName;
-	}
-	public OptionSet(int size, String OptionName) {
-		option = new Option [size];
-		for(int i = 0; i < option.length; i++) {
-			option[i] = new Option();
-		}
-		optionName = OptionName;
-	}
-	
-	protected Option[] getOption() {
-		return option;
-	}
-	protected void setOption(Option[] option) {
-		this.option = option;
-	}
-	protected void setOption(int location, String name, double price) {
-		option[location].setName(name);
-		option[location].setPrice(price);
-	}
-	protected String getOptionName() {
-		return optionName;
-	}
-	protected void setOptionName(String optionName) {
-		this.optionName = optionName;
-	}
-	
-	private int findOptionLocation(String name) {
-		int location = -1;
+	public OptionSet(int size, String OptionSetName) {
+		optionSet = new Option [size];
 		
-		for(int i = 0; i < option.length; i++) {
-			if(option[i].getName().equals(name)) {
-				location = i;
+		for(int i = 0; i < optionSet.length; i++) {
+			optionSet[i] = new Option();
+		}
+		
+		optionSetName = OptionSetName;
+	}
+	
+	public Option[] getOptionSet() {
+		return optionSet;
+	}
+	public void setOptionSet(Option[] optionSet) {
+		this.optionSet = optionSet;
+	}
+	public String getOptionSetName() {
+		return optionSetName;
+	}
+	public void setOptionSetName(String optionSetName) {
+		this.optionSetName = optionSetName;
+	}
+	
+	protected void setOption(int index, String name, float price) {
+		optionSet[index].setName(name);
+		optionSet[index].setPrice(price);
+	}
+	
+	protected void setOptionSet(String name, float price) {
+		int index = this.findOptionSetIndex(name);
+		this.setOption(index, name, price);
+	}
+	
+	protected void setOption(int index, Option newOption) {
+		optionSet[index] = newOption;
+	}
+	
+	// Find the OptionSet index based on name only
+	protected int findOptionSetIndex(String name) {
+		int index = -1;
+		
+		for(int i = 0; i < optionSet.length; i++) {
+			if(optionSet[i].getName().equals(name)) {
+				index = i;
 			}
 		}
 		
-		return location;
+		return index;
 	}
 	
-	private Option findOption(String name) {
-		Option foundOption = new Option();
+	// Find the OptionSet index based on name and price
+	protected int findOptionSetIndex(String Name, float Price) {
+		int index = -1;
 		
-		foundOption.setName("-1");
-		foundOption.setPrice(-1);
+		for(int i = 0; i < optionSet.length; i++) {
+			if((optionSet[i].getName().equals(Name)
+					&& optionSet[i].getPrice() == Price)) {
+				index = i;
+			}
+		}
 		
-		if(this.findOptionLocation(name) != -1) {
-				foundOption = option[this.findOptionLocation(name)];
+		return index;
+	}
+	
+	// Find the OptionSet index based on Option object
+	protected int findOptionSetIndex(Option Option) {
+		return this.findOptionSetIndex(Option.getName(), Option.getPrice());
+	}
+	
+	// Find and return the Option object based on name only
+	protected Option findOption(String Name) {
+		Option foundOption = new Option("", -1);
+		int index = this.findOptionSetIndex(Name); 
+		
+		if(index != -1) {
+			foundOption = optionSet[index];
 		}
 		
 		return foundOption;
 	}
 	
-	private boolean updateOption(int location, String name, double price) {
+	// Find and return the Option object based on exact name and price
+	protected Option findOption(String Name, float Price) {
+		Option foundOption = new Option("", -1);
+		int index = this.findOptionSetIndex(Name);
+		
+		if(index != -1 && optionSet[index].getPrice() == Price) {
+			foundOption = optionSet[index];
+		}
+		
+		return foundOption;
+	}
+	
+	// Update new name and new price at a specific location
+	protected boolean updateOption(int index, String newName, float newPrice) {
 		boolean updated = false;
 		
-		if(location < option.length) {
-			this.setOption(option);
+		if(index < optionSet.length) {
+			this.setOption(index, newName, newPrice);
 			updated = true;
 		}
 		
 		return updated;
 	}
 	
-	private boolean deleteOption(String name) {
-		boolean deleted = false;
+	// Update new name and new price based on old name
+	protected boolean updateOption(String oldName, String newName, float newPrice) {
+		boolean updated = false;
+		int index = this.findOptionSetIndex(oldName);
 		
-		if(!this.findOption(name).getName().equals("-1") && this.findOption(name).getPrice() != -1) {
-			deleted = this.updateOption(this.findOptionLocation(name), "", -1);
+		if(index != -1) {
+			updated = this.updateOption(index, newName, newPrice);
+		}
+		
+		return updated;
+	}
+	
+	// Update new price and new price based on Option object
+	protected boolean updateOption(String oldName, Option newOption) {
+		return this.updateOption(oldName, newOption.getName(), newOption.getPrice());
+	}
+	
+	// Update new price based on name
+	protected boolean updateOptionPrice(String Name, float newPrice) {
+		boolean updated = false;
+		int index = this.findOptionSetIndex(Name);
+		
+		if(index != -1) {
+			updated = this.updateOption(index, Name, newPrice);
+		}
+		
+		return updated;
+	}
+	
+	// Update new name based on old name
+	protected boolean updateOptionName(String oldOptionName, String newOptionName) {
+		boolean updated = false;
+		int index = this.findOptionSetIndex(oldOptionName);
+		
+		if(index != -1) {
+			updated = this.updateOption(index, newOptionName, optionSet[index].getPrice());
+		}
+		
+		return updated;
+	}
+	
+	// Delete Option based on name
+	protected boolean deleteOption(String Name) {
+		boolean deleted = false;
+		int index = this.findOptionSetIndex(Name);
+		
+		if(index != -1) {
+			optionSet[index] = null;
+			deleted = true;
 		}
 		
 		return deleted;
+	}
+	
+	protected void printOption() {
+		for(int i = 0; i < optionSet.length; i++) {
+			optionSet[i].print();
+			System.out.printf("\n");
+		}
 	}
 }
