@@ -34,9 +34,12 @@ public class OptionSet {
 		}
 	}
 	
+	// INSTANCE VARIABLES
 	private Option optionSet[];
 	private String optionSetName;
 	
+	
+	// CONSTRUCTORS
 	public OptionSet() {}
 	public OptionSet(int size, String OptionSetName) {
 		optionSet = new Option [size];
@@ -48,16 +51,13 @@ public class OptionSet {
 		optionSetName = OptionSetName;
 	}
 	
-	public Option[] getOptionSet() {
-		return optionSet;
-	}
-	public void setOptionSet(Option[] optionSet) {
+
+	// SETTERS
+	protected void setOptionSet(Option[] optionSet) {
 		this.optionSet = optionSet;
 	}
-	public String getOptionSetName() {
-		return optionSetName;
-	}
-	public void setOptionSetName(String optionSetName) {
+	
+	protected void setOptionSetName(String optionSetName) {
 		this.optionSetName = optionSetName;
 	}
 	
@@ -66,15 +66,36 @@ public class OptionSet {
 		optionSet[index].setPrice(price);
 	}
 	
-	protected void setOptionSet(String name, float price) {
-		int index = this.findOptionSetIndex(name);
-		this.setOption(index, name, price);
-	}
-	
 	protected void setOption(int index, Option newOption) {
 		optionSet[index] = newOption;
 	}
 	
+	protected void setOptionSet(String name, float price) {
+		this.setOption(this.findOptionSetIndex(name), name, price);
+	}
+	
+	
+	// GETTERS
+	protected Option[] getOptionSet() {
+		return optionSet;
+	}
+	
+	protected String getOptionSetName() {
+		return optionSetName;
+	}
+	
+	// Get an Option based on index
+	protected Option getOption(int index) {
+		return optionSet[index];
+	}
+	
+	// Get an Option based on name
+	protected Option getOption(String Name) {
+		return optionSet[this.findOptionSetIndex(Name)];
+	}
+
+	
+	// FIND
 	// Find the OptionSet index based on name only
 	protected int findOptionSetIndex(String name) {
 		int index = -1;
@@ -131,6 +152,8 @@ public class OptionSet {
 		return foundOption;
 	}
 	
+	
+	// UPDATE
 	// Update new name and new price at a specific location
 	protected boolean updateOption(int index, String newName, float newPrice) {
 		boolean updated = false;
@@ -184,12 +207,13 @@ public class OptionSet {
 		return updated;
 	}
 	
-	// Delete Option based on name
-	protected boolean deleteOption(String Name) {
+	
+	// DELETE
+	// Delete option based on index
+	protected boolean deleteOption(int index) {
 		boolean deleted = false;
-		int index = this.findOptionSetIndex(Name);
 		
-		if(index != -1) {
+		if(index >= 0 && index < optionSet.length) {
 			optionSet[index] = null;
 			deleted = true;
 		}
@@ -197,6 +221,13 @@ public class OptionSet {
 		return deleted;
 	}
 	
+	// Delete Option based on name
+	protected boolean deleteOption(String Name) {
+		return this.deleteOption(this.findOptionSetIndex(Name));
+	}
+	
+	
+	// PRINT
 	protected void printOption() {
 		for(int i = 0; i < optionSet.length; i++) {
 			optionSet[i].print();
