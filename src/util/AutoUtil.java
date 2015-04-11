@@ -4,15 +4,20 @@ import java.io.*;
 import java.util.*;
 import model.*;
 
-public class Util {
-	public void readFile(String fileName) {
+// AFTER 5 TIMES, INCREMENT THE AUTOMOTIVEINDEX
+// AFTER EACH LINE, INCREMENT THE OPTIONSETINDEX
+public class AutoUtil {
+	public Automotive readFile(String fileName) {
+		Automotive auto = new Automotive();
+		
 		try {
 			FileReader file = new FileReader(fileName);
 			BufferedReader reader = new BufferedReader(file);
 			boolean eof = false;
+			int automotiveIndex = 0;
+			int optionSetIndex = 0;
 			
 			while(!eof) {
-				
 				for(int i = 0; i < 5; i ++) {
 					String line = reader.readLine();
 					StringBuffer str = new StringBuffer();
@@ -22,8 +27,6 @@ public class Util {
 					if(line == null) {
 						eof = true;
 					}
-					
-					
 					else {
 						StringTokenizer tokenizer = new StringTokenizer(line);
 						
@@ -37,12 +40,14 @@ public class Util {
 							}
 							else {
 								price = Float.parseFloat(newToken);
+								
 								System.out.printf(" " + price + " ");
 							}
-							
 						}
+						optionSetIndex++;
 					}
 					System.out.printf(str + "\n");
+					automotiveIndex++;
 				}
 				System.out.printf("\n");
 			}
@@ -54,6 +59,7 @@ public class Util {
 			System.out.printf("Error -- " + e.toString());
 		}
 		
+		return auto;
 	}
 	
 	// Check if the string is an integer
