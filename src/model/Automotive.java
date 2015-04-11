@@ -2,13 +2,17 @@ package model;
 
 public class Automotive {
 	// INSTANCE VARIABLES
-	private OptionSet automotive[];
+	private OptionSet automotive[] = new OptionSet[5];
 	private String automotiveName;
 	private float basePrice;
 	
 	
 	// CONSTRUCTORS
-	public Automotive() {}
+	public Automotive() {
+		for(int i = 0; i < automotive.length; i++) {
+			automotive[i] = new OptionSet();
+		}
+	}
 	public Automotive(int size, String AutomotiveName, float BasePrice) {
 		automotive = new OptionSet[size];
 		for(int i = 0; i < automotive.length; i++) {

@@ -35,12 +35,16 @@ public class OptionSet {
 	}
 	
 	// INSTANCE VARIABLES
-	private Option optionSet[];
+	private Option optionSet[] = new Option[25];
 	private String optionSetName;
 	
 	
 	// CONSTRUCTORS
-	public OptionSet() {}
+	public OptionSet() {
+		for(int i = 0; i < optionSet.length; i++) {
+			optionSet[i] = new Option();
+		}
+	}
 	public OptionSet(int size, String OptionSetName) {
 		optionSet = new Option [size];
 		
@@ -50,7 +54,13 @@ public class OptionSet {
 		
 		optionSetName = OptionSetName;
 	}
-	
+	public OptionSet(int size) {
+		optionSet = new Option [size];
+		
+		for(int i = 0; i < optionSet.length; i++) {
+			optionSet[i] = new Option();
+		}
+	}
 
 	// SETTERS
 	protected void setOptionSet(Option[] optionSet) {

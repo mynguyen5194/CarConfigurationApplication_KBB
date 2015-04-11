@@ -44,7 +44,8 @@ public class AutoUtil {
 //								System.out.printf(" " + price + " ");
 							}
 						}
-						String name = str;
+						String name = strBuffer.toString();
+						
 						auto.setOption(automotiveIndex, optionSetIndex, name, price);
 //						System.out.printf(str + "\n");
 						optionSetIndex++;
