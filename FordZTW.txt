@@ -3,7 +3,7 @@ Automatic	0
 ABS with Advance Trac	1625
 Present	350
 Present	595
-Cloud 9 White Clearcoat	0
+CD Silver Clearcoat Metallic		0
 Automatic	0
 ABS	400
 Present	350
@@ -23,6 +23,3 @@ Manual	-815
 ABS	400
 Present	350
 Not Present	0
-
-
-

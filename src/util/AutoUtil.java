@@ -2,11 +2,11 @@ package util;
 
 import java.io.*;
 import java.util.*;
+
 import model.*;
 
-// AFTER 5 TIMES, INCREMENT THE AUTOMOTIVEINDEX
-// AFTER EACH LINE, INCREMENT THE OPTIONSETINDEX
 public class AutoUtil {
+	public AutoUtil() {}
 	public Automotive readFile(String fileName) {
 		Automotive auto = new Automotive();
 		
@@ -19,15 +19,15 @@ public class AutoUtil {
 			
 			while(!eof) {
 				for(int i = 0; i < 5; i ++) {
-					String line = reader.readLine();
-					StringBuffer str = new StringBuffer();
-					String name = "";
+					String line = reader.readLine();	// Get the whole line here
+					StringBuffer strBuffer = new StringBuffer();
+					String str = "";
 					float price = 0;
 					
 					if(line == null) {
 						eof = true;
 					}
-					else {
+					else {		// Parse each element
 						StringTokenizer tokenizer = new StringTokenizer(line);
 						
 						while(tokenizer.hasMoreTokens()) {
@@ -35,21 +35,24 @@ public class AutoUtil {
 							String newToken = tokenizer.nextToken();
 							
 							if(isInteger(newToken) == false) {
-								name = newToken;
-								str.append(name + " ");
+								str = newToken;
+								strBuffer.append(str + " ");
 							}
 							else {
 								price = Float.parseFloat(newToken);
 								
-								System.out.printf(" " + price + " ");
+//								System.out.printf(" " + price + " ");
 							}
 						}
+						String name = str;
+						auto.setOption(automotiveIndex, optionSetIndex, name, price);
+//						System.out.printf(str + "\n");
 						optionSetIndex++;
 					}
-					System.out.printf(str + "\n");
-					automotiveIndex++;
+					
 				}
-				System.out.printf("\n");
+//				System.out.printf("\n\n");
+				automotiveIndex++;
 			}
 			
 			file.close();
