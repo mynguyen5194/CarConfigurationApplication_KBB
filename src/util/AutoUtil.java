@@ -6,10 +6,7 @@ import java.util.*;
 import model.*;
 
 public class AutoUtil {
-	public AutoUtil() {}
-	public Automotive readFile(String fileName) {
-		Automotive auto = new Automotive();
-		
+	public Automotive readFile(Automotive auto, String fileName) {		
 		try {
 			FileReader file = new FileReader(fileName);
 			BufferedReader reader = new BufferedReader(file);
@@ -18,6 +15,8 @@ public class AutoUtil {
 			int optionSetIndex = 0;
 			
 			while(!eof) {
+				auto.constructNewOptionSet(automotiveIndex, 5);
+				
 				for(int i = 0; i < 5; i ++) {
 					String line = reader.readLine();	// Get the whole line here
 					StringBuffer strBuffer = new StringBuffer();
@@ -53,6 +52,7 @@ public class AutoUtil {
 					
 				}
 //				System.out.printf("\n\n");
+				// NEED TO MAKE A NEW OPTIONSET ARRAY HERE
 				automotiveIndex++;
 			}
 			
@@ -66,17 +66,48 @@ public class AutoUtil {
 		return auto;
 	}
 	
-	// Check if the string is an integer
-		public static boolean isInteger(String string) {
-			boolean isInteger = true;
+	public void serializeAuto(Automotive auto) {
+		try {
+			FileOutputStream fileOut = new FileOutputStream("Auto.dat");
+			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+			out.writeObject(auto);
 			
-			try {
-				Integer.parseInt(string);
-			}
-			catch (NumberFormatException ex) {
-				isInteger = false;
-			}
-				
-			return isInteger;
+			out.close();
 		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deseriallizeAuto(Automotive auto) {
+		try{
+			FileInputStream fileIn = new FileInputStream("Auto.dat");
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+			
+			Automotive[] newAuto = (Automotive[]) in.readObject();
+			
+			for(int i= 0 ; i < newAuto.length; i++) {
+				System.out.printf(" " + newAuto[i]);
+			}
+			
+			in.close();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// Check if the string is an integer
+	public static boolean isInteger(String string) {
+		boolean isInteger = true;
+			
+		try {
+			Integer.parseInt(string);
+		}
+		catch (NumberFormatException ex) {
+			isInteger = false;
+		}
+				
+		return isInteger;
+	}
 }

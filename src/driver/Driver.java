@@ -6,13 +6,17 @@ import util.*;
 public class Driver {
 
 	public static void main(String[] args) {
-		AutoUtil util = new AutoUtil();
+		Automotive auto = new Automotive(5, "Cars", 18500);
+		AutoUtil autoUtil = new AutoUtil();
 		
-		Automotive auto = new Automotive(3, "Cars", 18500);
+		auto = autoUtil.readFile(auto, "/Users/mynguyen5194/Documents/workspace/CarConfigurationApplication_KBB/FordZTW.txt");
 		
-		auto = util.readFile("/Users/mynguyen5194/Documents/workspace/CarConfigurationApplication_KBB/FordZTW.txt");
 		System.out.printf("\n\nYEAH\n\n");
-		auto.printOptionSet();
+		
+//		autoUtil.serializeAuto(auto);
+//		autoUtil.deseriallizeAuto(auto);
+		
+//		auto.printOptionSet();
 		
 		
 		
