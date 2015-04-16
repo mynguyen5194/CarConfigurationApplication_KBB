@@ -10,36 +10,30 @@ public class AutoUtil {
 			FileReader file = new FileReader(fileName);
 			BufferedReader reader = new BufferedReader(file);
 			
-			String autoName = reader.readLine();
+			// Get optSetName, basePrice, and autoSize
+			String optSetName = reader.readLine();
 			float basePrice = Float.parseFloat(reader.readLine());
-			int autoSize = Integer.parseInt(reader.readLine());
+			int optSetSize = Integer.parseInt(reader.readLine());
 			
-			auto = new Automotive(autoName, basePrice, autoSize);
-			
-			int optSetSize = 0;
-			String optSetName = "";
-			String line = "";
-			float Price = 0;
+			auto = new Automotive(optSetName, basePrice, optSetSize);
 				
-			for(int autoIndex = 0; autoIndex < autoSize; autoIndex++) {
-				optSetName = reader.readLine();
-				optSetSize = Integer.parseInt(reader.readLine());
+			for(int optSetIndex = 0; optSetIndex < optSetSize; optSetIndex++) {
+				// Get optSetName and optSetSize and construct a
+				String optName = reader.readLine();
+				int optSize = Integer.parseInt(reader.readLine());
 				
-				 auto.setOptionSet(autoIndex, optSetSize, optSetName);
+				auto.setOption(optSetIndex, optSize, optName);
 				
-				for(int optSetIndex = 0; optSetIndex < optSetSize; optSetIndex++) {
-					line = reader.readLine();
-					StringTokenizer tokenizer = new StringTokenizer(line);
+				for(int optIndex = 0; optIndex < optSize; optIndex++) {
+					StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
 					
 					StringBuffer Name = new StringBuffer();
 					
 					Name.append(tokenizer.nextToken(","));
-					Price = Float.parseFloat(tokenizer.nextToken());
+					float Price = Float.parseFloat(tokenizer.nextToken());
 					
-					auto.setOption(autoIndex, optSetIndex, Name.toString(), Price);
-					
-				}
-									
+					auto.setOption(optSetIndex, optIndex, Name.toString(), Price);
+				}			
 			}
 			
 			file.close();
@@ -84,16 +78,16 @@ public class AutoUtil {
 	}
 	
 	// Check if the string of date is an integer
-		public static boolean isInteger(String string) {
-			boolean isInteger = true;
+	public static boolean isInteger(String string) {
+		boolean isInteger = true;
 			
-			try {
-				Integer.parseInt(string);
-			}
-			catch (NumberFormatException ex) {
-				isInteger = false;
-			}
-				
-			return isInteger;
+		try {
+			Integer.parseInt(string);
 		}
+		catch (NumberFormatException ex) {
+			isInteger = false;
+		}
+				
+		return isInteger;
+	}
 }

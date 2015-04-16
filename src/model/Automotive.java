@@ -2,36 +2,32 @@ package model;
 
 public class Automotive {
 	// INSTANCE VARIABLES
-	private OptionSet automotive[];
-	private String automotiveName;
+	private OptionSet optionSet[];
+	private String optionSetName;
 	private float basePrice;
 	
 	
 	// CONSTRUCTORS
 	public Automotive() {}
 	
-	public Automotive(String AutomotiveName, float BasePrice, int size) {
-		automotive = new OptionSet[size];
-		for(int i = 0; i < automotive.length; i++) {
-			automotive[i] = new OptionSet();
+	public Automotive(String OptionSetName, float BasePrice, int size) {
+		optionSet = new OptionSet[size];
+		for(int i = 0; i < optionSet.length; i++) {
+			optionSet[i] = new OptionSet();
 		}
 		
-		automotiveName = AutomotiveName;
+		optionSetName = OptionSetName;
 		basePrice = BasePrice;
 	}
-	
-	public OptionSet.Option [] constructNewOptionSet(int index, int size) {
-		return automotive[index].constructNewOption(size);
-	}
-	
+
 	
 	// SETTERS
-	public void setAutomotive(OptionSet[] automotive) {
-		this.automotive = automotive;
+	public void setOptionSet(OptionSet[] optionSet) {
+		this.optionSet = optionSet;
 	}
 	
-	public void setAutomotiveName(String automotiveName) {
-		this.automotiveName = automotiveName;
+	public void setOptionSetName(String optionSetName) {
+		this.optionSetName = optionSetName;
 	}
 	
 	public void setBasePrice(float basePrice) {
@@ -39,34 +35,23 @@ public class Automotive {
 	}
 	
 	// Set values of OptionSet
-	public void setOptionSet(int index, int size, String name) {
-		automotive[index] = new OptionSet(size, name);
+	public void setOption(int optSetIndex, int optSize, String optName) {
+		optionSet[optSetIndex] = new OptionSet(optSize, optName);
 	}
 	
-	// Set values of Option (in context of OptionSet)
-	public void setOption(OptionSet.Option [] optionSet, int automotiveIndex, int optionSetIndex, String Name, float Price) {
-		automotive[automotiveIndex].setOption(optionSet, optionSetIndex, Name, Price);
+	public void setOption(int autoIndex, int optIndex, String Name, float Price) {
+		OptionSet opt = optionSet[autoIndex];
+		opt.setOption(optIndex, Name, Price);
 	}
-	
-//	public void setOption(int automotiveIndex, int optionSetIndex, String Name, float Price) {
-//		automotive[automotiveIndex].setOption(optionSetIndex, Name, Price);
-//	}
-	
-	public void setOption(int autoIndex, int optSetIndex, String Name, float Price) {
-		OptionSet opt = automotive[autoIndex];
-		opt.setOption(optSetIndex, Name, Price);
-	}
-	
-	
 	
 	
 	// GETTERS
-	public OptionSet[] getAutomotive() {
-		return automotive;
+	public OptionSet[] getOptionSet() {
+		return optionSet;
 	}
 	
-	public String getAutomotiveName() {
-		return automotiveName;
+	public String getOptionSetName() {
+		return optionSetName;
 	}
 	
 	public float getBasePrice() {
@@ -75,23 +60,23 @@ public class Automotive {
 	
 	// Get an OptionSet based on index
 	public OptionSet getOptionSet(int index) {
-		return automotive[index];
+		return optionSet[index];
 	}
 	
 	// Get an OptionSet based on name
 	public OptionSet getOptionSet(String OptionSetName) {
-		return automotive[this.findOptionSetIndex(OptionSetName)];
+		return optionSet[this.findOptionSetIndex(OptionSetName)];
 	}
 	
 	// Get an Option based on name
 	public OptionSet.Option getOption(String Name) {
 		OptionSet.Option option = null;
 		
-		for(int i = 0 ; i < automotive.length; i++) {
-			int optionSetIndex = automotive[i].findOptionSetIndex(Name);
+		for(int i = 0 ; i < optionSet.length; i++) {
+			int optionSetIndex = optionSet[i].findOptionIndex(Name);
 			
 			if(optionSetIndex != -1) {
-				option = automotive[i].getOption(Name);
+				option = optionSet[i].getOption(Name);
 			}
 		}
 		
@@ -103,14 +88,18 @@ public class Automotive {
 		return this.getOption(OptionSetName).getPrice();
 	}
 	
+	public int getLength() {
+		return optionSet.length;
+	}
+	
 	
 	// FIND
 	// Find optionSet with name
 	public int findOptionSetIndex(String OptionSetName) {
 		int index = -1;
 		
-		for(int i = 0; i < automotive.length; i++) {
-			if(automotive[i].getOptionSetName().equals(OptionSetName)) {
+		for(int i = 0; i < optionSet.length; i++) {
+			if(optionSet[i].getOptionName().equals(OptionSetName)) {
 				index = i;
 			}
 		}
@@ -122,8 +111,8 @@ public class Automotive {
 	public OptionSet.Option findOption(String Name) {
 		OptionSet.Option option = null;
 		
-		for(int i = 0; i < automotive.length; i++) {
-			option = automotive[i].findOption(Name);
+		for(int i = 0; i < optionSet.length; i++) {
+			option = optionSet[i].findOption(Name);
 		}
 		
 		return option;
@@ -135,11 +124,11 @@ public class Automotive {
 	public boolean updateOptionSetName(String oldName, String newName) {
 		boolean updated = false;
 			
-		for(int i = 0; i < automotive.length; i++) {
-			int optionSetIndex = automotive[i].findOptionSetIndex(oldName);
+		for(int i = 0; i < optionSet.length; i++) {
+			int optionSetIndex = optionSet[i].findOptionIndex(oldName);
 				
 			if(optionSetIndex != -1) {
-				updated = automotive[i].updateOptionName(oldName, newName);
+				updated = optionSet[i].updateOptionName(oldName, newName);
 			}
 		}
 			
@@ -150,11 +139,11 @@ public class Automotive {
 	public boolean updateOptionSetPrice(String Name, float newPrice) {
 		boolean updated = false;
 			
-		for(int i = 0; i < automotive.length; i++) {
-			int optionSetIndex = automotive[i].findOptionSetIndex(Name);
+		for(int i = 0; i < optionSet.length; i++) {
+			int optionSetIndex = optionSet[i].findOptionIndex(Name);
 				
 			if(optionSetIndex != -1) {
-				updated = automotive[i].updateOptionPrice(Name, newPrice);
+				updated = optionSet[i].updateOptionPrice(Name, newPrice);
 			}
 		}
 			
@@ -170,10 +159,10 @@ public class Automotive {
 		
 		if(index != -1) {
 			// Find the index in the optionSet[]
-			int optionSetIndex = automotive[index].findOptionSetIndex(oldName);
+			int optionSetIndex = optionSet[index].findOptionIndex(oldName);
 			
 			if(optionSetIndex != -1) {
-				updated = automotive[index].updateOption(optionSetIndex, newName, newPrice);
+				updated = optionSet[index].updateOption(optionSetIndex, newName, newPrice);
 			}
 		}
 	
@@ -184,11 +173,11 @@ public class Automotive {
 	public boolean updateOptionSet(String oldName, String newName, float newPrice) {
 		boolean updated = false;
 		
-		for(int i = 0; i < automotive.length; i++) {
-			int optionSetIndex = automotive[i].findOptionSetIndex(oldName);
+		for(int i = 0; i < optionSet.length; i++) {
+			int optionSetIndex = optionSet[i].findOptionIndex(oldName);
 			
 			if(optionSetIndex != -1) {
-				updated = automotive[i].updateOption(optionSetIndex, newName, newPrice);
+				updated = optionSet[i].updateOption(optionSetIndex, newName, newPrice);
 			}
 		}
 		
@@ -196,11 +185,11 @@ public class Automotive {
 	}
 
 	// Update values of Automotive
-	public boolean updateAutomotive(int index, OptionSet optionSet) {
+	public boolean updateAutomotive(int index, OptionSet optSet) {
 		boolean updated = false;
 		
-		if(index >= 0 && index < automotive.length) {
-			automotive[index] = optionSet;
+		if(index >= 0 && index < optionSet.length) {
+			optionSet[index] = optSet;
 			updated = true;
 		}
 		
@@ -215,7 +204,7 @@ public class Automotive {
 		int index = this.findOptionSetIndex(automotiveName);
 		
 		if(index != -1) {
-			automotive[index] = null;
+			optionSet[index] = null;
 			deleted = true;
 		}
 		
@@ -226,11 +215,11 @@ public class Automotive {
 	public boolean deleteOption(String Name) {
 		boolean deleted = false;
 		
-		for(int i = 0; i < automotive.length; i++) {
-			int optionSetIndex = automotive[i].findOptionSetIndex(Name);
+		for(int i = 0; i < optionSet.length; i++) {
+			int optionSetIndex = optionSet[i].findOptionIndex(Name);
 			
 			if(optionSetIndex != -1) {
-				deleted = automotive[i].deleteOption(Name);
+				deleted = optionSet[i].deleteOption(Name);
 			}
 		}
 		
@@ -240,8 +229,10 @@ public class Automotive {
 	
 	// PRINT
 	public void printOptionSet() {
-		for(int i = 0; i < automotive.length; i++) {
-			automotive[i].printOption();
+		System.out.printf("Option Set Name: " + this.optionSetName +
+				"\nBase Price: " + this.basePrice + "\n\n");
+		for(int i = 0; i < optionSet.length; i++) {
+			optionSet[i].printOption();
 			System.out.printf("\n");
 		}
 	}
