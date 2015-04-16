@@ -40,10 +40,7 @@ public class OptionSet {
 	
 	
 	// CONSTRUCTORS
-	public OptionSet() {
-
-	
-	}
+	public OptionSet() {}
 	
 	public OptionSet(int size) {
 		optionSet = new Option[size];

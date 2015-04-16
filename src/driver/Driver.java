@@ -15,7 +15,7 @@ public class Driver {
 //		autoUtil.serializeAuto(auto);
 //		autoUtil.deseriallizeAuto(auto);
 		
-//		auto.printOptionSet();
+		auto.printOptionSet();
 		
 		
 		

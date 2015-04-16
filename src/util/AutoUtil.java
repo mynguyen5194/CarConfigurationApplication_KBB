@@ -22,9 +22,8 @@ public class AutoUtil {
 			float Price = 0;
 				
 			for(int autoIndex = 0; autoIndex < autoSize; autoIndex++) {
-				line = reader.readLine();
-				optSetSize = Integer.parseInt(line);
 				optSetName = reader.readLine();
+				optSetSize = Integer.parseInt(reader.readLine());
 				
 				 auto.setOptionSet(autoIndex, optSetSize, optSetName);
 				
