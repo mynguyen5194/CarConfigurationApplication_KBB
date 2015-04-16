@@ -2,7 +2,6 @@ package util;
 
 import java.io.*;
 import java.util.*;
-
 import model.*;
 
 public class AutoUtil {
@@ -10,50 +9,38 @@ public class AutoUtil {
 		try {
 			FileReader file = new FileReader(fileName);
 			BufferedReader reader = new BufferedReader(file);
-			boolean eof = false;
-			int automotiveIndex = 0;
-			int optionSetIndex = 0;
 			
-			while(!eof) {
-				auto.constructNewOptionSet(automotiveIndex, 5);
+			String autoName = reader.readLine();
+			float basePrice = Float.parseFloat(reader.readLine());
+			int autoSize = Integer.parseInt(reader.readLine());
+			
+			auto = new Automotive(autoName, basePrice, autoSize);
+			
+			int optSetSize = 0;
+			String optSetName = "";
+			String line = "";
+			float Price = 0;
 				
-				for(int i = 0; i < 5; i ++) {
-					String line = reader.readLine();	// Get the whole line here
-					StringBuffer strBuffer = new StringBuffer();
-					String str = "";
-					float price = 0;
+			for(int autoIndex = 0; autoIndex < autoSize; autoIndex++) {
+				line = reader.readLine();
+				optSetSize = Integer.parseInt(line);
+				optSetName = reader.readLine();
+				
+				 auto.setOptionSet(autoIndex, optSetSize, optSetName);
+				
+				for(int optSetIndex = 0; optSetIndex < optSetSize; optSetIndex++) {
+					line = reader.readLine();
+					StringTokenizer tokenizer = new StringTokenizer(line);
 					
-					if(line == null) {
-						eof = true;
-					}
-					else {		// Parse each element
-						StringTokenizer tokenizer = new StringTokenizer(line);
-						
-						while(tokenizer.hasMoreTokens()) {
-							
-							String newToken = tokenizer.nextToken();
-							
-							if(isInteger(newToken) == false) {
-								str = newToken;
-								strBuffer.append(str + " ");
-							}
-							else {
-								price = Float.parseFloat(newToken);
-								
-//								System.out.printf(" " + price + " ");
-							}
-						}
-						String name = strBuffer.toString();
-						
-						auto.setOption(automotiveIndex, optionSetIndex, name, price);
-//						System.out.printf(str + "\n");
-						optionSetIndex++;
-					}
+					StringBuffer Name = new StringBuffer();
+					
+					Name.append(tokenizer.nextToken(","));
+					Price = Float.parseFloat(tokenizer.nextToken());
+					
+					auto.setOption(autoIndex, optSetIndex, Name.toString(), Price);
 					
 				}
-//				System.out.printf("\n\n");
-				// NEED TO MAKE A NEW OPTIONSET ARRAY HERE
-				automotiveIndex++;
+									
 			}
 			
 			file.close();
@@ -97,17 +84,17 @@ public class AutoUtil {
 		}
 	}
 	
-	// Check if the string is an integer
-	public static boolean isInteger(String string) {
-		boolean isInteger = true;
+	// Check if the string of date is an integer
+		public static boolean isInteger(String string) {
+			boolean isInteger = true;
 			
-		try {
-			Integer.parseInt(string);
-		}
-		catch (NumberFormatException ex) {
-			isInteger = false;
-		}
+			try {
+				Integer.parseInt(string);
+			}
+			catch (NumberFormatException ex) {
+				isInteger = false;
+			}
 				
-		return isInteger;
-	}
+			return isInteger;
+		}
 }

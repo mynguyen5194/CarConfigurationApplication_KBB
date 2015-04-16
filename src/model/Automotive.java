@@ -10,7 +10,7 @@ public class Automotive {
 	// CONSTRUCTORS
 	public Automotive() {}
 	
-	public Automotive(int size, String AutomotiveName, float BasePrice) {
+	public Automotive(String AutomotiveName, float BasePrice, int size) {
 		automotive = new OptionSet[size];
 		for(int i = 0; i < automotive.length; i++) {
 			automotive[i] = new OptionSet();
@@ -20,8 +20,8 @@ public class Automotive {
 		basePrice = BasePrice;
 	}
 	
-	public void constructNewOptionSet(int index, int size) {
-		automotive[index].constructNewOption(size);
+	public OptionSet.Option [] constructNewOptionSet(int index, int size) {
+		return automotive[index].constructNewOption(size);
 	}
 	
 	
@@ -39,14 +39,25 @@ public class Automotive {
 	}
 	
 	// Set values of OptionSet
-	public void setOptionSet(int index, OptionSet optionSet) {
-		automotive[index] = optionSet;
+	public void setOptionSet(int index, int size, String name) {
+		automotive[index] = new OptionSet(size, name);
 	}
 	
 	// Set values of Option (in context of OptionSet)
-	public void setOption(int automotiveIndex, int optionSetIndex, String Name, float Price) {
-		automotive[automotiveIndex].setOption(optionSetIndex, Name, Price);
+	public void setOption(OptionSet.Option [] optionSet, int automotiveIndex, int optionSetIndex, String Name, float Price) {
+		automotive[automotiveIndex].setOption(optionSet, optionSetIndex, Name, Price);
 	}
+	
+//	public void setOption(int automotiveIndex, int optionSetIndex, String Name, float Price) {
+//		automotive[automotiveIndex].setOption(optionSetIndex, Name, Price);
+//	}
+	
+	public void setOption(int autoIndex, int optSetIndex, String Name, float Price) {
+		OptionSet opt = automotive[autoIndex];
+		opt.setOption(optSetIndex, Name, Price);
+	}
+	
+	
 	
 	
 	// GETTERS

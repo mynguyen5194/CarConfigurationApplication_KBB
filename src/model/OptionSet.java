@@ -35,13 +35,19 @@ public class OptionSet {
 	}
 	
 	// INSTANCE VARIABLES
-	private Option optionSet[] = new Option[5];
+	private Option optionSet[];
 	private String optionSetName;
 	
 	
 	// CONSTRUCTORS
 	public OptionSet() {
-		for(int i = 0; i < optionSet.length; i++) {
+
+	
+	}
+	
+	public OptionSet(int size) {
+		optionSet = new Option[size];
+		for(int i = 0; i < size; i++) {
 			optionSet[i] = new Option();
 		}
 	}
@@ -56,12 +62,15 @@ public class OptionSet {
 		optionSetName = OptionSetName;
 	}
 	
-	protected void constructNewOption(int size) {
+	// Return the initialized optionSet []
+	protected Option [] constructNewOption(int size) {
 		optionSet = new Option [size];
 		
 		for(int i = 0; i < optionSet.length; i++) {
 			optionSet[i] = new Option();
 		}
+		
+		return optionSet;
 	}
 
 	// SETTERS
@@ -71,6 +80,11 @@ public class OptionSet {
 	
 	protected void setOptionSetName(String optionSetName) {
 		this.optionSetName = optionSetName;
+	}
+	
+	protected void setOption(Option [] opt, int index, String name, float price) {
+		opt[index].setName(name);
+		opt[index].setPrice(price);
 	}
 	
 	protected void setOption(int index, String name, float price) {
