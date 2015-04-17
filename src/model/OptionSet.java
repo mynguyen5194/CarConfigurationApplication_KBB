@@ -168,7 +168,7 @@ public class OptionSet implements Serializable {
 	protected boolean updateOption(int index, String newName, float newPrice) {
 		boolean updated = false;
 		
-		if(index < option.length) {
+		if(index >= 0 && index < option.length) {
 			this.setOption(index, newName, newPrice);
 			updated = true;
 		}
