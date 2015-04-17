@@ -1,7 +1,9 @@
 package model;
 
-public class OptionSet {
-	protected class Option {
+import java.io.Serializable;
+
+public class OptionSet implements Serializable {
+	protected class Option implements Serializable {
 		private String name;
 		private float price;
 		
@@ -61,11 +63,11 @@ public class OptionSet {
 
 
 	// SETTERS
-	protected void setOptionSet(Option[] option) {
+	protected void setOption(Option[] option) {
 		this.option = option;
 	}
 	
-	protected void setOptionSetName(String optionName) {
+	protected void setOptionName(String optionName) {
 		this.optionName = optionName;
 	}
 	
@@ -104,12 +106,12 @@ public class OptionSet {
 
 	
 	// FIND
-	// Find the OptionSet index based on name only
-	protected int findOptionIndex(String name) {
+	// Find the Option index based on name
+	protected int findOptionIndex(String Name) {
 		int index = -1;
 		
 		for(int i = 0; i < option.length; i++) {
-			if(option[i].getName().equals(name)) {
+			if(option[i].getName().equals(Name)) {
 				index = i;
 			}
 		}
@@ -117,7 +119,7 @@ public class OptionSet {
 		return index;
 	}
 	
-	// Find the OptionSet index based on name and price
+	// Find the Option index based on name and price
 	protected int findOptionIndex(String Name, float Price) {
 		int index = -1;
 		
@@ -131,9 +133,9 @@ public class OptionSet {
 		return index;
 	}
 	
-	// Find the OptionSet index based on Option object
+	// Find the Option index based on Option object
 	protected int findOptionIndex(Option Option) {
-		return this.findOptionIndex(Option.getName(), Option.getPrice());
+		return this.findOptionIndex(Option.getName());
 	}
 	
 	// Find and return the Option object based on name only

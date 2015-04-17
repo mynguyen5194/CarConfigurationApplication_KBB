@@ -1,6 +1,8 @@
 package model;
 
-public class Automotive {
+import java.io.Serializable;
+
+public class Automotive implements Serializable{
 	// INSTANCE VARIABLES
 	private OptionSet optionSet[];
 	private String optionSetName;
@@ -83,10 +85,26 @@ public class Automotive {
 		return option;
 	}
 	
+	public String getOptionName(int optSetIndex, int optIndex) {
+		return optionSet[optSetIndex].getOption(optIndex).getName();
+	}
+	public float getOptionPrice(int optSetIndex, int optIndex) {
+		return optionSet[optSetIndex].getOption(optIndex).getPrice();
+	}
+	
 	// Get an Option price based on name
 	public float getOptionPrice(String OptionSetName) {
 		return this.getOption(OptionSetName).getPrice();
 	}
+	
+	public String getOptionName(int optIndex) {
+		return optionSet[optIndex].getOptionName();
+	}
+	
+	public int getOptionLength(int optIndex) {
+		return optionSet[optIndex].getOption().length;
+	}
+	
 	
 	public int getLength() {
 		return optionSet.length;

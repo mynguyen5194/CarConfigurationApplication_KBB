@@ -48,8 +48,9 @@ public class AutoUtil {
 	
 	public void serializeAuto(Automotive auto) {
 		try {
-			FileOutputStream fileOut = new FileOutputStream("Auto.dat");
+			FileOutputStream fileOut = new FileOutputStream("Auto.ser");
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+
 			out.writeObject(auto);
 			
 			out.close();
@@ -59,35 +60,20 @@ public class AutoUtil {
 		}
 	}
 	
-	public void deseriallizeAuto(Automotive auto) {
+	public Automotive deseriallizeAuto(String fileName) {
+		Automotive newAuto = new Automotive();
 		try{
-			FileInputStream fileIn = new FileInputStream("Auto.dat");
+			FileInputStream fileIn = new FileInputStream(fileName);
 			ObjectInputStream in = new ObjectInputStream(fileIn);
 			
-			Automotive[] newAuto = (Automotive[]) in.readObject();
-			
-			for(int i= 0 ; i < newAuto.length; i++) {
-				System.out.printf(" " + newAuto[i]);
-			}
+			newAuto = (Automotive) in.readObject();
 			
 			in.close();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	// Check if the string of date is an integer
-	public static boolean isInteger(String string) {
-		boolean isInteger = true;
-			
-		try {
-			Integer.parseInt(string);
-		}
-		catch (NumberFormatException ex) {
-			isInteger = false;
-		}
-				
-		return isInteger;
+		
+		return newAuto;
 	}
 }
