@@ -3,7 +3,7 @@ package adapter;
 import model.*;
 import util.*;
 
-public abstract class ProxyAutomobile implements CreateAuto, UpdateAuto {
+public abstract class ProxyAutomobile {
 	private static Automobile auto;
 	
 	public ProxyAutomobile() {}
@@ -22,12 +22,7 @@ public abstract class ProxyAutomobile implements CreateAuto, UpdateAuto {
 	//This function searches and prints the properties of a given Automodel.
 	// ASSUME modelName IS optionName SO FAR
 	public void printAuto(String modelName) {
-		int optSetIndex = auto.findOptionSetIndex(modelName);
-		
-		if(optSetIndex != -1) {
-			
-		}
-		
+		auto.printOption(modelName);
 	}
 	
 	//This function searches the Model for a given OptionSet and sets the name of OptionSet to newName.

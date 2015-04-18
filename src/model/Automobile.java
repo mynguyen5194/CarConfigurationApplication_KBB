@@ -159,6 +159,22 @@ public class Automobile implements Serializable{
 		return index;
 	}
 	
+	// Find and return optSetIndex and optIndex based on Name
+	public int [] findIndex(String Name) {
+		int index[] = new int[2];
+		index[0] = -1;
+		index[1] = -1;
+		
+		for(int i = 0; i < optionSet.length; i++) {
+			if(optionSet[i].findOptionIndex(Name) != -1) {
+				index[0] = i;
+				index[1] = optionSet[i].findOptionIndex(Name);
+			}
+		}
+		
+		return index;
+	}
+	
 	// Find Option based on name
 	public OptionSet.Option findOption(String Name) {
 		OptionSet.Option option = null;
@@ -303,6 +319,10 @@ public class Automobile implements Serializable{
 	
 	// Print name and price based on Name
 	public void printNameAndPrice(String Name) {
-		int optIndex = this.fi
+		int index[] = this.findIndex(Name);
+		
+		if(index[0] != -1 && index[1] != -1) {
+			this.printNameAndPrice(index[0], index[1]);
+		}
 	}
 }

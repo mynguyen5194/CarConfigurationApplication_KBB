@@ -41,9 +41,6 @@ public class KBBDriver {
 		
 		System.out.printf("***Print New Auto After Serialization/Deserialization***\n");
 		newAuto.printOptionSet();
-		
-		System.out.printf("\n\n");
-		auto.printNameAndPrice(0, 1);
 	}
 }
 

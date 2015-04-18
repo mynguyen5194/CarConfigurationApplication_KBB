@@ -24,9 +24,9 @@ ABS, 400
 ABS with Advance Trac, 1625
 Side Impact Air Bags
 2
-Present, 350
-Not present, 0
+Air Bags Present, 350
+Air Bags Not Present, 0
 Power Moonroof
 2
-Present, 595
-Not present, 0
+Power Moonroof Present, 595
+Power Moonroof Not Present, 0
