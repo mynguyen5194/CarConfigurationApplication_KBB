@@ -1,3 +1,9 @@
+/*
+ * Option is the inner class, which contains name and price, of
+ * the OptionSet class. The OptionSet class has the Option array
+ * and optionName.
+ */
+
 package model;
 
 import java.io.Serializable;
@@ -32,7 +38,7 @@ public class OptionSet implements Serializable {
 			str.append(name + "\t");
 			str.append(price);
 			
-			System.out.printf(" " + str + " ");
+			System.out.printf("   " + str + " ");
 		}
 	}
 	
@@ -164,7 +170,7 @@ public class OptionSet implements Serializable {
 	
 	
 	// UPDATE
-	// Update new name and new price at a specific location
+	// Update new name and new price based on the index
 	protected boolean updateOption(int index, String newName, float newPrice) {
 		boolean updated = false;
 		
@@ -176,7 +182,7 @@ public class OptionSet implements Serializable {
 		return updated;
 	}
 	
-	// Update new name and new price based on old name
+	// Update new name and new price based on the old name
 	protected boolean updateOption(String oldName, String newName, float newPrice) {
 		boolean updated = false;
 		int index = this.findOptionIndex(oldName);
@@ -188,7 +194,7 @@ public class OptionSet implements Serializable {
 		return updated;
 	}
 	
-	// Update new price and new price based on Option object
+	// Update new price and new price
 	protected boolean updateOption(String oldName, Option newOption) {
 		return this.updateOption(oldName, newOption.getName(), newOption.getPrice());
 	}
@@ -206,12 +212,12 @@ public class OptionSet implements Serializable {
 	}
 	
 	// Update new name based on old name
-	protected boolean updateOptionName(String oldOptionName, String newOptionName) {
+	protected boolean updateOptionName(String oldName, String newName) {
 		boolean updated = false;
-		int index = this.findOptionIndex(oldOptionName);
+		int index = this.findOptionIndex(oldName);
 		
 		if(index != -1) {
-			updated = this.updateOption(index, newOptionName, option[index].getPrice());
+			updated = this.updateOption(index, newName, option[index].getPrice());
 		}
 		
 		return updated;

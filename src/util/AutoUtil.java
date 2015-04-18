@@ -1,3 +1,11 @@
+/*
+ * AutoUtil class has three functions, including:
+ * 	- readFile: reads the file and returns the Automotive object
+ * 	- serializeAuto: serializes the Automotive object
+ *  - deserializeAuto: reads the serialized file and return the
+ *    Automotive object 
+ */
+
 package util;
 
 import java.io.*;
@@ -10,7 +18,7 @@ public class AutoUtil {
 			FileReader file = new FileReader(fileName);
 			BufferedReader reader = new BufferedReader(file);
 			
-			// Get optSetName, basePrice, and autoSize
+			// Get optSetName, basePrice, and autoSize and instantiate new Automotive
 			String optSetName = reader.readLine();
 			float basePrice = Float.parseFloat(reader.readLine());
 			int optSetSize = Integer.parseInt(reader.readLine());
@@ -18,7 +26,7 @@ public class AutoUtil {
 			auto = new Automotive(optSetName, basePrice, optSetSize);
 				
 			for(int optSetIndex = 0; optSetIndex < optSetSize; optSetIndex++) {
-				// Get optSetName and optSetSize and construct a
+				// Get optSetName and optSetSize and instantiate new Option
 				String optName = reader.readLine();
 				int optSize = Integer.parseInt(reader.readLine());
 				
@@ -26,9 +34,9 @@ public class AutoUtil {
 				
 				for(int optIndex = 0; optIndex < optSize; optIndex++) {
 					StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
+					StringBuffer Name = new StringBuffer("");
 					
-					StringBuffer Name = new StringBuffer();
-					
+					// Get the name and price and set them at the appropriate position
 					Name.append(tokenizer.nextToken(","));
 					float Price = Float.parseFloat(tokenizer.nextToken());
 					

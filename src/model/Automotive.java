@@ -1,3 +1,9 @@
+/*
+ * Automotive class contains OptionSet array, optionSetName, and
+ * basePrice. It also has many functions to access OptionSet and
+ * Option classes
+ */
+
 package model;
 
 import java.io.Serializable;
@@ -11,7 +17,6 @@ public class Automotive implements Serializable{
 	
 	// CONSTRUCTORS
 	public Automotive() {}
-	
 	public Automotive(String OptionSetName, float BasePrice, int size) {
 		optionSet = new OptionSet[size];
 		for(int i = 0; i < optionSet.length; i++) {
@@ -24,6 +29,7 @@ public class Automotive implements Serializable{
 
 	
 	// SETTERS
+	// (For OptionSet)
 	public void setOptionSet(OptionSet[] optionSet) {
 		this.optionSet = optionSet;
 	}
@@ -36,14 +42,14 @@ public class Automotive implements Serializable{
 		this.basePrice = basePrice;
 	}
 	
-	// Set values of OptionSet
+	// (For Option)
+	// Set values of Option
 	public void setOption(int optSetIndex, int optSize, String optName) {
 		optionSet[optSetIndex] = new OptionSet(optSize, optName);
 	}
 	
-	public void setOption(int autoIndex, int optIndex, String Name, float Price) {
-		OptionSet opt = optionSet[autoIndex];
-		opt.setOption(optIndex, Name, Price);
+	public void setOption(int optSetIndex, int optIndex, String Name, float Price) {
+		optionSet[optSetIndex].setOption(optIndex, Name, Price);
 	}
 	
 	
@@ -70,54 +76,59 @@ public class Automotive implements Serializable{
 		return optionSet[this.findOptionSetIndex(OptionSetName)];
 	}
 	
+	// Get the array length of optionSet
+	public int getLength() {
+		return optionSet.length;
+	}
+	
 	// Get an Option based on name
 	public OptionSet.Option getOption(String Name) {
-		OptionSet.Option option = null;
+		OptionSet.Option opt = null;
 		
 		for(int i = 0 ; i < optionSet.length; i++) {
-			int optionSetIndex = optionSet[i].findOptionIndex(Name);
+			int optSetIndex = optionSet[i].findOptionIndex(Name);
 			
-			if(optionSetIndex != -1) {
-				option = optionSet[i].getOption(Name);
+			if(optSetIndex != -1) {
+				opt = optionSet[i].getOption(Name);
 			}
 		}
 		
-		return option;
+		return opt;
 	}
 	
+	// Get Option name based on optSetIndex and optIndex
 	public String getOptionName(int optSetIndex, int optIndex) {
 		return optionSet[optSetIndex].getOption(optIndex).getName();
 	}
+	
+	// Get Option name based on optSetIndex
+	public String getOptionName(int optSetIndex) {
+		return optionSet[optSetIndex].getOptionName();
+	}
+	
+	// Get Option price based on optSetIndex and optIndex	
 	public float getOptionPrice(int optSetIndex, int optIndex) {
 		return optionSet[optSetIndex].getOption(optIndex).getPrice();
 	}
 	
 	// Get an Option price based on name
-	public float getOptionPrice(String OptionSetName) {
-		return this.getOption(OptionSetName).getPrice();
+	public float getOptionPrice(String optSetName) {
+		return this.getOption(optSetName).getPrice();
 	}
 	
-	public String getOptionName(int optIndex) {
-		return optionSet[optIndex].getOptionName();
-	}
-	
-	public int getOptionLength(int optIndex) {
-		return optionSet[optIndex].getOption().length;
-	}
-	
-	
-	public int getLength() {
-		return optionSet.length;
+	// Get the array length of Option based on optSetIndex
+	public int getOptionLength(int optSetIndex) {
+		return optionSet[optSetIndex].getOption().length;
 	}
 	
 	
 	// FIND
-	// Find optionSet with name
-	public int findOptionSetIndex(String OptionSetName) {
+	// Find optionSet index based on name
+	public int findOptionSetIndex(String optName) {
 		int index = -1;
 		
 		for(int i = 0; i < optionSet.length; i++) {
-			if(optionSet[i].getOptionName().equals(OptionSetName)) {
+			if(optionSet[i].getOptionName().equals(optName)) {
 				index = i;
 			}
 		}
@@ -125,7 +136,30 @@ public class Automotive implements Serializable{
 		return index;
 	}
 	
-	// Find Option with name (in context of OptionSet)
+	// Find optionSet object based on OptionSet name
+	public OptionSet findOptionSet(String optSetName) {
+		OptionSet optSet = null;
+		int index = this.findOptionSetIndex(optSetName);
+		
+		if(index != -1) {
+			optSet = optionSet[index];
+		}
+		
+		return optSet;
+	}
+	
+	// Find Option index based on name
+	public int findOptionIndex(String optName) {
+		int index = -1;
+		
+		for(int i = 0; i < optionSet.length; i++) {
+			index = optionSet[i].findOptionIndex(optName);
+		}
+		
+		return index;
+	}
+	
+	// Find Option based on name
 	public OptionSet.Option findOption(String Name) {
 		OptionSet.Option option = null;
 		
@@ -138,8 +172,20 @@ public class Automotive implements Serializable{
 	
 	
 	// UPDATE
-	// Update new name of optionSet based on old name
-	public boolean updateOptionSetName(String oldName, String newName) {
+	// Update new optionSet
+	public boolean updateOptionSet(int index, OptionSet optSet) {
+		boolean updated = false;
+			
+		if(index >= 0 && index < optionSet.length) {
+			optionSet[index] = optSet;
+			updated = true;
+		}
+			
+		return updated;
+	}
+	
+	// Update new Option name based on the old one 
+	public boolean updateOptionName(String oldName, String newName) {
 		boolean updated = false;
 			
 		for(int i = 0; i < optionSet.length; i++) {
@@ -153,14 +199,14 @@ public class Automotive implements Serializable{
 		return updated;
 	}
 	
-	// Update new name of optionSet based on old name
-	public boolean updateOptionSetPrice(String Name, float newPrice) {
+	// Update new Option price based on name
+	public boolean updateOptionPrice(String Name, float newPrice) {
 		boolean updated = false;
 			
 		for(int i = 0; i < optionSet.length; i++) {
-			int optionSetIndex = optionSet[i].findOptionIndex(Name);
+			int optIndex = optionSet[i].findOptionIndex(Name);
 				
-			if(optionSetIndex != -1) {
+			if(optIndex != -1) {
 				updated = optionSet[i].updateOptionPrice(Name, newPrice);
 			}
 		}
@@ -168,47 +214,28 @@ public class Automotive implements Serializable{
 		return updated;
 	}
 	
-	// Update new name and new price of optionSet based on optionSetName and old name
-	public boolean updateOptionSet(String optionSetName, String oldName, String newName, float newPrice) {
+	// Update new name and new price of Option based on optionName and old name
+	public boolean updateOption(String optName, String oldName, String newName, float newPrice) {
 		boolean updated = false;
+		int optSetIndex = this.findOptionIndex(optName);
 		
-		// Find the index in the automotive[]
-		int index = this.findOptionSetIndex(optionSetName);
-		
-		if(index != -1) {
-			// Find the index in the optionSet[]
-			int optionSetIndex = optionSet[index].findOptionIndex(oldName);
-			
-			if(optionSetIndex != -1) {
-				updated = optionSet[index].updateOption(optionSetIndex, newName, newPrice);
-			}
+		if(optSetIndex != -1) {	
+			updated = optionSet[optSetIndex].updateOption(oldName, newName, newPrice);
 		}
 	
 		return updated;
 	}
 	
 	// Update new name and new price of optionSet based on old name
-	public boolean updateOptionSet(String oldName, String newName, float newPrice) {
+	public boolean updateOption(String oldName, String newName, float newPrice) {
 		boolean updated = false;
 		
 		for(int i = 0; i < optionSet.length; i++) {
-			int optionSetIndex = optionSet[i].findOptionIndex(oldName);
+			int optIndex = optionSet[i].findOptionIndex(oldName);
 			
-			if(optionSetIndex != -1) {
-				updated = optionSet[i].updateOption(optionSetIndex, newName, newPrice);
+			if(optIndex != -1) {
+				updated = optionSet[i].updateOption(optIndex, newName, newPrice);
 			}
-		}
-		
-		return updated;
-	}
-
-	// Update values of Automotive
-	public boolean updateAutomotive(int index, OptionSet optSet) {
-		boolean updated = false;
-		
-		if(index >= 0 && index < optionSet.length) {
-			optionSet[index] = optSet;
-			updated = true;
 		}
 		
 		return updated;
@@ -216,29 +243,24 @@ public class Automotive implements Serializable{
 	
 	
 	// DELETE
-	// Delete an optionSet based on automotiveName
-	public boolean deleteOptionSet(String automotiveName) {
+	// Delete an optionSet based on optionSet index
+	public boolean deleteOption(int optSetIndex) {
 		boolean deleted = false;
-		int index = this.findOptionSetIndex(automotiveName);
 		
-		if(index != -1) {
-			optionSet[index] = null;
+		if(optSetIndex >= 0 && optSetIndex < optionSet.length) {
+			optionSet[optSetIndex] = null;
 			deleted = true;
 		}
 		
 		return deleted;
 	}
 	
-	// Delete an option based on name
-	public boolean deleteOption(String Name) {
+	// Delete an option based on Option name
+	public boolean deleteOption(String optName) {
 		boolean deleted = false;
-		
-		for(int i = 0; i < optionSet.length; i++) {
-			int optionSetIndex = optionSet[i].findOptionIndex(Name);
-			
-			if(optionSetIndex != -1) {
-				deleted = optionSet[i].deleteOption(Name);
-			}
+		int optSetIndex = this.findOptionSetIndex(optName);
+		if(optSetIndex != -1) {
+			deleted = this.deleteOption(optSetIndex);
 		}
 		
 		return deleted;
