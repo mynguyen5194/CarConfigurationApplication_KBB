@@ -244,11 +244,28 @@ public class OptionSet implements Serializable {
 	
 	
 	// PRINT
+	// Print the whole option array
 	protected void printOption() {
 		System.out.printf("Option Name: " + this.optionName + "\n");
 		for(int i = 0; i < option.length; i++) {
 			option[i].print();
 			System.out.printf("\n");
+		}
+	}
+	
+	// Print name and price based on optIndex
+	protected void printOption(int optIndex) {
+		if(optIndex >= 0 && optIndex < option.length) {
+			option[optIndex].print();
+		}
+	}
+	
+	// Print name and price based on name
+	protected void printOption(String Name) {
+		int optIndex = this.findOptionIndex(Name);
+		
+		if(optIndex != -1) {
+			option[optIndex].print();
 		}
 	}
 }

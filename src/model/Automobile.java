@@ -8,7 +8,7 @@ package model;
 
 import java.io.Serializable;
 
-public class Automotive implements Serializable{
+public class Automobile implements Serializable{
 	// INSTANCE VARIABLES
 	private OptionSet optionSet[];
 	private String optionSetName;
@@ -16,8 +16,8 @@ public class Automotive implements Serializable{
 	
 	
 	// CONSTRUCTORS
-	public Automotive() {}
-	public Automotive(String OptionSetName, float BasePrice, int size) {
+	public Automobile() {}
+	public Automobile(String OptionSetName, float BasePrice, int size) {
 		optionSet = new OptionSet[size];
 		for(int i = 0; i < optionSet.length; i++) {
 			optionSet[i] = new OptionSet();
@@ -268,6 +268,7 @@ public class Automotive implements Serializable{
 	
 	
 	// PRINT
+	// Print the whole optionSet[]
 	public void printOptionSet() {
 		System.out.printf("Option Set Name: " + this.optionSetName +
 				"\nBase Price: " + this.basePrice + "\n\n");
@@ -275,5 +276,33 @@ public class Automotive implements Serializable{
 			optionSet[i].printOption();
 			System.out.printf("\n");
 		}
+	}
+	
+	// Print the option[] based on optSetIndex
+	public void printOption(int optSetIndex) {
+		if(optSetIndex >= 0 && optSetIndex < optionSet.length) {
+			optionSet[optSetIndex].printOption();
+		}
+	}
+	
+	// Print the option[] based on optName
+	public void printOption(String optName) {
+		int optSetIndex = this.findOptionSetIndex(optName);
+		
+		if(optSetIndex != -1) {
+			this.printOption(optSetIndex);
+		}
+	}
+	
+	// Print name and price based on optSetIndex and optIndex
+	public void printNameAndPrice(int optSetIndex, int optIndex) {
+		if(optSetIndex >= 0 && optSetIndex < optionSet.length) {
+			optionSet[optSetIndex].printOption(optIndex);
+		}
+	}
+	
+	// Print name and price based on Name
+	public void printNameAndPrice(String Name) {
+		int optIndex = this.fi
 	}
 }

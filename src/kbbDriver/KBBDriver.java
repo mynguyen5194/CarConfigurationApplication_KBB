@@ -27,8 +27,8 @@ import util.*;
 
 public class KBBDriver {
 	public static void main(String[] args) {
-		Automotive auto = new Automotive();
-		Automotive newAuto = new Automotive();
+		Automobile auto = new Automobile();
+		Automobile newAuto = new Automobile();
 		AutoUtil autoUtil = new AutoUtil();
 		
 		auto = autoUtil.readFile(auto, "FordZTW.txt");
@@ -41,6 +41,9 @@ public class KBBDriver {
 		
 		System.out.printf("***Print New Auto After Serialization/Deserialization***\n");
 		newAuto.printOptionSet();
+		
+		System.out.printf("\n\n");
+		auto.printNameAndPrice(0, 1);
 	}
 }
 

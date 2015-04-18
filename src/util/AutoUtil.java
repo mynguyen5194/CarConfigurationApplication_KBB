@@ -13,7 +13,7 @@ import java.util.*;
 import model.*;
 
 public class AutoUtil {
-	public Automotive readFile(Automotive auto, String fileName) {		
+	public Automobile readFile(Automobile auto, String fileName) {		
 		try {
 			FileReader file = new FileReader(fileName);
 			BufferedReader reader = new BufferedReader(file);
@@ -23,7 +23,7 @@ public class AutoUtil {
 			float basePrice = Float.parseFloat(reader.readLine());
 			int optSetSize = Integer.parseInt(reader.readLine());
 			
-			auto = new Automotive(optSetName, basePrice, optSetSize);
+			auto = new Automobile(optSetName, basePrice, optSetSize);
 				
 			for(int optSetIndex = 0; optSetIndex < optSetSize; optSetIndex++) {
 				// Get optSetName and optSetSize and instantiate new Option
@@ -54,7 +54,7 @@ public class AutoUtil {
 		return auto;
 	}
 	
-	public void serializeAuto(Automotive auto) {
+	public void serializeAuto(Automobile auto) {
 		try {
 			FileOutputStream fileOut = new FileOutputStream("Auto.ser");
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -68,13 +68,13 @@ public class AutoUtil {
 		}
 	}
 	
-	public Automotive deseriallizeAuto(String fileName) {
-		Automotive newAuto = new Automotive();
+	public Automobile deseriallizeAuto(String fileName) {
+		Automobile newAuto = new Automobile();
 		try{
 			FileInputStream fileIn = new FileInputStream(fileName);
 			ObjectInputStream in = new ObjectInputStream(fileIn);
 			
-			newAuto = (Automotive) in.readObject();
+			newAuto = (Automobile) in.readObject();
 			
 			in.close();
 		}
