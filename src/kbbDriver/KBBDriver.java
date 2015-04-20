@@ -24,9 +24,16 @@ package kbbDriver;
 
 import model.*;
 import util.*;
+import adapter.*;
 
-public class KBBDriver {
+public class KBBDriver extends BuildAuto {
 	public static void main(String[] args) {
+//		KBBDriver driver = new KBBDriver();
+//		
+//		driver.buildAuto("FordZTW.txt");
+//		
+//		driver.printAuto("Color");
+		
 		Automobile auto = new Automobile();
 		Automobile newAuto = new Automobile();
 		AutoUtil autoUtil = new AutoUtil();
@@ -43,75 +50,3 @@ public class KBBDriver {
 		newAuto.printOptionSet();
 	}
 }
-
-/*
- * OUTPUT:
- * 
-***Print Auto Before Serialization/Deserialization***
-Option Set Name: Ford's Focus Wagon ZTW
-Base Price: 18445.0
-
-Option Name: Color
-   Fort Knox Gold Clearcoat Metallic	0.0 
-   Liquid Grey Clearcoat Metallic	0.0 
-   Infra-Red Clearcoat	0.0 
-   Grabber Green Clearcoat Metallic	0.0 
-   Sangria Red Clearcoat Metallic	0.0 
-   French Blue Clearcoat Metallic	0.0 
-   Twilight Blue Clearcoat Metallic	0.0 
-   CD Silver Clearcoat Metallic	0.0 
-   Pitch Black Clearcoat	0.0 
-   Cloud 9 White Clearcoat	0.0 
-
-Option Name: Transmission
-   Automatic	0.0 
-   Manual	-815.0 
-
-Option Name: Brakes/Traction Control
-   Standard	0.0 
-   ABS	400.0 
-   ABS with Advance Trac	1625.0 
-
-Option Name: Side Impact Air Bags
-   Present	350.0 
-   Not present	0.0 
-
-Option Name: Power Moonroof
-   Present	595.0 
-   Not present	0.0 
-
-***Print New Auto After Serialization/Deserialization***
-Option Set Name: Ford's Focus Wagon ZTW
-Base Price: 18445.0
-
-Option Name: Color
-   Fort Knox Gold Clearcoat Metallic	0.0 
-   Liquid Grey Clearcoat Metallic	0.0 
-   Infra-Red Clearcoat	0.0 
-   Grabber Green Clearcoat Metallic	0.0 
-   Sangria Red Clearcoat Metallic	0.0 
-   French Blue Clearcoat Metallic	0.0 
-   Twilight Blue Clearcoat Metallic	0.0 
-   CD Silver Clearcoat Metallic	0.0 
-   Pitch Black Clearcoat	0.0 
-   Cloud 9 White Clearcoat	0.0 
-
-Option Name: Transmission
-   Automatic	0.0 
-   Manual	-815.0 
-
-Option Name: Brakes/Traction Control
-   Standard	0.0 
-   ABS	400.0 
-   ABS with Advance Trac	1625.0 
-
-Option Name: Side Impact Air Bags
-   Present	350.0 
-   Not present	0.0 
-
-Option Name: Power Moonroof
-   Present	595.0 
-   Not present	0.0 
-
-
- */

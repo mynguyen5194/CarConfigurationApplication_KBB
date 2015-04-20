@@ -294,6 +294,9 @@ public class Automobile implements Serializable{
 		}
 	}
 	
+	// Print optionSet[] based on modelName
+//	public void printOptionSet()
+	
 	// Print the option[] based on optSetIndex
 	public void printOption(int optSetIndex) {
 		if(optSetIndex >= 0 && optSetIndex < optionSet.length) {

@@ -11,12 +11,22 @@ package util;
 import java.io.*;
 import java.util.*;
 import model.*;
+import exceptionHandler.*;
 
 public class AutoUtil {
 	public Automobile readFile(Automobile auto, String fileName) {		
+		
+	boolean problemFixed = false;	
+	ProblemGenerator newProblem = new ProblemGenerator("noneExitFileName.txt");
+	newProblem.setFileName(fileName);
+	
+	do {
 		try {
+			problemFixed = newProblem.openFile();
+			
 			FileReader file = new FileReader(fileName);
 			BufferedReader reader = new BufferedReader(file);
+			
 			
 			// Get optSetName, basePrice, and autoSize and instantiate new Automotive
 			String optSetName = reader.readLine();
@@ -41,16 +51,22 @@ public class AutoUtil {
 					float Price = Float.parseFloat(tokenizer.nextToken());
 					
 					auto.setOption(optSetIndex, optIndex, Name.toString(), Price);
-				}			
+				}	
 			}
-			
+				
 			file.close();
 			reader.close();
+	
+		}
+		catch(FileIOException r) {
+			newProblem.setFileName(r.fixProblemReadFromConsole());
 		}
 		catch (IOException e) {
-			System.out.printf("Error -- " + e.toString());
+			System.out.printf("Error -- " + e.toString() + "\n");
 		}
-		
+	}
+	while(problemFixed == false);
+
 		return auto;
 	}
 	
