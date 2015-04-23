@@ -2,51 +2,51 @@ package exceptionHandler;
 
 public class FileIOException extends Exception {
 //	private static final long serialVersionUID = 4664456874499611218L;
-	private int errorno;
-	private String errormsg;
+	private int errorNum;
+	private String errorMsg;
 	
 	public FileIOException() {
 		super();
 		printmyproblem();
 	}
 	
-	public FileIOException(String errormsg) {
+	public FileIOException(String errorMsg) {
 		super();
-		this.errormsg = errormsg;
+		this.errorMsg = errorMsg;
 		printmyproblem();
 	}
 	
-	public FileIOException(int errorno) {
+	public FileIOException(int errorNum) {
 		super();
-		this.errorno = errorno;
+		this.errorNum = errorNum;
 		printmyproblem();
 	}
 	
-	public FileIOException(int errorno, String errormsg) {
+	public FileIOException(int errorNum, String errorMsg) {
 		super();
-		this.errorno = errorno;
-		this.errormsg = errormsg;
+		this.errorNum = errorNum;
+		this.errorMsg = errorMsg;
 		printmyproblem();
 	}
 	
-	public int getErrorno() {
-		return errorno;
+	public int geterrorNum() {
+		return errorNum;
 	}
 	
-	public void setErrorno(int errorno) {
-		this.errorno = errorno;
+	public void seterrorNum(int errorNum) {
+		this.errorNum = errorNum;
 	}
 	
-	public String getErrormsg() {
-		return errormsg;
+	public String geterrorMsg() {
+		return errorMsg;
 	}
 	
-	public void setErrormsg(String errormsg) {
-		this.errormsg = errormsg;
+	public void seterrorMsg(String errorMsg) {
+		this.errorMsg = errorMsg;
 	}
 	
 	public void printmyproblem() {
-		System.out.println("FixProblems [errorno = " + errorno + ", errormsg = " + errormsg + "]"); 
+		System.out.println("FixProblems [errorNum = " + errorNum + ", errorMsg = " + errorMsg + "]"); 
 	}
 
 	public String fixProblemReadFromConsole()
@@ -59,4 +59,5 @@ public class FileIOException extends Exception {
 		System.out.println("got here --> fixProblemReadFromConsole");
 		return a;
 	}
+	
 }

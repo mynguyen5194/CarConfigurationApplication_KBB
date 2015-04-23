@@ -38,4 +38,12 @@ public class ProblemGenerator {
 		
 		return isOpen;
 	}
+	
+	public void processErrorNum(FileIOException e) {
+		switch(e.geterrorMsg()) {
+		case "FILE_NOT_FOUND_EXCEPTION":
+			System.out.printf("Wrongongongognngngng\n");
+			break;
+		}
+	}
 }

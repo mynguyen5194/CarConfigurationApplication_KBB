@@ -28,25 +28,29 @@ import adapter.*;
 
 public class KBBDriver extends BuildAuto {
 	public static void main(String[] args) {
-//		KBBDriver driver = new KBBDriver();
+		KBBDriver driver = new KBBDriver();
+		
+		driver.buildAuto("FordZTW.txt");
+		
+		driver.printAuto("Ford's Focus Wagon ZTW");
+		
+		driver.updateOptionPrice("Ford's Focus Wagon ZTW", "Color", "Infra-Red Clearcoat", 5000000);
+		
+		driver.printAuto("Ford's Focus Wagon ZTW");
+		
+//		Automobile auto = new Automobile();
+//		Automobile newAuto = new Automobile();
+//		AutoUtil autoUtil = new AutoUtil();
 //		
-//		driver.buildAuto("FordZTW.txt");
+//		auto = autoUtil.readFile(auto, "FordZTW.txt");
 //		
-//		driver.printAuto("Color");
-		
-		Automobile auto = new Automobile();
-		Automobile newAuto = new Automobile();
-		AutoUtil autoUtil = new AutoUtil();
-		
-		auto = autoUtil.readFile(auto, "FordZTW.txt");
-		
-		System.out.printf("***Print Auto Before Serialization/Deserialization***\n");
-		auto.printOptionSet();
-		
-		autoUtil.serializeAuto(auto);
-		newAuto = autoUtil.deseriallizeAuto("Auto.ser");
-		
-		System.out.printf("***Print New Auto After Serialization/Deserialization***\n");
-		newAuto.printOptionSet();
+//		System.out.printf("***Print Auto Before Serialization/Deserialization***\n");
+//		auto.printOptionSet();
+//		
+//		autoUtil.serializeAuto(auto);
+//		newAuto = autoUtil.deseriallizeAuto("Auto.ser");
+//		
+//		System.out.printf("***Print New Auto After Serialization/Deserialization***\n");
+//		newAuto.printOptionSet();
 	}
 }

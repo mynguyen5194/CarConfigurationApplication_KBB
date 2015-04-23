@@ -59,7 +59,8 @@ public class AutoUtil {
 	
 		}
 		catch(FileIOException r) {
-			newProblem.setFileName(r.fixProblemReadFromConsole());
+//			newProblem.setFileName(r.fixProblemReadFromConsole());
+			newProblem.processErrorNum(r);
 		}
 		catch (IOException e) {
 			System.out.printf("Error -- " + e.toString() + "\n");

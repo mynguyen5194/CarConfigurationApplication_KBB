@@ -20,22 +20,27 @@ public abstract class ProxyAutomobile {
 		auto = autoUtil.readFile(auto, fileName);
 	}
 	
-	//This function searches and prints the properties of a given Automodel.
-	// ASSUME modelName is optionName SO FAR
+	//This function searches and prints the properties of a given modelName.
 	public void printAuto(String modelName) {
-//		auto.print
+		if(auto.getOptionSetName().equals(modelName)) {
+			auto.printOptionSet();
+		}
 	}
 	
 	//This function searches the Model for a given OptionSet and sets the name of OptionSet to newName.
-	// ASSUME modelName = oldName
 	public void updateOptionSetName(String modelName, String optSetName, String newName) {
-		
+		if(auto.getOptionSetName().equals(modelName)) {
+			if(auto.getOptionSetName().equals(optSetName)) {
+				auto.setOptionSetName(newName);
+			}
+			
+		}
 	}
 	
 	//This function searches the Model for a given OptionSet and Option name, and sets the price to newPrice.
-	public void updateOptionPrice(String Modelname, String optionName, String option, float newPrice) {
-		
-		
-		
+	public void updateOptionPrice(String modelName, String optName, String name, float newPrice) {
+		if(auto.getOptionSetName().equals(modelName)) {
+			auto.updateOptionPrice(name, newPrice);
+		}
 	}
 }
