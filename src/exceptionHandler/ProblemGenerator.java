@@ -7,7 +7,7 @@ public class ProblemGenerator {
 	
 	public ProblemGenerator() {}
 	public ProblemGenerator(String FileName) {
-//		super();
+		super();
 		fileName = FileName;
 	}
 	
@@ -18,7 +18,7 @@ public class ProblemGenerator {
 		this.fileName = fileName;
 	}
 	
-	public boolean openFile() throws FileIOException, IOException {
+	public boolean openFile() throws Repair, IOException {
 		FileInputStream inFile = null;
 		boolean isOpen = false;
 		
@@ -28,8 +28,13 @@ public class ProblemGenerator {
 			isOpen = true;
 		}
 		catch(FileNotFoundException e) {
-			throw new FileIOException();
+//			if(e.toString().equals("No such file or directory")) {
+				throw new Repair(404);
+//			}
 		}
+//		catch(IOException r) {
+//			throw new Repair(101);
+//		}
 		finally {
 			
 		}
@@ -39,11 +44,4 @@ public class ProblemGenerator {
 		return isOpen;
 	}
 	
-	public void processErrorNum(FileIOException e) {
-		switch(e.geterrorMsg()) {
-		case "FILE_NOT_FOUND_EXCEPTION":
-			System.out.printf("Wrongongongognngngng\n");
-			break;
-		}
-	}
 }

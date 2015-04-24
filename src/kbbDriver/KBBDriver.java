@@ -22,15 +22,15 @@
 
 package kbbDriver;
 
-import model.*;
-import util.*;
+//import model.*;
+//import util.*;
 import adapter.*;
 
 public class KBBDriver extends BuildAuto {
 	public static void main(String[] args) {
 		KBBDriver driver = new KBBDriver();
 		
-		driver.buildAuto("FordZTW.txt");
+		driver.buildAuto("FordZT.txt");
 		
 		driver.printAuto("Ford's Focus Wagon ZTW");
 		

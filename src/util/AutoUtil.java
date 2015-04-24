@@ -58,12 +58,11 @@ public class AutoUtil {
 			reader.close();
 	
 		}
-		catch(FileIOException r) {
-//			newProblem.setFileName(r.fixProblemReadFromConsole());
-			newProblem.processErrorNum(r);
+		catch(Repair r) {
+			newProblem.setFileName(r.fixProblemReadFromConsole());
 		}
 		catch (IOException e) {
-			System.out.printf("Error -- " + e.toString() + "\n");
+//			System.out.printf("Error -- " + e.toString() + "\n");
 		}
 	}
 	while(problemFixed == false);
