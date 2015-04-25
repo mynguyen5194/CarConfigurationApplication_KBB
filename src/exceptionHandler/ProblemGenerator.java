@@ -18,7 +18,7 @@ public class ProblemGenerator {
 		this.fileName = fileName;
 	}
 	
-	public boolean openFile() throws Repair, IOException {
+	public boolean openFile() throws ExceptionHandler, IOException {
 		FileInputStream inFile = null;
 		boolean isOpen = false;
 		
@@ -27,19 +27,23 @@ public class ProblemGenerator {
 			System.out.printf("Done!\n\n");
 			isOpen = true;
 		}
-		catch(FileNotFoundException e) {
-//			if(e.toString().equals("No such file or directory")) {
-				throw new Repair(404);
-//			}
-		}
-//		catch(IOException r) {
-//			throw new Repair(101);
-//		}
-		finally {
-			
+		catch(IOException e) {
+//			System.out.printf(e.getMessage() + " " + e.hashCode() + "\n");
+			throw new ExceptionHandler(e.hashCode());
 		}
 		
-		inFile.close();
+		finally {
+			try {
+				if(inFile != null) {
+					inFile.close();
+				}
+			}
+			catch(IOException e) {
+				throw new ExceptionHandler(e.getMessage());
+			}
+		}
+		
+//		inFile.close();
 		
 		return isOpen;
 	}

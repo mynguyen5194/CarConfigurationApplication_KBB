@@ -1,28 +1,28 @@
 package exceptionHandler;
 
-public class Repair extends Exception {
+public class ExceptionHandler extends Exception {
 //	private static final long serialVersionUID = 4664456874499611218L;
 	private int errorNum;
 	private String errorMsg;
 	
-	public Repair() {
+	public ExceptionHandler() {
 		super();
 		printmyproblem();
 	}
 	
-	public Repair(String errorMsg) {
+	public ExceptionHandler(String errorMsg) {
 		super();
 		this.errorMsg = errorMsg;
 		printmyproblem();
 	}
 	
-	public Repair(int errorNum) {
+	public ExceptionHandler(int errorNum) {
 		super();
 		this.errorNum = errorNum;
 		printmyproblem();
 	}
 	
-	public Repair(int errorNum, String errorMsg) {
+	public ExceptionHandler(int errorNum, String errorMsg) {
 		super();
 		this.errorNum = errorNum;
 		this.errorMsg = errorMsg;
@@ -64,7 +64,11 @@ public class Repair extends Exception {
 			break;
 			
 		case 404:
-			this.setErrorMsg("Missing filename or wrong filename");
+			this.setErrorMsg("Missing model name");
+			break;
+			
+		case 2018699554:
+			this.setErrorMsg("No such file or directory");
 			break;
 			
 		default:
@@ -80,7 +84,7 @@ public class Repair extends Exception {
 	{
 		String a = "abc.txt";
 		
-		System.out.printf("got here --> fixProblemReadFromConsole\n");
+		System.out.printf("Got here ---> Please Fix Problem Read From Console\n");
 		return a;
 	}
 	
