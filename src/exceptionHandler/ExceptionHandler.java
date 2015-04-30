@@ -76,7 +76,7 @@ public class ExceptionHandler extends Exception {
 			break;
 		}
 		
-		System.out.printf("FixProblems [errorNum = " + errorNum + ", errorMsg = " + errorMsg + "]\n");
+		System.out.printf("FixProblems [Error Number = " + errorNum + ", Error Message = " + errorMsg + "]\n");
 		
 	}
 

@@ -48,4 +48,14 @@ public abstract class ProxyAutomobile {
 			}
 		}
 	}
+	
+	
+	public void fixProblem() {
+		
+		
+		
+		
+		
+		
+	}
 }
