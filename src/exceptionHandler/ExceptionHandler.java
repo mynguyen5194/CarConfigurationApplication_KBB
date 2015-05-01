@@ -67,7 +67,7 @@ public class ExceptionHandler extends Exception {
 			this.setErrorMsg("Missing model name");
 			break;
 			
-		case 2018699554:
+		case 505:
 			this.setErrorMsg("No such file or directory");
 			break;
 			

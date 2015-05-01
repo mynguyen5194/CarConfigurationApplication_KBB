@@ -29,7 +29,7 @@ public class ProblemGenerator {
 		}
 		catch(IOException e) {
 //			System.out.printf(e.getMessage() + " " + e.hashCode() + "\n");
-			throw new ExceptionHandler(e.hashCode());
+			throw new ExceptionHandler(505);
 		}
 		
 		finally {

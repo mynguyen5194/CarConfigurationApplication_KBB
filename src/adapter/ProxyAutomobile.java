@@ -2,9 +2,12 @@ package adapter;
 
 import model.*;
 import util.*;
+import exceptionHandler.*;
+import java.util.*;
 
 public abstract class ProxyAutomobile {
 	private static Automobile auto;
+	private ExceptionHandler exception;
 	
 	public ProxyAutomobile() {}
 
@@ -51,11 +54,20 @@ public abstract class ProxyAutomobile {
 	
 	
 	public void fixProblem() {
+		exception.printmyproblem();
+	}
+	
+	public String getUser() {
+		String fileName = "";
 		
+		Scanner scanner = new Scanner(System.in);
 		
+		do {
+			fileName = scanner.nextLine();
+		} while(!fileName.equals("^q"));
 		
+		scanner.close();
 		
-		
-		
+		return fileName;
 	}
 }

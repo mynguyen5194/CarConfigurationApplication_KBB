@@ -23,15 +23,19 @@
 package kbbDriver;
 
 //import model.*;
-//import util.*;
+import java.util.*;
 import adapter.*;
 
 public class KBBDriver extends BuildAuto {
 	public static void main(String[] args) {
 		KBBDriver driver = new KBBDriver();
 		
-		driver.buildAuto("FordZT.txt");
+		Scanner scanner = new Scanner(System.in);
+		String fileName = scanner.nextLine();
 		
+		driver.buildAuto(fileName);
+		
+		scanner.close();
 		driver.printAuto("Ford's Focus Wagon ZTW");
 		
 		driver.updateOptionPrice("Ford's Focus Wagon ZTW", "Color", "Infra-Red Clearcoat", 5000000);
