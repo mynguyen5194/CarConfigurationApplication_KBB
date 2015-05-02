@@ -28,7 +28,6 @@ public class ProblemGenerator {
 			isOpen = true;
 		}
 		catch(IOException e) {
-//			System.out.printf(e.getMessage() + " " + e.hashCode() + "\n");
 			throw new ExceptionHandler(505);
 		}
 		

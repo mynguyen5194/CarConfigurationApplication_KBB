@@ -1,7 +1,6 @@
 package exceptionHandler;
 
 public class ExceptionHandler extends Exception {
-//	private static final long serialVersionUID = 4664456874499611218L;
 	private int errorNum;
 	private String errorMsg;
 	

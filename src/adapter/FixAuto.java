@@ -1,5 +1,6 @@
 package adapter;
+import exceptionHandler.*;
 
 public interface FixAuto {
-	public void fixProblem();
+	public void fixProblem(ExceptionHandler exp);
 }

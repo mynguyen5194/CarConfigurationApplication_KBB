@@ -2,8 +2,7 @@
  * Name: My Nguyen
  * Course: CIS 35B - 63Y
  * Assignment: #1
- * Due date: 04/19/2015
- * Data submitted: 04/18/2015
+ * Data submitted: 05/02/2015
  * 
  * This program builds a Ford's Focus Wagon ZTW model with these options:
  * - Color - Fort Knox Gold Clearcoat Metallic, Liquid Grey Clearcoat Metallic,
@@ -22,39 +21,110 @@
 
 package kbbDriver;
 
-//import model.*;
-import java.util.*;
 import adapter.*;
 
 public class KBBDriver extends BuildAuto {
 	public static void main(String[] args) {
 		KBBDriver driver = new KBBDriver();
 		
-		Scanner scanner = new Scanner(System.in);
-		String fileName = scanner.nextLine();
-		
-		driver.buildAuto(fileName);
-		
-		scanner.close();
-		driver.printAuto("Ford's Focus Wagon ZTW");
-		
-		driver.updateOptionPrice("Ford's Focus Wagon ZTW", "Color", "Infra-Red Clearcoat", 5000000);
+		driver.buildAuto("FordZTW.txt");
 		
 		driver.printAuto("Ford's Focus Wagon ZTW");
 		
-//		Automobile auto = new Automobile();
-//		Automobile newAuto = new Automobile();
-//		AutoUtil autoUtil = new AutoUtil();
-//		
-//		auto = autoUtil.readFile(auto, "FordZTW.txt");
-//		
-//		System.out.printf("***Print Auto Before Serialization/Deserialization***\n");
-//		auto.printOptionSet();
-//		
-//		autoUtil.serializeAuto(auto);
-//		newAuto = autoUtil.deseriallizeAuto("Auto.ser");
-//		
-//		System.out.printf("***Print New Auto After Serialization/Deserialization***\n");
-//		newAuto.printOptionSet();
+		driver.updateOptionPrice("Ford's Focus Wagon ZTW", "Color", "Liquid", 5000000);
+		driver.updateOptionPrice("Ford's Focus Wagon ZTW", "Color", "Fort Knox Gold Clearcoat Metallic", 5000000);
+		driver.updateOptionSetName("Ford's Focus Wagon ZTW", "Ford's Focus Wagon ZTW", "Honda Accord");
+		
+		driver.printAuto("Honda Accord");
 	}
 }
+
+/*
+ * OUTPUT:
+ * 1) With Error
+FixProblems [Error Number = 505, Error Message = No such file or directory]
+Got here ---> Please Fix Problem Read From Console
+Done!
+
+* Ford's Focus Wagon ZTW is empty
+
+* Unable to update Ford's Focus Wagon ZTW
+
+* Honda Accord is empty 
+
+ * 2) Without Error
+Done!
+
+Option Set Name: Ford's Focus Wagon ZTW
+Base Price: 18445.0
+
+Option Name: Color
+   Fort Knox Gold Clearcoat Metallic	0.0 
+   Liquid Grey Clearcoat Metallic	0.0 
+   Infra-Red Clearcoat	0.0 
+   Grabber Green Clearcoat Metallic	0.0 
+   Sangria Red Clearcoat Metallic	0.0 
+   French Blue Clearcoat Metallic	0.0 
+   Twilight Blue Clearcoat Metallic	0.0 
+   CD Silver Clearcoat Metallic	0.0 
+   Pitch Black Clearcoat	0.0 
+   Cloud 9 White Clearcoat	0.0 
+
+Option Name: Transmission
+   Automatic	0.0 
+   Manual	-815.0 
+
+Option Name: Brakes/Traction Control
+   Standard	0.0 
+   ABS	400.0 
+   ABS with Advance Trac	1625.0 
+
+Option Name: Side Impact Air Bags
+   Air Bags Present	350.0 
+   Air Bags Not Present	0.0 
+
+Option Name: Power Moonroof
+   Power Moonroof Present	595.0 
+   Power Moonroof Not Present	0.0 
+
+* Liquid cannot be found
+* Fail updating new price
+
+* Fort Knox Gold Clearcoat Metallic is found
+* Successfully updating new price
+
+* Honda Accord is updated
+
+Option Set Name: Honda Accord
+Base Price: 18445.0
+
+Option Name: Color
+   Fort Knox Gold Clearcoat Metallic	5000000.0 
+   Liquid Grey Clearcoat Metallic	0.0 
+   Infra-Red Clearcoat	0.0 
+   Grabber Green Clearcoat Metallic	0.0 
+   Sangria Red Clearcoat Metallic	0.0 
+   French Blue Clearcoat Metallic	0.0 
+   Twilight Blue Clearcoat Metallic	0.0 
+   CD Silver Clearcoat Metallic	0.0 
+   Pitch Black Clearcoat	0.0 
+   Cloud 9 White Clearcoat	0.0 
+
+Option Name: Transmission
+   Automatic	0.0 
+   Manual	-815.0 
+
+Option Name: Brakes/Traction Control
+   Standard	0.0 
+   ABS	400.0 
+   ABS with Advance Trac	1625.0 
+
+Option Name: Side Impact Air Bags
+   Air Bags Present	350.0 
+   Air Bags Not Present	0.0 
+
+Option Name: Power Moonroof
+   Power Moonroof Present	595.0 
+   Power Moonroof Not Present	0.0 
+
+ */

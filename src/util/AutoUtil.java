@@ -62,7 +62,7 @@ public class AutoUtil {
 			newProblem.setFileName(expt.fixProblemReadFromConsole());
 		}
 		catch (IOException err) {
-//			System.out.printf("Error -- " + err.toString());
+			
 		}
 	}
 	while(problemFixed == false);
