@@ -44,6 +44,7 @@ public class ExceptionHandler extends Exception {
 		this.errorMsg = errorMsg;
 	}
 
+	// Identify, set, and print out the error message
 	public void printmyproblem() {
 		switch(errorNum) {
 		case 000:

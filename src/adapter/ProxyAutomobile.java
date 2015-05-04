@@ -6,7 +6,6 @@ import exceptionHandler.*;
 
 public abstract class ProxyAutomobile {
 	private static Automobile auto;
-//	private ExceptionHandler exception;
 	
 	public ProxyAutomobile() {}
 
@@ -18,16 +17,8 @@ public abstract class ProxyAutomobile {
 	}
 
 	public void buildAuto(String fileName) {
-//		try {
-			AutoUtil autoUtil = new AutoUtil();
-		
-			auto = autoUtil.readFile(auto, fileName);
-//			throw new ExceptionHandler(505);
-//		}
-//		
-//		catch(ExceptionHandler e) {
-//			this.fixProblem(e);
-//		}		
+		AutoUtil autoUtil = new AutoUtil();	
+		auto = autoUtil.readFile(auto, fileName);
 	}
 	
 	//This function searches and prints the properties of a given modelName.

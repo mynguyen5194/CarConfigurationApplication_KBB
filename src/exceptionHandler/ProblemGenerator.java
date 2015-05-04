@@ -42,8 +42,6 @@ public class ProblemGenerator {
 			}
 		}
 		
-//		inFile.close();
-		
 		return isOpen;
 	}
 	
