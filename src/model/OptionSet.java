@@ -54,21 +54,15 @@ public class OptionSet implements Serializable {
 	public OptionSet(int size) {
 		option = new ArrayList<> (size);
 		for(int i = 0; i < size; i++) {
-//			option[i] = new Option();
 			option.set(i, new Option());
 		}
 	}
 
 	public OptionSet(int size, String OptionName) {
-//		option = new Option [size];
 		option = new ArrayList<> ();
 		
-//		System.out.printf("Size: " + option.size());
-		
 		for(int i = 0; i < size; i++) {
-//			option[i] = new Option();
 			option.add(i, new Option());	
-//			option.set(i, new Option());
 		}
 		
 		optionName = OptionName;
@@ -91,14 +85,10 @@ public class OptionSet implements Serializable {
 	protected void setOption(int optIndex, String Name, float Price) {
 		option.get(optIndex).setName(Name);
 		option.get(optIndex).setPrice(Price);
-		
-//		option[optIndex].setName(Name);
-//		option[optIndex].setPrice(Price);
 	}
 	
 	protected void setOption(int optIndex, Option newOption) {
 		option.set(optIndex, newOption);
-//		option[optIndex] = newOption;
 	}
 	
 	protected void setOption(String Name, float Price) {
@@ -118,13 +108,11 @@ public class OptionSet implements Serializable {
 	// Get an Option based on index
 	protected Option getOption(int optIndex) {
 		return option.get(optIndex);
-//		return option[optIndex];
 	}
 	
 	// Get an Option based on name
 	protected Option getOption(String Name) {
 		return option.get(this.findOptionIndex(Name));
-//		return option[this.findOptionIndex(Name)];
 	}
 
 	
@@ -134,7 +122,6 @@ public class OptionSet implements Serializable {
 		int index = -1;
 		
 		for(int i = 0; i < option.size(); i++) {
-//			if(option[i].getName().equals(Name)) {
 			if(option.get(i).getName().equals(Name)) {
 				index = i;
 			}
@@ -148,8 +135,6 @@ public class OptionSet implements Serializable {
 		int index = -1;
 		
 		for(int i = 0; i < option.size(); i++) {
-//			if((option[i].getName().equals(Name)
-//					&& option[i].getPrice() == Price)) {
 			if(option.get(i).getName().equals(Name)
 					&& option.get(i).getPrice() == Price) {
 				index = i;
@@ -170,7 +155,6 @@ public class OptionSet implements Serializable {
 		int index = this.findOptionIndex(Name); 
 		
 		if(index != -1) {
-//			foundOption = option[index];
 			foundOption = option.get(index);
 		}
 		
@@ -181,10 +165,6 @@ public class OptionSet implements Serializable {
 	protected Option findOption(String Name, float Price) {
 		Option foundOption = new Option("", -1);
 		int index = this.findOptionIndex(Name);
-		
-//		if(index != -1 && option[index].getPrice() == Price) {
-//			foundOption = option[index];
-//		}
 		
 		if(index != -1 && option.get(index).getPrice() == Price) {
 			foundOption = option.get(index);
@@ -242,7 +222,6 @@ public class OptionSet implements Serializable {
 		int index = this.findOptionIndex(oldName);
 		
 		if(index != -1) {
-//			updated = this.updateOption(index, newName, option[index].getPrice());
 			updated = this.updateOption(index, newName, option.get(index).getPrice());
 		}
 		
@@ -256,7 +235,6 @@ public class OptionSet implements Serializable {
 		boolean deleted = false;
 		
 		if(index >= 0 && index < option.size()) {
-//			option[index] = null;
 			option.set(index, null);
 			deleted = true;
 		}
@@ -275,7 +253,6 @@ public class OptionSet implements Serializable {
 	protected void printOption() {
 		System.out.printf("Option Name: " + this.optionName + "\n");
 		for(int i = 0; i < option.size(); i++) {
-//			option[i].print();
 			option.get(i).print();
 			System.out.printf("\n");
 		}
@@ -284,7 +261,6 @@ public class OptionSet implements Serializable {
 	// Print name and price based on optIndex
 	protected void printOption(int optIndex) {
 		if(optIndex >= 0 && optIndex < option.size()) {
-//			option[optIndex].print();
 			option.get(optIndex).print();
 		}
 	}
@@ -294,7 +270,6 @@ public class OptionSet implements Serializable {
 		int optIndex = this.findOptionIndex(Name);
 		
 		if(optIndex != -1) {
-//			option[optIndex].print();
 			option.get(optIndex).print();
 		}
 	}

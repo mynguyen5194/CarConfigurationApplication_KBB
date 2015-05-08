@@ -11,7 +11,6 @@ import java.io.Serializable;
 
 public class Automobile implements Serializable{
 	// INSTANCE VARIABLES
-//	private OptionSet optionSet[];
 	private ArrayList<OptionSet> optionSet;
 	private String optionSetName;
 	private float basePrice;
@@ -20,10 +19,8 @@ public class Automobile implements Serializable{
 	// CONSTRUCTORS
 	public Automobile() {}
 	public Automobile(String OptionSetName, float BasePrice, int size) {
-//		optionSet = new OptionSet[size];
 		optionSet = new ArrayList<> ();
 		for(int i = 0; i < size; i++) {
-//			optionSet[i] = new OptionSet();
 			optionSet.add(i, new OptionSet());
 		}
 		
@@ -50,14 +47,10 @@ public class Automobile implements Serializable{
 	// (For Option)
 	// Set values of Option
 	public void setOption(int optSetIndex, int optSize, String optName) {
-//		optionSet[optSetIndex] = new OptionSet(optSize, optName);
-//		optionSet.get(optSetIndex).constructOptionSet(optSize, optName);
 		optionSet.set(optSetIndex, new OptionSet(optSize, optName));
-//		optionSet.get(optSetIndex).equals(new OptionSet(optSize, optName));
 	}
 	
 	public void setOption(int optSetIndex, int optIndex, String Name, float Price) {
-//		optionSet[optSetIndex].setOption(optIndex, Name, Price);
 		optionSet.get(optSetIndex).setOption(optIndex, Name, Price);
 	}
 	
@@ -77,13 +70,11 @@ public class Automobile implements Serializable{
 	
 	// Get an OptionSet based on index
 	public OptionSet getOptionSet(int index) {
-//		return optionSet[index];
 		return optionSet.get(index);
 	}
 	
 	// Get an OptionSet based on name
 	public OptionSet getOptionSet(String OptionSetName) {
-//		return optionSet[this.findOptionSetIndex(OptionSetName)];
 		return optionSet.get(this.findOptionSetIndex(OptionSetName));
 	}
 	
@@ -97,11 +88,9 @@ public class Automobile implements Serializable{
 		OptionSet.Option opt = null;
 		
 		for(int i = 0 ; i < optionSet.size(); i++) {
-//			int optSetIndex = optionSet[i].findOptionIndex(Name);
 			int optSetIndex = optionSet.get(i).findOptionIndex(Name);
 			
 			if(optSetIndex != -1) {
-//				opt = optionSet[i].getOption(Name);
 				opt = optionSet.get(i).getOption(Name);
 			}
 		}
@@ -111,19 +100,16 @@ public class Automobile implements Serializable{
 	
 	// Get Option name based on optSetIndex and optIndex
 	public String getOptionName(int optSetIndex, int optIndex) {
-//		return optionSet[optSetIndex].getOption(optIndex).getName();
 		return optionSet.get(optSetIndex).getOption(optIndex).getName();
 	}
 	
 	// Get Option name based on optSetIndex
 	public String getOptionName(int optSetIndex) {
-//		return optionSet[optSetIndex].getOptionName();
 		return optionSet.get(optSetIndex).getOptionName();
 	}
 	
 	// Get Option price based on optSetIndex and optIndex	
 	public float getOptionPrice(int optSetIndex, int optIndex) {
-//		return optionSet[optSetIndex].getOption(optIndex).getPrice();
 		return optionSet.get(optSetIndex).getOption(optIndex).getPrice();
 	}
 	
@@ -134,7 +120,6 @@ public class Automobile implements Serializable{
 	
 	// Get the array length of Option based on optSetIndex
 	public int getOptionSize(int optSetIndex) {
-//		return optionSet[optSetIndex].getOption().size();
 		return optionSet.get(optSetIndex).getOption().size();
 	}
 	
@@ -145,7 +130,6 @@ public class Automobile implements Serializable{
 		int index = -1;
 		
 		for(int i = 0; i < optionSet.size(); i++) {
-//			if(optionSet[i].getOptionName().equals(optName)) {
 			if(optionSet.get(i).getOptionName().equals(optName)) {
 				index = i;
 			}
@@ -160,7 +144,6 @@ public class Automobile implements Serializable{
 		int index = this.findOptionSetIndex(optSetName);
 		
 		if(index != -1) {
-//			optSet = optionSet[index];
 			optSet = optionSet.get(index);
 		}
 		
@@ -172,7 +155,6 @@ public class Automobile implements Serializable{
 		int index = -1;
 		
 		for(int i = 0; i < optionSet.size(); i++) {
-//			index = optionSet[i].findOptionIndex(Name);
 			index = optionSet.get(i).findOptionIndex(Name);
 		}
 		
@@ -188,10 +170,8 @@ public class Automobile implements Serializable{
 		for(int i = 0; i < optionSet.size(); i++) {
 			int optIndex = optionSet.get(i).findOptionIndex(Name); 
 			
-//			if(optionSet[i].findOptionIndex(Name) != -1) {
 			if(optIndex != -1) {
 				index[0] = i;
-//				index[1] = optionSet[i].findOptionIndex(Name);
 				index[1] = optIndex;
 			}
 		}
@@ -204,7 +184,6 @@ public class Automobile implements Serializable{
 		OptionSet.Option option = null;
 		
 		for(int i = 0; i < optionSet.size(); i++) {
-//			option = optionSet[i].findOption(Name);
 			option = optionSet.get(i).findOption(Name);
 		}
 		
@@ -218,7 +197,6 @@ public class Automobile implements Serializable{
 		boolean updated = false;
 			
 		if(index >= 0 && index < optionSet.size()) {
-//			optionSet[index] = optSet;
 			optionSet.get(index).equals(optSet);
 			updated = true;
 		}
@@ -231,11 +209,9 @@ public class Automobile implements Serializable{
 		boolean updated = false;
 			
 		for(int i = 0; i < optionSet.size(); i++) {
-//			int optionSetIndex = optionSet[i].findOptionIndex(oldName);
 			int optSetIndex = optionSet.get(i).findOptionIndex(oldName);
 				
 			if(optSetIndex != -1) {
-//				updated = optionSet[i].updateOptionName(oldName, newName);
 				updated = optionSet.get(i).updateOptionName(oldName, newName);
 			}
 		}
@@ -248,11 +224,9 @@ public class Automobile implements Serializable{
 		boolean updated = false;
 			
 		for(int i = 0; i < optionSet.size(); i++) {
-//			int optIndex = optionSet[i].findOptionIndex(Name);
 			int optIndex = optionSet.get(i).findOptionIndex(Name);
 				
 			if(optIndex != -1) {
-//				updated = optionSet[i].updateOptionPrice(Name, newPrice);
 				updated = optionSet.get(i).updateOptionPrice(Name, newPrice);
 			}
 		}
@@ -265,8 +239,7 @@ public class Automobile implements Serializable{
 		boolean updated = false;
 		int optSetIndex = this.findOptionIndex(optName);
 		
-		if(optSetIndex != -1) {	
-//			updated = optionSet[optSetIndex].updateOption(oldName, newName, newPrice);
+		if(optSetIndex != -1) {
 			updated = optionSet.get(optSetIndex).updateOption(oldName, newName, newPrice);
 		}
 	
@@ -278,11 +251,9 @@ public class Automobile implements Serializable{
 		boolean updated = false;
 		
 		for(int i = 0; i < optionSet.size(); i++) {
-//			int optIndex = optionSet[i].findOptionIndex(oldName);
 			int optIndex = optionSet.get(i).findOptionIndex(oldName);
 			
 			if(optIndex != -1) {
-//				updated = optionSet[i].updateOption(optIndex, newName, newPrice);
 				updated = optionSet.get(i).updateOption(optIndex, newName, newPrice);
 			}
 		}
@@ -297,7 +268,6 @@ public class Automobile implements Serializable{
 		boolean deleted = false;
 		
 		if(optSetIndex >= 0 && optSetIndex < optionSet.size()) {
-//			optionSet[optSetIndex] = null;
 			optionSet.set(optSetIndex, null);
 			deleted = true;
 		}
@@ -323,19 +293,14 @@ public class Automobile implements Serializable{
 		System.out.printf("Option Set Name: " + this.optionSetName +
 				"\nBase Price: " + this.basePrice + "\n\n");
 		for(int i = 0; i < optionSet.size(); i++) {
-//			optionSet[i].printOption();
 			optionSet.get(i).printOption();
 			System.out.printf("\n");
 		}
 	}
 	
-	// Print optionSet[] based on modelName
-//	public void printOptionSet()
-	
 	// Print the option[] based on optSetIndex
 	public void printOption(int optSetIndex) {
 		if(optSetIndex >= 0 && optSetIndex < optionSet.size()) {
-//			optionSet[optSetIndex].printOption();
 			optionSet.get(optSetIndex).printOption();
 		}
 	}
@@ -352,7 +317,6 @@ public class Automobile implements Serializable{
 	// Print name and price based on optSetIndex and optIndex
 	public void printNameAndPrice(int optSetIndex, int optIndex) {
 		if(optSetIndex >= 0 && optSetIndex < optionSet.size()) {
-//			optionSet[optSetIndex].printOption(optIndex);
 			optionSet.get(optSetIndex).printOption(optIndex);
 		}
 	}
