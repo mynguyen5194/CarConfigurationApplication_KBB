@@ -40,6 +40,7 @@ public class AutoUtil {
 				String optName = reader.readLine();
 				int optSize = Integer.parseInt(reader.readLine());
 				
+//				System.out.printf("Auto size: " + auto.getSize());
 				auto.setOption(optSetIndex, optSize, optName);
 				
 				for(int optIndex = 0; optIndex < optSize; optIndex++) {

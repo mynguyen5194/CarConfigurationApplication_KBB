@@ -21,10 +21,10 @@ public class Automobile implements Serializable{
 	public Automobile() {}
 	public Automobile(String OptionSetName, float BasePrice, int size) {
 //		optionSet = new OptionSet[size];
-		optionSet = new ArrayList<> (size);
-		for(int i = 0; i < optionSet.size(); i++) {
+		optionSet = new ArrayList<> ();
+		for(int i = 0; i < size; i++) {
 //			optionSet[i] = new OptionSet();
-			optionSet.set(i, new OptionSet());
+			optionSet.add(i, new OptionSet());
 		}
 		
 		optionSetName = OptionSetName;
@@ -51,7 +51,8 @@ public class Automobile implements Serializable{
 	// Set values of Option
 	public void setOption(int optSetIndex, int optSize, String optName) {
 //		optionSet[optSetIndex] = new OptionSet(optSize, optName);
-		optionSet.get(optSetIndex).constructOptionSet(optSize, optName);
+//		optionSet.get(optSetIndex).constructOptionSet(optSize, optName);
+		optionSet.set(optSetIndex, new OptionSet(optSize, optName));
 //		optionSet.get(optSetIndex).equals(new OptionSet(optSize, optName));
 	}
 	

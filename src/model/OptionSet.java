@@ -44,7 +44,6 @@ public class OptionSet implements Serializable {
 	}
 	
 	// INSTANCE VARIABLES
-//	private Option option[];
 	private ArrayList<Option> option;
 	private String optionName;
 	
@@ -54,7 +53,6 @@ public class OptionSet implements Serializable {
 	
 	public OptionSet(int size) {
 		option = new ArrayList<> (size);
-//		option = new Option[size];
 		for(int i = 0; i < size; i++) {
 //			option[i] = new Option();
 			option.set(i, new Option());
@@ -63,11 +61,14 @@ public class OptionSet implements Serializable {
 
 	public OptionSet(int size, String OptionName) {
 //		option = new Option [size];
-		option = new ArrayList<> (size);
+		option = new ArrayList<> ();
 		
-		for(int i = 0; i < option.size(); i++) {
+//		System.out.printf("Size: " + option.size());
+		
+		for(int i = 0; i < size; i++) {
 //			option[i] = new Option();
-			option.add(i, new Option());
+			option.add(i, new Option());	
+//			option.set(i, new Option());
 		}
 		
 		optionName = OptionName;
