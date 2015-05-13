@@ -16,54 +16,54 @@ import exceptionHandler.*;
 public class AutoUtil {
 	public Automobile readFile(Automobile auto, String fileName) {		
 		
-	boolean problemFixed = false;	
-	ProblemGenerator newProblem = new ProblemGenerator("noneExitFileName.txt");
-	newProblem.setFileName(fileName);
+		boolean problemFixed = false;	
+		ProblemGenerator newProblem = new ProblemGenerator("noneExitFileName.txt");
+		newProblem.setFileName(fileName);
 	
-	do {
-		try {
-			problemFixed = newProblem.openFile();
+		do {
+			try {
+				problemFixed = newProblem.openFile();
 			
-			FileReader file = new FileReader(fileName);
-			BufferedReader reader = new BufferedReader(file);
+				FileReader file = new FileReader(fileName);
+				BufferedReader reader = new BufferedReader(file);
 			
 			
-			// Get optSetName, basePrice, and autoSize and instantiate new Automotive
-			String optSetName = reader.readLine();
-			float basePrice = Float.parseFloat(reader.readLine());
-			int optSetSize = Integer.parseInt(reader.readLine());
-			
-			auto = new Automobile(optSetName, basePrice, optSetSize);
+				// Get optSetName, basePrice, and autoSize and instantiate new Automotive
+				String optSetName = reader.readLine();
+				float basePrice = Float.parseFloat(reader.readLine());
+				int optSetSize = Integer.parseInt(reader.readLine());
 				
-			for(int optSetIndex = 0; optSetIndex < optSetSize; optSetIndex++) {
-				// Get optSetName and optSetSize and instantiate new Option
-				String optName = reader.readLine();
-				int optSize = Integer.parseInt(reader.readLine());
+				auto = new Automobile(optSetName, basePrice, optSetSize);
 				
-				auto.setOption(optSetIndex, optSize, optName);
+				for(int optSetIndex = 0; optSetIndex < optSetSize; optSetIndex++) {
+					// Get optSetName and optSetSize and instantiate new Option
+					String optName = reader.readLine();
+					int optSize = Integer.parseInt(reader.readLine());
 				
-				for(int optIndex = 0; optIndex < optSize; optIndex++) {
-					StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
-					StringBuffer Name = new StringBuffer("");
+					auto.setOption(optSetIndex, optSize, optName);
+				
+					for(int optIndex = 0; optIndex < optSize; optIndex++) {
+						StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
+						StringBuffer Name = new StringBuffer("");
 					
-					// Get the name and price and set them at the appropriate position
-					Name.append(tokenizer.nextToken(","));
-					float Price = Float.parseFloat(tokenizer.nextToken());
+						// Get the name and price and set them at the appropriate position
+						Name.append(tokenizer.nextToken(","));
+						float Price = Float.parseFloat(tokenizer.nextToken());
 					
-					auto.setOption(optSetIndex, optIndex, Name.toString(), Price);
-				}	
+						auto.setOption(optSetIndex, optIndex, Name.toString(), Price);
+					}	
+				}
+				
+				file.close();
+				reader.close();
+	
 			}
-				
-			file.close();
-			reader.close();
-	
-		}
-		catch(ExceptionHandler expt) {
-			newProblem.setFileName(expt.fixProblemReadFromConsole());
-		}
-		catch (IOException err) {
+			catch(ExceptionHandler expt) {
+				newProblem.setFileName(expt.fixProblemReadFromConsole());
+			}
+			catch (IOException err) {
 			
-		}
+			}
 	}
 	while(problemFixed == false);
 

@@ -3,17 +3,29 @@ package adapter;
 import model.*;
 import util.*;
 import exceptionHandler.*;
+import java.util.*;
 
 public abstract class ProxyAutomobile {
 	private static Automobile auto;
+	private static LinkedHashMap<String, Automobile> fleet;
 	
-	public ProxyAutomobile() {}
+	public ProxyAutomobile() {
+		fleet = new LinkedHashMap<String, Automobile>();
+	}
 
 	public static Automobile getAuto() {
 		return auto;
 	}
 	public static void setAuto(Automobile auto) {
 		ProxyAutomobile.auto = auto;
+	}
+
+	public static LinkedHashMap<String, Automobile> getFleet() {
+		return fleet;
+	}
+
+	public static void setFleet(LinkedHashMap<String, Automobile> fleet) {
+		ProxyAutomobile.fleet = fleet;
 	}
 
 	public void buildAuto(String fileName) {

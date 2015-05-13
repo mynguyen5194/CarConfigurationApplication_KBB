@@ -31,11 +31,11 @@ public class KBBDriver extends BuildAuto {
 		
 		driver.printAuto("Ford's Focus Wagon ZTW");
 		
-		driver.updateOptionPrice("Ford's Focus Wagon ZTW", "Color", "Liquid", 5000000);
-		driver.updateOptionPrice("Ford's Focus Wagon ZTW", "Color", "Power Moonroof Not Present", 5000000);
-		driver.updateOptionSetName("Ford's Focus Wagon ZTW", "Ford's Focus Wagon ZTW", "Honda Accord");
-		
-		driver.printAuto("Honda Accord");
+//		driver.updateOptionPrice("Ford's Focus Wagon ZTW", "Color", "Liquid", 5000000);
+//		driver.updateOptionPrice("Ford's Focus Wagon ZTW", "Color", "Power Moonroof Not Present", 5000000);
+//		driver.updateOptionSetName("Ford's Focus Wagon ZTW", "Ford's Focus Wagon ZTW", "Honda Accord");
+//		
+//		driver.printAuto("Honda Accord");
 	}
 }
 
