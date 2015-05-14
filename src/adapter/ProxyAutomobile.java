@@ -6,26 +6,26 @@ import exceptionHandler.*;
 import java.util.*;
 
 public abstract class ProxyAutomobile {
-	private static Automobile auto;
+//	private static Automobile auto;
 	private static Fleet fleet;
 	
 	public ProxyAutomobile() {}
 
-	public static Automobile getAuto() {
-		return auto;
-	}
-	public static void setAuto(Automobile auto) {
-		ProxyAutomobile.auto = auto;
-	}
+//	public static Automobile getAuto() {
+//		return auto;
+//	}
+//	public static void setAuto(Automobile auto) {
+//		ProxyAutomobile.auto = auto;
+//	}
 
-	public static LinkedHashMap<String, Automobile> getFleet() {
+	
+	public static Fleet getFleet() {
 		return fleet;
 	}
 
-	public static void setFleet(LinkedHashMap<String, Automobile> fleet) {
+	public static void setFleet(Fleet fleet) {
 		ProxyAutomobile.fleet = fleet;
 	}
-	
 	
 	
 	
@@ -40,6 +40,8 @@ public abstract class ProxyAutomobile {
 		auto = autoUtil.readFile(auto, fileName);
 	}
 	
+	
+
 	//This function searches and prints the properties of a given modelName.
 	public void printAuto(String modelName) {
 		if(auto != null) {

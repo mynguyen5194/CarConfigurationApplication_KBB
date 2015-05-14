@@ -11,19 +11,18 @@ import java.io.Serializable;
 
 public class Automobile implements Serializable{
 	// INSTANCE VARIABLES
-	private ArrayList<OptionSet> optionSet;
+	private LinkedHashMap<String, Automobile> optionSet;
 	private String optionSetName;
 	private double basePrice;
 //	
 	private String maker;
 	private String model;
 	private OptionSet.Option choice;
-	private LinkedHashMap<String, Automobile> optionSets;
 	
 	
 	// CONSTRUCTORS
 	public Automobile() {
-		optionSets = new LinkedHashMap<String, Automobile>();
+		optionSet = new LinkedHashMap<String, Automobile>();
 	}
 	public Automobile(String OptionSetName, double BasePrice, int size) {
 		optionSet = new ArrayList<> ();

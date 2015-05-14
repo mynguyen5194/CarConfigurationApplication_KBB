@@ -18,17 +18,35 @@ public class Fleet {
 	}
 
 
-
-	public void searchAuto(String autoName) {
-		Automobile auto = new Automobile();
+	public Automobile searchAuto(String autoName) {
+		Automobile auto = null;
+				
+		if(fleet.containsKey(autoName)) {
+			auto = fleet.get(autoName);
+		}
 		
-		
-		
+		return auto;
 	}
 	
-	public void removeAuto(String autoName) {
+	public boolean removeAuto(String autoName) {
+		boolean removed = false;
 		
+		if(fleet.containsKey(autoName)) {
+			fleet.remove(autoName);
+			removed = true;
+		}
 		
+		return removed;
+	}
+	
+	public boolean updateAuto(String autoName, Automobile newAuto) {
+		boolean updated = false;
 		
+		if(fleet.containsKey(autoName)) {
+			fleet.replace(autoName, newAuto);
+			updated = true;
+		}
+		
+		return updated;
 	}
 }
