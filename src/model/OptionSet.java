@@ -173,6 +173,18 @@ public class OptionSet implements Serializable {
 		return foundOption;
 	}
 	
+	// Find and return true if Option object found
+	protected boolean foundOption(String Name) {
+		boolean found = false;
+		int index = this.findOptionIndex(Name);
+		
+		if(index != -1) {
+			found = true;
+		}
+		
+		return found;
+	}
+	
 	// Find and return the Option object based on exact name and price
 	protected Option findOption(String Name, double Price) {
 		Option foundOption = new Option("", -1);

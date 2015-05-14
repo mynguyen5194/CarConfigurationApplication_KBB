@@ -76,9 +76,11 @@ public class Automobile implements Serializable{
 		optionSet.get(optSetIndex).setOption(optIndex, Name, Price);
 	}
 
-//********************	
+	// Set the chosen Option based on Name into choices
 	public void setOptionChoice(String optName, String Name) {
-				
+		if(this.foundOption(Name)) {
+			choices.put(optName, this.findOption(Name));
+		}
 	}	
 	
 	// GETTERS
@@ -103,20 +105,42 @@ public class Automobile implements Serializable{
 	}
 
 //********************
-	public void getOptionChoice(String optName) {
+	public String getOptionChoice(String optName) {
+		String name = "";
 		
+		if(choices.containsKey(optName)) {
+			name = choices.get(optName).getName();
+		}
+		
+		return name;
 	}
 	
-	public void getOptionChoicePrice(String Name) {
+	public double getOptionChoicePrice(String Name) {
+		double price = -1;
 		
+		Set set = choices.keySet();
+		Iterator it = set.iterator();
 		
+		while(it.hasNext()) {
+			// Get the name of each element in the choices and compare with the given Name
+			if(choices.get(it.next()).getName().equals(Name)) {
+				price = choices.get(it.next()).getPrice();
+			}
+		}
 		
+		return price;
 	}
 	
 	public double getTotalPrice() {
 		double total = 0.0;
 		
+		Set set = choices.keySet();
+		Iterator it = set.iterator();
 		
+		while(it.hasNext()) {
+			// Traverse each element and add up the total price
+			total += choices.get(it.next()).getPrice();
+		}
 		
 		return total;
 	}
@@ -243,6 +267,16 @@ public class Automobile implements Serializable{
 		return option;
 	}
 	
+	// Return true if Option is found
+	public boolean foundOption(String Name) {
+		boolean found = false;
+		
+		for(int i = 0; i < optionSet.size(); i++) {
+			found = optionSet.get(i).foundOption(Name);
+		}
+		
+		return found;
+	}
 	
 	// UPDATE
 	// Update new optionSet
