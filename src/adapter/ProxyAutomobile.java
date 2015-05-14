@@ -6,7 +6,7 @@ import exceptionHandler.*;
 import java.util.*;
 
 public abstract class ProxyAutomobile {
-//	private static Automobile auto;
+	private static Automobile auto;
 	private static Fleet fleet;
 	
 	public ProxyAutomobile() {}
@@ -25,15 +25,7 @@ public abstract class ProxyAutomobile {
 
 	public static void setFleet(Fleet fleet) {
 		ProxyAutomobile.fleet = fleet;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 
 	public void buildAuto(String fileName) {
 		AutoUtil autoUtil = new AutoUtil();	

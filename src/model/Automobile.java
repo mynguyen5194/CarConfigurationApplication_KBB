@@ -11,19 +11,17 @@ import java.io.Serializable;
 
 public class Automobile implements Serializable{
 	// INSTANCE VARIABLES
-	private LinkedHashMap<String, Automobile> optionSet;
+	private ArrayList<OptionSet> optionSet;
+	private LinkedHashMap<String, OptionSet.Option> choices;
 	private String optionSetName;
 	private double basePrice;
-//	
 	private String maker;
 	private String model;
-	private OptionSet.Option choice;
 	
 	
 	// CONSTRUCTORS
-	public Automobile() {
-		optionSet = new LinkedHashMap<String, Automobile>();
-	}
+	public Automobile() {}
+	
 	public Automobile(String OptionSetName, double BasePrice, int size) {
 		optionSet = new ArrayList<> ();
 		for(int i = 0; i < size; i++) {
@@ -33,14 +31,16 @@ public class Automobile implements Serializable{
 		optionSetName = OptionSetName;
 		basePrice = BasePrice;
 	}
+	
 	public Automobile(String OptionSetName, double BasePrice, int size, String Maker, String Model) {
-		optionSet = new ArrayList<> ();
+		optionSet = new ArrayList<OptionSet>();
 		for(int i = 0; i < size; i++) {
 			optionSet.add(i, new OptionSet());
 		}
+		
 		maker = Maker;
 		model = Model;
-		optionSets = new LinkedHashMap<String, Automobile>();
+		choices = new LinkedHashMap<String, OptionSet.Option>();
 	}
 
 	
@@ -58,14 +58,13 @@ public class Automobile implements Serializable{
 		this.basePrice = basePrice;
 	}
 	
-	public void setMake(String maker) {
+	public void setMaker(String maker) {
 		this.maker = maker;
 	}
 	
 	public void setModel(String model) {
 		this.model = model;
 	}
-
 	
 	// (For Option)
 	// Set values of Option
@@ -76,30 +75,11 @@ public class Automobile implements Serializable{
 	public void setOption(int optSetIndex, int optIndex, String Name, double Price) {
 		optionSet.get(optSetIndex).setOption(optIndex, Name, Price);
 	}
-	
+
+//********************	
 	public void setOptionChoice(String optName, String Name) {
-		
-	}
-	
-	public void getOptionChoice(String optName) {
-		
-	}
-	
-//	
-	public void getOptionChoicePrice(String Name) {
-		
-		
-		
-	}
-	
-	public double getTotalPrice() {
-		double total = 0.0;
-		
-		
-		
-		return total;
-	}
-	
+				
+	}	
 	
 	// GETTERS
 	public ArrayList<OptionSet> getOptionSet() {
@@ -114,12 +94,31 @@ public class Automobile implements Serializable{
 		return basePrice;
 	}
 	
-	public String getMake() {
+	public String getMaker() {
 		return maker;
 	}
 	
 	public String getModel() {
 		return model;
+	}
+
+//********************
+	public void getOptionChoice(String optName) {
+		
+	}
+	
+	public void getOptionChoicePrice(String Name) {
+		
+		
+		
+	}
+	
+	public double getTotalPrice() {
+		double total = 0.0;
+		
+		
+		
+		return total;
 	}
 	
 	// Get an OptionSet based on index
@@ -145,7 +144,7 @@ public class Automobile implements Serializable{
 			int optSetIndex = optionSet.get(i).findOptionIndex(Name);
 			
 			if(optSetIndex != -1) {
-				opt = optionSet.get(i).getOptionChoice(Name);
+				opt = optionSet.get(i).getOption(optSetIndex);
 			}
 		}
 		
