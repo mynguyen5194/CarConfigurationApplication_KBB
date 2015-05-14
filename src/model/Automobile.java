@@ -13,12 +13,19 @@ public class Automobile implements Serializable{
 	// INSTANCE VARIABLES
 	private ArrayList<OptionSet> optionSet;
 	private String optionSetName;
-	private float basePrice;
+	private double basePrice;
+//	
+	private String maker;
+	private String model;
+	private OptionSet.Option choice;
+	private LinkedHashMap<String, Automobile> optionSets;
 	
 	
 	// CONSTRUCTORS
-	public Automobile() {}
-	public Automobile(String OptionSetName, float BasePrice, int size) {
+	public Automobile() {
+		optionSets = new LinkedHashMap<String, Automobile>();
+	}
+	public Automobile(String OptionSetName, double BasePrice, int size) {
 		optionSet = new ArrayList<> ();
 		for(int i = 0; i < size; i++) {
 			optionSet.add(i, new OptionSet());
@@ -26,6 +33,15 @@ public class Automobile implements Serializable{
 		
 		optionSetName = OptionSetName;
 		basePrice = BasePrice;
+	}
+	public Automobile(String OptionSetName, double BasePrice, int size, String Maker, String Model) {
+		optionSet = new ArrayList<> ();
+		for(int i = 0; i < size; i++) {
+			optionSet.add(i, new OptionSet());
+		}
+		maker = Maker;
+		model = Model;
+		optionSets = new LinkedHashMap<String, Automobile>();
 	}
 
 	
@@ -39,10 +55,18 @@ public class Automobile implements Serializable{
 		this.optionSetName = optionSetName;
 	}
 	
-	
-	public void setBasePrice(float basePrice) {
+	public void setBasePrice(double basePrice) {
 		this.basePrice = basePrice;
 	}
+	
+	public void setMake(String maker) {
+		this.maker = maker;
+	}
+	
+	public void setModel(String model) {
+		this.model = model;
+	}
+
 	
 	// (For Option)
 	// Set values of Option
@@ -50,8 +74,31 @@ public class Automobile implements Serializable{
 		optionSet.set(optSetIndex, new OptionSet(optSize, optName));
 	}
 	
-	public void setOption(int optSetIndex, int optIndex, String Name, float Price) {
+	public void setOption(int optSetIndex, int optIndex, String Name, double Price) {
 		optionSet.get(optSetIndex).setOption(optIndex, Name, Price);
+	}
+	
+	public void setOptionChoice(String optName, String Name) {
+		
+	}
+	
+	public void getOptionChoice(String optName) {
+		
+	}
+	
+//	
+	public void getOptionChoicePrice(String Name) {
+		
+		
+		
+	}
+	
+	public double getTotalPrice() {
+		double total = 0.0;
+		
+		
+		
+		return total;
 	}
 	
 	
@@ -64,8 +111,16 @@ public class Automobile implements Serializable{
 		return optionSetName;
 	}
 	
-	public float getBasePrice() {
+	public double getBasePrice() {
 		return basePrice;
+	}
+	
+	public String getMake() {
+		return maker;
+	}
+	
+	public String getModel() {
+		return model;
 	}
 	
 	// Get an OptionSet based on index
@@ -91,7 +146,7 @@ public class Automobile implements Serializable{
 			int optSetIndex = optionSet.get(i).findOptionIndex(Name);
 			
 			if(optSetIndex != -1) {
-				opt = optionSet.get(i).getOption(Name);
+				opt = optionSet.get(i).getOptionChoice(Name);
 			}
 		}
 		
@@ -109,12 +164,12 @@ public class Automobile implements Serializable{
 	}
 	
 	// Get Option price based on optSetIndex and optIndex	
-	public float getOptionPrice(int optSetIndex, int optIndex) {
+	public double getOptionPrice(int optSetIndex, int optIndex) {
 		return optionSet.get(optSetIndex).getOption(optIndex).getPrice();
 	}
 	
 	// Get an Option price based on name
-	public float getOptionPrice(String optSetName) {
+	public double getOptionPrice(String optSetName) {
 		return this.getOption(optSetName).getPrice();
 	}
 	
@@ -220,7 +275,7 @@ public class Automobile implements Serializable{
 	}
 	
 	// Update new Option price based on name
-	public boolean updateOptionPrice(String Name, float newPrice) {
+	public boolean updateOptionPrice(String Name, double newPrice) {
 		boolean updated = false;
 			
 		for(int i = 0; i < optionSet.size(); i++) {
@@ -235,7 +290,7 @@ public class Automobile implements Serializable{
 	}
 	
 	// Update new name and new price of Option based on optionName and old name
-	public boolean updateOption(String optName, String oldName, String newName, float newPrice) {
+	public boolean updateOption(String optName, String oldName, String newName, double newPrice) {
 		boolean updated = false;
 		int optSetIndex = this.findOptionIndex(optName);
 		
@@ -247,7 +302,7 @@ public class Automobile implements Serializable{
 	}
 	
 	// Update new name and new price of optionSet based on old name
-	public boolean updateOption(String oldName, String newName, float newPrice) {
+	public boolean updateOption(String oldName, String newName, double newPrice) {
 		boolean updated = false;
 		
 		for(int i = 0; i < optionSet.size(); i++) {

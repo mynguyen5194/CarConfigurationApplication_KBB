@@ -12,10 +12,10 @@ import java.io.Serializable;
 public class OptionSet implements Serializable {
 	protected class Option implements Serializable {
 		private String name;
-		private float price;
+		private double price;
 		
 		public Option() {}
-		public Option(String Name, float Price) {
+		public Option(String Name, double Price) {
 			name = Name;
 			price = Price;
 		}
@@ -26,10 +26,10 @@ public class OptionSet implements Serializable {
 		protected void setName(String name) {
 			this.name = name;
 		}
-		protected float getPrice() {
+		protected double getPrice() {
 			return price;
 		}
-		protected void setPrice(float price) {
+		protected void setPrice(double price) {
 			this.price = price;
 		}
 		
@@ -82,7 +82,7 @@ public class OptionSet implements Serializable {
 		this.optionName = optionName;
 	}
 	
-	protected void setOption(int optIndex, String Name, float Price) {
+	protected void setOption(int optIndex, String Name, double Price) {
 		option.get(optIndex).setName(Name);
 		option.get(optIndex).setPrice(Price);
 	}
@@ -91,8 +91,14 @@ public class OptionSet implements Serializable {
 		option.set(optIndex, newOption);
 	}
 	
-	protected void setOption(String Name, float Price) {
+	protected void setOption(String Name, double Price) {
 		this.setOption(this.findOptionIndex(Name), Name, Price);
+	}
+	
+	protected void setOptionChoice(String optName, Option newOption) {
+		if(optName.equals(optionName)) {
+			option.add(newOption);
+		}
 	}
 	
 	
@@ -111,8 +117,14 @@ public class OptionSet implements Serializable {
 	}
 	
 	// Get an Option based on name
-	protected Option getOption(String Name) {
-		return option.get(this.findOptionIndex(Name));
+	protected Option getOptionChoice(String Name) {
+		Option opt = null;
+		
+		if(option.get(this.findOptionIndex(Name)) != null) {
+			opt = option.get(this.findOptionIndex(Name));
+		}
+		
+		return opt;
 	}
 
 	
@@ -131,7 +143,7 @@ public class OptionSet implements Serializable {
 	}
 	
 	// Find the Option index based on name and price
-	protected int findOptionIndex(String Name, float Price) {
+	protected int findOptionIndex(String Name, double Price) {
 		int index = -1;
 		
 		for(int i = 0; i < option.size(); i++) {
@@ -162,7 +174,7 @@ public class OptionSet implements Serializable {
 	}
 	
 	// Find and return the Option object based on exact name and price
-	protected Option findOption(String Name, float Price) {
+	protected Option findOption(String Name, double Price) {
 		Option foundOption = new Option("", -1);
 		int index = this.findOptionIndex(Name);
 		
@@ -176,7 +188,7 @@ public class OptionSet implements Serializable {
 	
 	// UPDATE
 	// Update new name and new price based on the index
-	protected boolean updateOption(int index, String newName, float newPrice) {
+	protected boolean updateOption(int index, String newName, double newPrice) {
 		boolean updated = false;
 		
 		if(index >= 0 && index < option.size()) {
@@ -188,7 +200,7 @@ public class OptionSet implements Serializable {
 	}
 	
 	// Update new name and new price based on the old name
-	protected boolean updateOption(String oldName, String newName, float newPrice) {
+	protected boolean updateOption(String oldName, String newName, double newPrice) {
 		boolean updated = false;
 		int index = this.findOptionIndex(oldName);
 		
@@ -205,7 +217,7 @@ public class OptionSet implements Serializable {
 	}
 	
 	// Update new price based on name
-	protected boolean updateOptionPrice(String Name, float newPrice) {
+	protected boolean updateOptionPrice(String Name, double newPrice) {
 		boolean updated = false;
 		int index = this.findOptionIndex(Name);
 		

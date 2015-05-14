@@ -30,7 +30,7 @@ public class AutoUtil {
 			
 				// Get optSetName, basePrice, and autoSize and instantiate new Automotive
 				String optSetName = reader.readLine();
-				float basePrice = Float.parseFloat(reader.readLine());
+				double basePrice = Double.parseDouble(reader.readLine());
 				int optSetSize = Integer.parseInt(reader.readLine());
 				
 				auto = new Automobile(optSetName, basePrice, optSetSize);
@@ -48,7 +48,7 @@ public class AutoUtil {
 					
 						// Get the name and price and set them at the appropriate position
 						Name.append(tokenizer.nextToken(","));
-						float Price = Float.parseFloat(tokenizer.nextToken());
+						double Price = Double.parseDouble(tokenizer.nextToken());
 					
 						auto.setOption(optSetIndex, optIndex, Name.toString(), Price);
 					}	

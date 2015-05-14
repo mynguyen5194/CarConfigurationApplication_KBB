@@ -7,11 +7,9 @@ import java.util.*;
 
 public abstract class ProxyAutomobile {
 	private static Automobile auto;
-	private static LinkedHashMap<String, Automobile> fleet;
+	private static Fleet fleet;
 	
-	public ProxyAutomobile() {
-		fleet = new LinkedHashMap<String, Automobile>();
-	}
+	public ProxyAutomobile() {}
 
 	public static Automobile getAuto() {
 		return auto;
@@ -27,6 +25,15 @@ public abstract class ProxyAutomobile {
 	public static void setFleet(LinkedHashMap<String, Automobile> fleet) {
 		ProxyAutomobile.fleet = fleet;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public void buildAuto(String fileName) {
 		AutoUtil autoUtil = new AutoUtil();	
@@ -61,7 +68,7 @@ public abstract class ProxyAutomobile {
 	}
 	
 	//This function searches the Model for a given OptionSet and Option name, and sets the price to newPrice.
-	public void updateOptionPrice(String modelName, String optName, String name, float newPrice) {
+	public void updateOptionPrice(String modelName, String optName, String name, double newPrice) {
 		boolean updated = false;
 		if(auto != null) {
 			if(auto.getOptionSetName().equals(modelName)) {
