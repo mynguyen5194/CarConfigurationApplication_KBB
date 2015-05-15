@@ -9,7 +9,9 @@ public abstract class ProxyAutomobile {
 	private static Automobile auto;
 	private static Fleet fleet;
 	
-	public ProxyAutomobile() {}
+	public ProxyAutomobile() {
+		fleet = new Fleet();
+	}
 
 	public static Automobile getAuto() {
 		return auto;
@@ -24,16 +26,8 @@ public abstract class ProxyAutomobile {
 	}
 	
 	public void addAuto(String Model) {
-		fleet.setFleet(Model, this.getAuto());
+		fleet.setFleet(Model, auto);
 	}
-	
-//	public boolean removeChoice(String OptName, String Name) {
-//		boolean removed = false;
-//		
-//		if()
-//		
-//		return removed;
-//	}
 	
 	public double getTotalPrice() {
 		return auto.getTotalPrice();

@@ -11,7 +11,8 @@ import java.io.Serializable;
 
 public class Automobile implements Serializable{
 	// INSTANCE VARIABLES
-	private ArrayList<OptionSet> optionSet;
+//	private ArrayList<OptionSet> optionSet;
+	private LinkedHashMap<Integer, OptionSet> optionSet;			// Integer = index
 	private LinkedHashMap<String, OptionSet.Option> choices;	// String = optionName
 	private String model;
 	private double basePrice;
@@ -22,9 +23,14 @@ public class Automobile implements Serializable{
 	public Automobile() {}
 	
 	public Automobile(String Model, String Maker, double BasePrice, int size) {
-		optionSet = new ArrayList<OptionSet>();
-		for(int i = 0; i < size; i++) {
-			optionSet.add(i, new OptionSet());
+//		optionSet = new ArrayList<OptionSet>();
+//		for(int i = 0; i < size; i++) {
+//			optionSet.add(i, new OptionSet());
+//		}
+		
+		optionSet = new LinkedHashMap<Integer, OptionSet>();
+		for(int i = 0; i < optionSet.size(); i++) {
+			optionSet.put(i, new OptionSet());
 		}
 		
 		maker = Maker;
@@ -36,7 +42,7 @@ public class Automobile implements Serializable{
 	
 	// SETTERS
 	// (For OptionSet)
-	public void setOptionSet(ArrayList<OptionSet> optionSet) {
+	public void setOptionSet(LinkedHashMap<Integer, OptionSet> optionSet) {
 		this.optionSet = optionSet;
 	}
 	
@@ -56,7 +62,8 @@ public class Automobile implements Serializable{
 	// (For Option)
 	// Set values of Option
 	public void setOption(int optSetIndex, int optSize, String optName) {
-		optionSet.set(optSetIndex, new OptionSet(optSize, optName));
+//		optionSet.set(optSetIndex, new OptionSet(optSize, optName));
+		optionSet.put(optSetIndex, new OptionSet(optSize, optName));
 	}
 	
 	public void setOption(int optSetIndex, int optIndex, String Name, double Price) {
@@ -73,7 +80,7 @@ public class Automobile implements Serializable{
 	}	
 	
 	// GETTERS
-	public ArrayList<OptionSet> getOptionSet() {
+	public LinkedHashMap<Integer, OptionSet> getOptionSet() {
 		return optionSet;
 	}
 	
@@ -365,7 +372,8 @@ public class Automobile implements Serializable{
 		boolean deleted = false;
 		
 		if(optSetIndex >= 0 && optSetIndex < optionSet.size()) {
-			optionSet.set(optSetIndex, null);
+//			optionSet.set(optSetIndex, null);
+			optionSet.remove(optionSet);
 			deleted = true;
 		}
 		

@@ -26,9 +26,16 @@ public class AutoUtil {
 			
 				FileReader file = new FileReader(fileName);
 				BufferedReader reader = new BufferedReader(file);
-			
+				boolean eof = false;
+			while(!eof) {
+				
+				
 				// Get model, basePrice, and autoSize and instantiate new Automotive
 				String model = reader.readLine();
+				if(model == null) {
+					eof = true;
+				}
+				else {
 				String maker = reader.readLine();
 				double basePrice = Double.parseDouble(reader.readLine());
 				int optSetSize = Integer.parseInt(reader.readLine());
@@ -53,7 +60,8 @@ public class AutoUtil {
 						auto.setOption(optSetIndex, optIndex, Name.toString(), Price);
 					}	
 				}
-				
+				}
+			}	
 				file.close();
 				reader.close();
 	

@@ -30,6 +30,7 @@ public class KBBDriver extends BuildAuto {
 		driver.buildAuto("FordZTW.txt");
 		
 		driver.printAuto("Ford's Focus Wagon ZTW");
+		driver.printAuto("Honda Accord 2001");
 		
 		driver.addChoice("Transmission", "Manual");
 		driver.addChoice("Brakes/Traction Control", "ABS with Advance Trac");
@@ -37,8 +38,10 @@ public class KBBDriver extends BuildAuto {
 		
 		System.out.printf("TOTAL PRICE: " + driver.getTotalPrice());
 		
-		
 		driver.addAuto("Ford's Focus Wagon ZTW");
+		
+		
+//		driver.addAuto("Ford's Focus Wagon ZTW");
 		
 		
 //		driver.updateOptionPrice("Ford's Focus Wagon ZTW", "Color", "Liquid", 5000000.45);

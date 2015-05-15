@@ -3,13 +3,12 @@ package model;
 import java.util.*;
 
 public class Fleet {
-	// String (key) = model
-	private LinkedHashMap<String, Automobile> fleet;
+	private LinkedHashMap<String, Automobile> fleet;	// String (key) = model
 	
 	
 	// CONSTRUCTORS
 	public Fleet() {
-//		fleet = new LinkedHashMap<String, Automobile>();
+		fleet = new LinkedHashMap<String, Automobile>();
 	}
 	
 	public Fleet(LinkedHashMap<String, Automobile> Fleet) {
@@ -32,20 +31,21 @@ public class Fleet {
 		return fleet;
 	}
 	
-	public Automobile getFleetAutomobile(String Model) {
-		return fleet.get(Model);
-	}
-	
-	// SEARCH
-	// Search and return automobile if found
-	public Automobile searchAuto(String Model) {
+	public Automobile getAuto(String Model) {
 		Automobile auto = null;
-				
+		
 		if(fleet.containsKey(Model)) {
 			auto = fleet.get(Model);
 		}
 		
 		return auto;
+	}
+	
+	
+	// SEARCH
+	// Search and return automobile if found. Otherwise return null
+	public Automobile searchAuto(String Model) {		
+		return this.getAuto(Model);
 	}
 	
 	
