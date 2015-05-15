@@ -19,22 +19,9 @@ public class Automobile implements Serializable{
 	
 	
 	// CONSTRUCTORS
-	public Automobile() {
-		choices = new LinkedHashMap<String, OptionSet.Option>();
-	}
+	public Automobile() {}
 	
-	public Automobile(String Model, double BasePrice, int size) {
-		optionSet = new ArrayList<> ();
-		for(int i = 0; i < size; i++) {
-			optionSet.add(i, new OptionSet());
-		}
-		
-		model = Model;
-		basePrice = BasePrice;
-		choices = new LinkedHashMap<String, OptionSet.Option>();
-	}
-	
-	public Automobile(String Model, double BasePrice, int size, String Maker) {
+	public Automobile(String Model, String Maker, double BasePrice, int size) {
 		optionSet = new ArrayList<OptionSet>();
 		for(int i = 0; i < size; i++) {
 			optionSet.add(i, new OptionSet());
@@ -42,6 +29,7 @@ public class Automobile implements Serializable{
 		
 		maker = Maker;
 		model = Model;
+		basePrice = BasePrice;
 		choices = new LinkedHashMap<String, OptionSet.Option>();
 	}
 
@@ -79,11 +67,7 @@ public class Automobile implements Serializable{
 	public void setOptionChoice(String optName, String Name) {
 		for(int i = 0; i < optionSet.size(); i++) {
 			if(this.findOptionSetIndex(optName) != -1) {
-				OptionSet.Option opt = this.getOption(Name);
-//				try {
-					choices.put(optName, opt);
-//				}
-//				catch()
+				choices.put(optName, this.getOption(Name));
 			}
 		}
 	}	
@@ -105,9 +89,19 @@ public class Automobile implements Serializable{
 		return maker;
 	}
 	
-
-//********************
-	public String getOptionChoice(String optName) {
+	// Get Option Choice based on optName
+	public OptionSet.Option getOptionChoice(String optName) {
+		OptionSet.Option opt = null;
+				
+		if(choices.containsKey(optName)) {
+			opt = choices.get(optName);
+		}
+				
+		return opt;
+	}
+	
+	// Get Option Choice Name based on optName
+	public String getOptionChoiceName(String optName) {
 		String name = "";
 		
 		if(choices.containsKey(optName)) {
@@ -117,6 +111,7 @@ public class Automobile implements Serializable{
 		return name;
 	}
 	
+	// Get Option Choice Price based on optName
 	public double getOptionChoicePrice(String Name) {
 		double price = -1;
 		
@@ -133,6 +128,7 @@ public class Automobile implements Serializable{
 		return price;
 	}
 	
+	// Get total price of chosen Option
 	public double getTotalPrice() {
 		double total = 0.0;
 		
@@ -420,6 +416,7 @@ public class Automobile implements Serializable{
 	// Print the whole optionSet[]
 	public void printOptionSet() {
 		System.out.printf("Model: " + this.model +
+				"\nMaker: " + this.maker +
 				"\nBase Price: " + this.basePrice + "\n\n");
 		for(int i = 0; i < optionSet.size(); i++) {
 			optionSet.get(i).printOption();

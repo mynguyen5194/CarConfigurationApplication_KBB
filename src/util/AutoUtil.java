@@ -27,12 +27,13 @@ public class AutoUtil {
 				FileReader file = new FileReader(fileName);
 				BufferedReader reader = new BufferedReader(file);
 			
-				// Get optSetName, basePrice, and autoSize and instantiate new Automotive
-				String optSetName = reader.readLine();
+				// Get model, basePrice, and autoSize and instantiate new Automotive
+				String model = reader.readLine();
+				String maker = reader.readLine();
 				double basePrice = Double.parseDouble(reader.readLine());
 				int optSetSize = Integer.parseInt(reader.readLine());
 				
-				auto = new Automobile(optSetName, basePrice, optSetSize);
+				auto = new Automobile(model, maker, basePrice, optSetSize);
 				
 				for(int optSetIndex = 0; optSetIndex < optSetSize; optSetIndex++) {
 					// Get optSetName and optSetSize and instantiate new Option

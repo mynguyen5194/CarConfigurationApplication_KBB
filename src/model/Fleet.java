@@ -3,55 +3,74 @@ package model;
 import java.util.*;
 
 public class Fleet {
-	// String = autoName = optionSetName
-	private static LinkedHashMap<String, Automobile> fleet;
+	// String (key) = model
+	private LinkedHashMap<String, Automobile> fleet;
 	
+	
+	// CONSTRUCTORS
 	public Fleet() {
-		fleet = new LinkedHashMap<String, Automobile>();
+//		fleet = new LinkedHashMap<String, Automobile>();
 	}
 	
 	public Fleet(LinkedHashMap<String, Automobile> Fleet) {
 		fleet = Fleet;
 	}
 	
-	public static LinkedHashMap<String, Automobile> getFleet() {
+	
+	// SETTERS
+	public void setFleet(LinkedHashMap<String, Automobile> fleet) {
+		this.fleet = fleet;
+	}
+	
+	public void setFleet(String model, Automobile auto) {
+		fleet.put(model, auto);
+	}
+	
+	
+	// GETTERS
+	public LinkedHashMap<String, Automobile> getFleet() {
 		return fleet;
 	}
-
-	public static void setFleet(LinkedHashMap<String, Automobile> fleet) {
-		Fleet.fleet = fleet;
-	}
-
 	
-	public Automobile searchAuto(String autoName) {
+	public Automobile getFleetAutomobile(String Model) {
+		return fleet.get(Model);
+	}
+	
+	// SEARCH
+	// Search and return automobile if found
+	public Automobile searchAuto(String Model) {
 		Automobile auto = null;
 				
-		if(fleet.containsKey(autoName)) {
-			auto = fleet.get(autoName);
+		if(fleet.containsKey(Model)) {
+			auto = fleet.get(Model);
 		}
 		
 		return auto;
 	}
 	
-	public boolean removeAuto(String autoName) {
-		boolean removed = false;
-		
-		if(fleet.containsKey(autoName)) {
-			fleet.remove(autoName);
-			removed = true;
-		}
-		
-		return removed;
-	}
 	
-	public boolean updateAuto(String autoName, Automobile newAuto) {
+	// UPDATE
+	public boolean updateAuto(String Model, Automobile newAuto) {
 		boolean updated = false;
 		
-		if(fleet.containsKey(autoName)) {
-			fleet.replace(autoName, newAuto);
+		if(fleet.containsKey(Model)) {
+			fleet.replace(Model, newAuto);
 			updated = true;
 		}
 		
 		return updated;
 	}
+	
+// NEED TO ADD MORE UPDATE OR SEARCH FUNCTION TO ACCESS optionSet or Option	
+	
+	public boolean removeAuto(String modelName) {
+		boolean removed = false;
+		
+		if(fleet.containsKey(modelName)) {
+			fleet.remove(modelName);
+			removed = true;
+		}
+		
+		return removed;
+	}	
 }

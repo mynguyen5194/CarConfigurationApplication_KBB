@@ -23,6 +23,10 @@ public abstract class ProxyAutomobile {
 		auto.setOptionChoice(optName, Name);
 	}
 	
+	public void addAuto(String Model) {
+		fleet.setFleet(Model, this.getAuto());
+	}
+	
 //	public boolean removeChoice(String OptName, String Name) {
 //		boolean removed = false;
 //		
