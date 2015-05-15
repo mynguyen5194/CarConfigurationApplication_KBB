@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class Automobile implements Serializable{
 	// INSTANCE VARIABLES
 	private ArrayList<OptionSet> optionSet;
-	private LinkedHashMap<String, OptionSet.Option> choices;
+	private LinkedHashMap<String, OptionSet.Option> choices;	// String = optionName
 	private String optionSetName;
 	private double basePrice;
 	private String maker;
@@ -20,7 +20,9 @@ public class Automobile implements Serializable{
 	
 	
 	// CONSTRUCTORS
-	public Automobile() {}
+	public Automobile() {
+		choices = new LinkedHashMap<String, OptionSet.Option>();
+	}
 	
 	public Automobile(String OptionSetName, double BasePrice, int size) {
 		optionSet = new ArrayList<> ();
@@ -30,6 +32,7 @@ public class Automobile implements Serializable{
 		
 		optionSetName = OptionSetName;
 		basePrice = BasePrice;
+		choices = new LinkedHashMap<String, OptionSet.Option>();
 	}
 	
 	public Automobile(String OptionSetName, double BasePrice, int size, String Maker, String Model) {
@@ -78,8 +81,14 @@ public class Automobile implements Serializable{
 
 	// Set the chosen Option based on Name into choices
 	public void setOptionChoice(String optName, String Name) {
-		if(this.foundOption(Name)) {
-			choices.put(optName, this.findOption(Name));
+		for(int i = 0; i < optionSet.size(); i++) {
+			if(this.findOptionSetIndex(optName) != -1) {
+				OptionSet.Option opt = this.getOption(Name);
+//				try {
+					choices.put(optName, opt);
+//				}
+//				catch()
+			}
 		}
 	}	
 	
@@ -160,7 +169,7 @@ public class Automobile implements Serializable{
 		return optionSet.size();
 	}
 	
-	// Get an Option based on name
+	// Get an Option based on Name
 	public OptionSet.Option getOption(String Name) {
 		OptionSet.Option opt = null;
 		
@@ -168,10 +177,22 @@ public class Automobile implements Serializable{
 			int optSetIndex = optionSet.get(i).findOptionIndex(Name);
 			
 			if(optSetIndex != -1) {
-				opt = optionSet.get(i).getOption(optSetIndex);
+				int optIndex = optionSet.get(i).findOptionIndex(Name);
+				opt = optionSet.get(i).getOption(optIndex);
 			}
 		}
 		
+		return opt;
+	}
+	
+	// Get an Option based on Name and OptSetIndex
+	public OptionSet.Option getOption_Index(int optSetIndex, String Name) {
+		OptionSet.Option opt = null;
+				
+		if(optSetIndex >= 0 && optSetIndex < optionSet.size()) {
+			opt = optionSet.get(optSetIndex).getOption(optionSet.get(optSetIndex).findOptionIndex(Name));
+		}
+				
 		return opt;
 	}
 	
@@ -368,6 +389,34 @@ public class Automobile implements Serializable{
 		int optSetIndex = this.findOptionSetIndex(optName);
 		if(optSetIndex != -1) {
 			deleted = this.deleteOption(optSetIndex);
+		}
+		
+		return deleted;
+	}
+	
+	// Delete choices in the Choices LinkedHashMapbased based on optName
+	public boolean deleteOptionChoice_optName(String optName) {
+		boolean deleted = false;
+		
+		if(choices.containsKey(optName)) {
+			choices.remove(optName);
+			deleted = true;
+		}
+		
+		return deleted;
+	}
+	
+	// Delete choices in the Choices LinkedHashMapbased based on Name
+	public boolean deleteOptionChoice_Name(String Name) {
+		boolean deleted = false;
+		
+		Set set = choices.keySet();
+		Iterator it = set.iterator();
+		
+		while(it.hasNext()) {
+			if(choices.get(it.next()).getName().equals(Name)) {
+				deleted = choices.remove(choices.get(it.next()), Name);
+			}
 		}
 		
 		return deleted;

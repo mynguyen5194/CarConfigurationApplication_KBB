@@ -11,12 +11,23 @@ public abstract class ProxyAutomobile {
 	
 	public ProxyAutomobile() {}
 
-//	public static Automobile getAuto() {
-//		return auto;
-//	}
-//	public static void setAuto(Automobile auto) {
-//		ProxyAutomobile.auto = auto;
-//	}
+	public static Automobile getAuto() {
+		return auto;
+	}
+	public static void setAuto(Automobile auto) {
+		ProxyAutomobile.auto = auto;
+	}
+	
+// Added
+	public void addChoice(String optName, String Name) {
+		auto.setOptionChoice(optName, Name);
+	}
+	
+//	public static removeChoice(String)
+	
+	public double getTotalPrice() {
+		return auto.getTotalPrice();
+	}
 
 	
 	public static Fleet getFleet() {

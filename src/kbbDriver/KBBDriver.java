@@ -31,6 +31,12 @@ public class KBBDriver extends BuildAuto {
 		
 		driver.printAuto("Ford's Focus Wagon ZTW");
 		
+		driver.addChoice("Transmission", "Manual");
+		driver.addChoice("Brakes/Traction Control", "ABS with Advance Trac");
+		
+		System.out.printf("TOTAL PRICE: " + driver.getTotalPrice());
+		
+		
 //		driver.updateOptionPrice("Ford's Focus Wagon ZTW", "Color", "Liquid", 5000000.45);
 //		driver.updateOptionPrice("Ford's Focus Wagon ZTW", "Color", "Power Moonroof Not Present", 5000000.15);
 //		driver.updateOptionSetName("Ford's Focus Wagon ZTW", "Ford's Focus Wagon ZTW", "Honda Accord");
