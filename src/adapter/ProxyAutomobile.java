@@ -18,12 +18,18 @@ public abstract class ProxyAutomobile {
 		ProxyAutomobile.auto = auto;
 	}
 	
-// Added
+	// Add choice to the Choices LinkedHashMap
 	public void addChoice(String optName, String Name) {
 		auto.setOptionChoice(optName, Name);
 	}
 	
-//	public static removeChoice(String)
+//	public boolean removeChoice(String OptName, String Name) {
+//		boolean removed = false;
+//		
+//		if()
+//		
+//		return removed;
+//	}
 	
 	public double getTotalPrice() {
 		return auto.getTotalPrice();
@@ -48,7 +54,7 @@ public abstract class ProxyAutomobile {
 	//This function searches and prints the properties of a given modelName.
 	public void printAuto(String modelName) {
 		if(auto != null) {
-			if(auto.getOptionSetName().equals(modelName)) {
+			if(auto.getModel().equals(modelName)) {
 				auto.printOptionSet();
 			}
 		}
@@ -60,9 +66,9 @@ public abstract class ProxyAutomobile {
 	//This function searches the Model for a given OptionSet and sets the name of OptionSet to newName.
 	public void updateOptionSetName(String modelName, String optSetName, String newName) {
 		if(auto != null) {
-			if(auto.getOptionSetName().equals(modelName)) {
-				if(auto.getOptionSetName().equals(optSetName)) {
-					auto.setOptionSetName(newName);
+			if(auto.getModel().equals(modelName)) {
+				if(auto.getModel().equals(optSetName)) {
+					auto.setModel(newName);
 					System.out.printf("* " + newName + " is updated\n\n");
 				}
 			}
@@ -76,7 +82,7 @@ public abstract class ProxyAutomobile {
 	public void updateOptionPrice(String modelName, String optName, String name, double newPrice) {
 		boolean updated = false;
 		if(auto != null) {
-			if(auto.getOptionSetName().equals(modelName)) {
+			if(auto.getModel().equals(modelName)) {
 				updated = auto.updateOptionPrice(name, newPrice);
 			}
 			

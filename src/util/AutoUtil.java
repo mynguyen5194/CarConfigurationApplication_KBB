@@ -27,7 +27,6 @@ public class AutoUtil {
 				FileReader file = new FileReader(fileName);
 				BufferedReader reader = new BufferedReader(file);
 			
-			
 				// Get optSetName, basePrice, and autoSize and instantiate new Automotive
 				String optSetName = reader.readLine();
 				double basePrice = Double.parseDouble(reader.readLine());

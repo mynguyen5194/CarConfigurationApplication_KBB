@@ -3,10 +3,15 @@ package model;
 import java.util.*;
 
 public class Fleet {
+	// String = autoName = optionSetName
 	private static LinkedHashMap<String, Automobile> fleet;
 	
 	public Fleet() {
 		fleet = new LinkedHashMap<String, Automobile>();
+	}
+	
+	public Fleet(LinkedHashMap<String, Automobile> Fleet) {
+		fleet = Fleet;
 	}
 	
 	public static LinkedHashMap<String, Automobile> getFleet() {
@@ -17,7 +22,7 @@ public class Fleet {
 		Fleet.fleet = fleet;
 	}
 
-
+	
 	public Automobile searchAuto(String autoName) {
 		Automobile auto = null;
 				
