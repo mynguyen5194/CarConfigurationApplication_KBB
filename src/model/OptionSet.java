@@ -23,12 +23,15 @@ public class OptionSet implements Serializable {
 		protected String getName() {
 			return name;
 		}
-		protected void setName(String name) {
-			this.name = name;
-		}
+		
 		protected double getPrice() {
 			return price;
 		}
+		
+		protected void setName(String name) {
+			this.name = name;
+		}
+		
 		protected void setPrice(double price) {
 			this.price = price;
 		}
@@ -58,18 +61,13 @@ public class OptionSet implements Serializable {
 		}
 	}
 
-	public OptionSet(int size, String OptionName) {
+	public OptionSet(int size, String optName) {
 		option = new ArrayList<> ();
-		
 		for(int i = 0; i < size; i++) {
 			option.add(i, new Option());	
 		}
 		
-		optionName = OptionName;
-	}
-	
-	protected void constructOptionSet(int size, String OptionName) {
-		new OptionSet(size, OptionName);
+		optionName = optName;
 	}
 	
 
@@ -82,6 +80,7 @@ public class OptionSet implements Serializable {
 		this.optionName = optionName;
 	}
 	
+	// Set the Name and Price at a specific optIndex in Option ArrayList
 	protected void setOption(int optIndex, String Name, double Price) {
 		option.get(optIndex).setName(Name);
 		option.get(optIndex).setPrice(Price);
@@ -92,9 +91,10 @@ public class OptionSet implements Serializable {
 	}
 	
 	protected void setOption(String Name, double Price) {
-		this.setOption(this.findOptionIndex(Name), Name, Price);
+		this.setOption(this.searchOptionIndex(Name), Name, Price);
 	}
 	
+	// Set a newOption to the option ArrayList based on optName
 	protected void setOptionChoice(String optName, Option newOption) {
 		if(optName.equals(optionName)) {
 			option.add(newOption);
@@ -111,26 +111,26 @@ public class OptionSet implements Serializable {
 		return optionName;
 	}
 	
-	// Get an Option based on index
+	// Get an Option based on optIndex
 	protected Option getOption(int optIndex) {
 		return option.get(optIndex);
 	}
 	
-	// Get an Option based on name
+	// Get an Option based on Name.
 	protected Option getOptionChoice(String Name) {
 		Option opt = null;
 		
-		if(option.get(this.findOptionIndex(Name)) != null) {
-			opt = option.get(this.findOptionIndex(Name));
+		if(option.get(this.searchOptionIndex(Name)) != null) {
+			opt = option.get(this.searchOptionIndex(Name));
 		}
 		
 		return opt;
 	}
 
 	
-	// FIND
-	// Find the Option index based on name
-	protected int findOptionIndex(String Name) {
+	// SEARCH
+	// Search the Option index based on Name
+	protected int searchOptionIndex(String Name) {
 		int index = -1;
 		
 		for(int i = 0; i < option.size(); i++) {
@@ -142,8 +142,8 @@ public class OptionSet implements Serializable {
 		return index;
 	}
 	
-	// Find the Option index based on name and price
-	protected int findOptionIndex(String Name, double Price) {
+	// Search the Option index based on name and price
+	protected int searchOptionIndex(String Name, double Price) {
 		int index = -1;
 		
 		for(int i = 0; i < option.size(); i++) {
@@ -156,15 +156,15 @@ public class OptionSet implements Serializable {
 		return index;
 	}
 	
-	// Find the Option index based on Option object
-	protected int findOptionIndex(Option Option) {
-		return this.findOptionIndex(Option.getName());
+	// Search the Option index based on Option
+	protected int searchOptionIndex(Option Option) {
+		return this.searchOptionIndex(Option.getName());
 	}
 	
-	// Find and return the Option object based on name only
-	protected Option findOption(String Name) {
+	// Search and return the Option based on Name
+	protected Option searchOption(String Name) {
 		Option foundOption = new Option("", -1);
-		int index = this.findOptionIndex(Name); 
+		int index = this.searchOptionIndex(Name); 
 		
 		if(index != -1) {
 			foundOption = option.get(index);
@@ -173,10 +173,10 @@ public class OptionSet implements Serializable {
 		return foundOption;
 	}
 	
-	// Find and return true if Option object found
+	// Search and return true if Option found.
 	protected boolean foundOption(String Name) {
 		boolean found = false;
-		int index = this.findOptionIndex(Name);
+		int index = this.searchOptionIndex(Name);
 		
 		if(index != -1) {
 			found = true;
@@ -185,10 +185,10 @@ public class OptionSet implements Serializable {
 		return found;
 	}
 	
-	// Find and return the Option object based on exact name and price
+	// Search and return the Option based on exact name and price
 	protected Option findOption(String Name, double Price) {
 		Option foundOption = new Option("", -1);
-		int index = this.findOptionIndex(Name);
+		int index = this.searchOptionIndex(Name);
 		
 		if(index != -1 && option.get(index).getPrice() == Price) {
 			foundOption = option.get(index);
@@ -214,7 +214,7 @@ public class OptionSet implements Serializable {
 	// Update new name and new price based on the old name
 	protected boolean updateOption(String oldName, String newName, double newPrice) {
 		boolean updated = false;
-		int index = this.findOptionIndex(oldName);
+		int index = this.searchOptionIndex(oldName);
 		
 		if(index != -1) {
 			updated = this.updateOption(index, newName, newPrice);
@@ -223,7 +223,7 @@ public class OptionSet implements Serializable {
 		return updated;
 	}
 	
-	// Update new price and new price
+	// Update new price and new price from newOption based on oldName
 	protected boolean updateOption(String oldName, Option newOption) {
 		return this.updateOption(oldName, newOption.getName(), newOption.getPrice());
 	}
@@ -231,7 +231,7 @@ public class OptionSet implements Serializable {
 	// Update new price based on name
 	protected boolean updateOptionPrice(String Name, double newPrice) {
 		boolean updated = false;
-		int index = this.findOptionIndex(Name);
+		int index = this.searchOptionIndex(Name);
 		
 		if(index != -1) {
 			updated = this.updateOption(index, Name, newPrice);
@@ -243,7 +243,7 @@ public class OptionSet implements Serializable {
 	// Update new name based on old name
 	protected boolean updateOptionName(String oldName, String newName) {
 		boolean updated = false;
-		int index = this.findOptionIndex(oldName);
+		int index = this.searchOptionIndex(oldName);
 		
 		if(index != -1) {
 			updated = this.updateOption(index, newName, option.get(index).getPrice());
@@ -259,7 +259,7 @@ public class OptionSet implements Serializable {
 		boolean deleted = false;
 		
 		if(index >= 0 && index < option.size()) {
-			option.set(index, null);
+			option.remove(index);
 			deleted = true;
 		}
 		
@@ -268,7 +268,7 @@ public class OptionSet implements Serializable {
 	
 	// Delete Option based on name
 	protected boolean deleteOption(String Name) {
-		return this.deleteOption(this.findOptionIndex(Name));
+		return this.deleteOption(this.searchOptionIndex(Name));
 	}
 	
 	
@@ -289,9 +289,9 @@ public class OptionSet implements Serializable {
 		}
 	}
 	
-	// Print name and price based on name
+	// Print name and price based on Name
 	protected void printOption(String Name) {
-		int optIndex = this.findOptionIndex(Name);
+		int optIndex = this.searchOptionIndex(Name);
 		
 		if(optIndex != -1) {
 			option.get(optIndex).print();

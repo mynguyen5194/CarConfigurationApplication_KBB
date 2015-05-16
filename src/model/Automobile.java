@@ -13,9 +13,10 @@ public class Automobile implements Serializable{
 	// INSTANCE VARIABLES
 	private ArrayList<OptionSet> optionSet;
 	private LinkedHashMap<String, OptionSet.Option> choices;	// String = optionName
+																// to hold chosen Option
 	private String model;
-	private double basePrice;
 	private String maker;
+	private double basePrice;
 	
 	
 	// CONSTRUCTORS
@@ -27,10 +28,36 @@ public class Automobile implements Serializable{
 			optionSet.add(i, new OptionSet());
 		}
 		
-		maker = Maker;
 		model = Model;
+		maker = Maker;
 		basePrice = BasePrice;
 		choices = new LinkedHashMap<String, OptionSet.Option>();
+	}
+	
+	public Automobile(ArrayList<OptionSet> OptionSet, 
+			String Model, String Maker, double BasePrice, int size) {
+		optionSet = OptionSet;
+		for(int i = 0; i < size; i++) {
+			optionSet.add(i, new OptionSet());
+		}
+		
+		model = Model;
+		maker = Maker;
+		basePrice = BasePrice;
+		choices = new LinkedHashMap<String, OptionSet.Option>();
+	}
+	
+	public Automobile(LinkedHashMap<String, OptionSet.Option> Choices,
+			String Model, String Maker, double BasePrice, int size) {
+		optionSet = new ArrayList<OptionSet>();
+		for(int i = 0; i < size; i++) {
+			optionSet.add(i, new OptionSet());
+		}
+		
+		model = Model;
+		maker = Maker;
+		basePrice = BasePrice;
+		choices = Choices;
 	}
 
 	
@@ -137,6 +164,7 @@ public class Automobile implements Serializable{
 		
 		while(it.hasNext()) {
 			// Traverse each element and add up the total price
+			total += this.basePrice;
 			total += choices.get(it.next()).getPrice();
 		}
 		
@@ -163,10 +191,10 @@ public class Automobile implements Serializable{
 		OptionSet.Option opt = null;
 		
 		for(int i = 0 ; i < optionSet.size(); i++) {
-			int optSetIndex = optionSet.get(i).findOptionIndex(Name);
+			int optSetIndex = optionSet.get(i).searchOptionIndex(Name);
 			
 			if(optSetIndex != -1) {
-				int optIndex = optionSet.get(i).findOptionIndex(Name);
+				int optIndex = optionSet.get(i).searchOptionIndex(Name);
 				opt = optionSet.get(i).getOption(optIndex);
 			}
 		}
@@ -179,7 +207,7 @@ public class Automobile implements Serializable{
 		OptionSet.Option opt = null;
 				
 		if(optSetIndex >= 0 && optSetIndex < optionSet.size()) {
-			opt = optionSet.get(optSetIndex).getOption(optionSet.get(optSetIndex).findOptionIndex(Name));
+			opt = optionSet.get(optSetIndex).getOption(optionSet.get(optSetIndex).searchOptionIndex(Name));
 		}
 				
 		return opt;
@@ -242,7 +270,7 @@ public class Automobile implements Serializable{
 		int index = -1;
 		
 		for(int i = 0; i < optionSet.size(); i++) {
-			index = optionSet.get(i).findOptionIndex(Name);
+			index = optionSet.get(i).searchOptionIndex(Name);
 		}
 		
 		return index;
@@ -255,7 +283,7 @@ public class Automobile implements Serializable{
 		index[1] = -1;
 		
 		for(int i = 0; i < optionSet.size(); i++) {
-			int optIndex = optionSet.get(i).findOptionIndex(Name); 
+			int optIndex = optionSet.get(i).searchOptionIndex(Name); 
 			
 			if(optIndex != -1) {
 				index[0] = i;
@@ -271,7 +299,7 @@ public class Automobile implements Serializable{
 		OptionSet.Option option = null;
 		
 		for(int i = 0; i < optionSet.size(); i++) {
-			option = optionSet.get(i).findOption(Name);
+			option = optionSet.get(i).searchOption(Name);
 		}
 		
 		return option;
@@ -306,7 +334,7 @@ public class Automobile implements Serializable{
 		boolean updated = false;
 			
 		for(int i = 0; i < optionSet.size(); i++) {
-			int optSetIndex = optionSet.get(i).findOptionIndex(oldName);
+			int optSetIndex = optionSet.get(i).searchOptionIndex(oldName);
 				
 			if(optSetIndex != -1) {
 				updated = optionSet.get(i).updateOptionName(oldName, newName);
@@ -321,7 +349,7 @@ public class Automobile implements Serializable{
 		boolean updated = false;
 			
 		for(int i = 0; i < optionSet.size(); i++) {
-			int optIndex = optionSet.get(i).findOptionIndex(Name);
+			int optIndex = optionSet.get(i).searchOptionIndex(Name);
 				
 			if(optIndex != -1) {
 				updated = optionSet.get(i).updateOptionPrice(Name, newPrice);
@@ -348,7 +376,7 @@ public class Automobile implements Serializable{
 		boolean updated = false;
 		
 		for(int i = 0; i < optionSet.size(); i++) {
-			int optIndex = optionSet.get(i).findOptionIndex(oldName);
+			int optIndex = optionSet.get(i).searchOptionIndex(oldName);
 			
 			if(optIndex != -1) {
 				updated = optionSet.get(i).updateOption(optIndex, newName, newPrice);

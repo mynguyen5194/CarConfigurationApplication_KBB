@@ -37,7 +37,9 @@ public abstract class ProxyAutomobile {
 	
 
 	//This function searches and prints the properties of a given modelName.
-	public void printAuto(String modelName) {
+	public void printAuto(String Model) {
+//		if(fleet.)
+		
 //		if(auto != null) {
 //			if(auto.getModel().equals(modelName)) {
 //				auto.printOptionSet();
