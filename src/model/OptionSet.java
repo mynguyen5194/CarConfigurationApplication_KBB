@@ -11,6 +11,7 @@ import java.io.Serializable;
 
 public class OptionSet implements Serializable {
 	protected class Option implements Serializable {
+		private static final long serialVersionUID = 1420672609912364060L;
 		private String name;
 		private double price;
 		
@@ -47,6 +48,7 @@ public class OptionSet implements Serializable {
 	}
 	
 	// INSTANCE VARIABLES
+	private static final long serialVersionUID = 1420672609912364060L;
 	private ArrayList<Option> option;
 	private String optionName;
 	

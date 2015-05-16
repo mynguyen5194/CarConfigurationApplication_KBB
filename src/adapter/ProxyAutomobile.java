@@ -3,22 +3,13 @@ package adapter;
 import model.*;
 import util.*;
 import exceptionHandler.*;
-import java.util.*;
 
 public abstract class ProxyAutomobile {
-//	private static Automobile auto;
 	private static Fleet fleet;
 	
 	public ProxyAutomobile() {
 		fleet = new Fleet();
 	}
-
-//	public static Automobile getAuto() {
-//		return auto;
-//	}
-//	public static void setAuto(Automobile auto) {
-//		ProxyAutomobile.auto = auto;
-//	}
 	
 	public static void setFleet(Fleet fleet) {
 		ProxyAutomobile.fleet = fleet;
@@ -27,81 +18,101 @@ public abstract class ProxyAutomobile {
 	public static Fleet getFleet() {
 		return fleet;
 	}
-
-	
-	public void buildFleet(String fileName) {
-		AutoUtil autoUtil = new AutoUtil();	
-		fleet = autoUtil.readFile(fleet, fileName);
-	}
-	
-	
-
-	//This function searches and prints the properties of a given modelName.
-	public void printAuto(String Model) {
-//		if(fleet.)
-		
-//		if(auto != null) {
-//			if(auto.getModel().equals(modelName)) {
-//				auto.printOptionSet();
-//			}
-//		}
-//		else {
-//			System.out.printf("* " + modelName + " is empty\n\n");
-//		}
-	}
-	
-	
-	// Add choice to the Choices LinkedHashMap
-	public void addOptionChoice(String model, String optName, String Name) {
-		fleet.setOptionChoice(model, optName, Name);
-//		auto.setOptionChoice(optName, Name);
-	}
-	
-//	public void addAuto(String Model) {
-//		fleet.setFleet(Model, auto);
-//	}
 	
 	public double getTotalPrice(String Model) {
 		return fleet.getModelTotalPrice(Model);
 	}
 	
-	public void printFleet() {
-		fleet.printFleet();
+	// Build the whole fleet by reading from file
+	public void buildFleet(String fileName) {
+		AutoUtil autoUtil = new AutoUtil();	
+		fleet = autoUtil.readFile(fleet, fileName);
+	}
+	
+	// Add new model into the fleet
+	public void addAuto(String Model, Automobile Auto) {
+		fleet.setFleet(Model, Auto);
+	}
+
+	// Add choice to the Choices LinkedHashMap
+	public void addOptionChoice(String Model, String optName, String Name) {
+		fleet.setOptionChoice(Model, optName, Name);
 	}
 	
 	//This function searches the Model for a given OptionSet and sets the name of OptionSet to newName.
-	public void updateOptionSetName(String modelName, String optSetName, String newName) {
-//		if(auto != null) {
-//			if(auto.getModel().equals(modelName)) {
-//				if(auto.getModel().equals(optSetName)) {
-//					auto.setModel(newName);
-//					System.out.printf("* " + newName + " is updated\n\n");
-//				}
-//			}
-//		}
-//		else {
-//			System.out.printf("* Unable to update " + modelName + "\n\n");
-//		}
+	public void updateModelName(String oldModelName, String newModelName) {
+		boolean updated = fleet.updateModelname(oldModelName, newModelName);
+			
+		if(updated) {
+			System.out.printf("* " + newModelName + " is updated\n\n");
+		}
+		else {
+			System.out.printf("* Unable to update " + oldModelName + "\n\n");
+		}
+	}
+		
+	//This function searches the Model for a given OptionSet and Option name, and sets the price to newPrice.
+	public void updateOptionPrice(String Model, String Name, double newPrice) {
+		boolean updated = fleet.updateOptionPrice(Model, Name, newPrice);
+			
+		if(updated) {
+			System.out.printf("* " + Name + " is found\n" + "* Successfully updating new price\n\n");
+		}
+		else {
+			System.out.printf("* " + Name + " cannot be found\n" + "* Fail updating new price\n\n");
+		}
 	}
 	
-	//This function searches the Model for a given OptionSet and Option name, and sets the price to newPrice.
-	public void updateOptionPrice(String modelName, String optName, String name, double newPrice) {
-//		boolean updated = false;
-//		if(auto != null) {
-//			if(auto.getModel().equals(modelName)) {
-//				updated = auto.updateOptionPrice(name, newPrice);
-//			}
-//			
-//			if(updated == false) {
-//				System.out.printf("* " + name + " cannot be found\n" + "* Fail updating new price\n\n");
-//			}
-//			else {
-//				System.out.printf("* " + name + " is found\n" + "* Successfully updating new price\n\n");
-//			}
-//		}
+	// Remove a specific model from the fleet
+	public void removeAuto(String Model) {
+		boolean removed = fleet.removeAuto(Model);
+		
+		if(removed) {
+			System.out.printf(Model + " was removed!\n");
+		}
+		else {
+			System.out.printf(Model + " was not removed!\n");
+		}
 	}
 	
 	public void fixProblem(ExceptionHandler exp) {
 		exp.printmyproblem();
+	}
+	
+	// Print the whole fleet
+	public void printFleet() {
+		fleet.printFleet();
+	}
+	
+	// Search and print the properties of a given modelName.
+	public void printAuto(String Model) {
+		if(fleet.containsKey(Model)) {
+			fleet.printAuto(Model);
+		}
+		else {
+			System.out.printf("* " + Model + " is empty\n\n");
+		}
+	}
+	
+	// Print chosen options
+	public void printChoices(String Model) {
+		if(fleet.containsKey(Model)) {
+			fleet.printChoices(Model);
+		}
+		else {
+			System.out.printf("* " + Model + " is empty\n\n");
+		}
+	}
+	
+	// Print total price for chosen option and base price
+	public void printTotalPrice(String Model) {
+		if(fleet.containsKey(Model)) {
+			System.out.printf("********************************" + "\nModel: " + Model
+					+ "\nTotal Price: " + fleet.getModelTotalPrice(Model) + "\n"
+					+ "********************************\n");
+		}
+		else {
+			System.out.printf("* " + Model + " has no chosen option!\n");
+		}
 	}
 }

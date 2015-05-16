@@ -1,5 +1,5 @@
 /*
- * Automotive class contains OptionSet array, optionSetName, and
+ * Automotive class contains OptionSet array, model, and
  * basePrice. It also has many functions to access OptionSet and
  * Option classes
  */
@@ -10,8 +10,10 @@ import java.util.*;
 import java.io.Serializable;
 
 public class Automobile implements Serializable{
+	private static final long serialVersionUID = 1420672609912364060L;
 	// INSTANCE VARIABLES
 	private ArrayList<OptionSet> optionSet;
+	// choices contains chosen Option
 	private LinkedHashMap<String, OptionSet.Option> choices;	// String = optionName
 																// to hold chosen Option
 	private String model;
@@ -28,10 +30,10 @@ public class Automobile implements Serializable{
 			optionSet.add(i, new OptionSet());
 		}
 		
+		choices = new LinkedHashMap<String, OptionSet.Option>();
 		model = Model;
 		maker = Maker;
 		basePrice = BasePrice;
-		choices = new LinkedHashMap<String, OptionSet.Option>();
 	}
 	
 	public Automobile(ArrayList<OptionSet> OptionSet, 
@@ -41,10 +43,10 @@ public class Automobile implements Serializable{
 			optionSet.add(i, new OptionSet());
 		}
 		
+		choices = new LinkedHashMap<String, OptionSet.Option>();
 		model = Model;
 		maker = Maker;
 		basePrice = BasePrice;
-		choices = new LinkedHashMap<String, OptionSet.Option>();
 	}
 	
 	public Automobile(LinkedHashMap<String, OptionSet.Option> Choices,
@@ -54,10 +56,10 @@ public class Automobile implements Serializable{
 			optionSet.add(i, new OptionSet());
 		}
 		
+		choices = Choices;
 		model = Model;
 		maker = Maker;
 		basePrice = BasePrice;
-		choices = Choices;
 	}
 
 	
@@ -67,18 +69,21 @@ public class Automobile implements Serializable{
 		this.optionSet = optionSet;
 	}
 	
-	public void setModel(String model) {
-		this.model = model;
+	public void setChoices(LinkedHashMap<String, OptionSet.Option> choices) {
+		this.choices = choices;
 	}
 	
-	public void setBasePrice(double basePrice) {
-		this.basePrice = basePrice;
+	public void setModel(String model) {
+		this.model = model;
 	}
 	
 	public void setMaker(String maker) {
 		this.maker = maker;
 	}
-
+	
+	public void setBasePrice(double basePrice) {
+		this.basePrice = basePrice;
+	}
 	
 	// (For Option)
 	// Set values of Option
@@ -99,9 +104,18 @@ public class Automobile implements Serializable{
 		}
 	}	
 	
+	
 	// GETTERS
 	public ArrayList<OptionSet> getOptionSet() {
 		return optionSet;
+	}
+	
+	public LinkedHashMap<String, OptionSet.Option> getChoices() {
+		return choices;
+	}
+	
+	public String getMaker() {
+		return maker;
 	}
 	
 	public String getModel() {
@@ -110,10 +124,6 @@ public class Automobile implements Serializable{
 	
 	public double getBasePrice() {
 		return basePrice;
-	}
-	
-	public String getMaker() {
-		return maker;
 	}
 	
 	// Get Option Choice based on optName
@@ -142,8 +152,8 @@ public class Automobile implements Serializable{
 	public double getOptionChoicePrice(String Name) {
 		double price = -1;
 		
-		Set set = choices.keySet();
-		Iterator it = set.iterator();
+		Set<String> set = choices.keySet();
+		Iterator<String> it = set.iterator();
 		
 		while(it.hasNext()) {
 			// Get the name of each element in the choices and compare with the given Name
@@ -159,12 +169,14 @@ public class Automobile implements Serializable{
 	public double getTotalPrice() {
 		double total = 0.0;
 		
-		Set set = choices.keySet();
-		Iterator it = set.iterator();
+		total += this.basePrice;
+		
+		Set<String> set = choices.keySet();
+		Iterator<String> it = set.iterator();
 		
 		while(it.hasNext()) {
 			// Traverse each element and add up the total price
-			total += this.basePrice;
+			
 			total += choices.get(it.next()).getPrice();
 		}
 		
@@ -176,7 +188,7 @@ public class Automobile implements Serializable{
 		return optionSet.get(index);
 	}
 	
-	// Get an OptionSet based on OptSetName
+	// Get an OptionSet based on Model
 	public OptionSet getModel(String Model) {
 		return optionSet.get(this.findOptionSetIndex(Model));
 	}
@@ -228,9 +240,9 @@ public class Automobile implements Serializable{
 		return optionSet.get(optSetIndex).getOption(optIndex).getPrice();
 	}
 	
-	// Get an Option price based on name
-	public double getOptionPrice(String optSetName) {
-		return this.getOption(optSetName).getPrice();
+	// Get an Option price based on Name
+	public double getOptionPrice(String Name) {
+		return this.getOption(Name).getPrice();
 	}
 	
 	// Get the array length of Option based on optSetIndex
@@ -427,8 +439,8 @@ public class Automobile implements Serializable{
 	public boolean deleteOptionChoice_Name(String Name) {
 		boolean deleted = false;
 		
-		Set set = choices.keySet();
-		Iterator it = set.iterator();
+		Set<String> set = choices.keySet();
+		Iterator<String> it = set.iterator();
 		
 		while(it.hasNext()) {
 			if(choices.get(it.next()).getName().equals(Name)) {
@@ -443,7 +455,7 @@ public class Automobile implements Serializable{
 	// PRINT
 	// Print the whole optionSet[]
 	public void printOptionSet() {
-		System.out.printf("\n********************************\n"
+		System.out.printf("********************************\n"
 				+ "Model: " + this.model 
 				+ "\nMaker: " + this.maker
 				+ "\nBase Price: " + this.basePrice + "\n\n");
@@ -483,6 +495,21 @@ public class Automobile implements Serializable{
 		
 		if(index[0] != -1 && index[1] != -1) {
 			this.printNameAndPrice(index[0], index[1]);
+		}
+	}
+	
+	// Print choices
+	public void printChoices() {
+		Set<String> set = choices.keySet();
+		Iterator<String> it = set.iterator();
+		
+		System.out.printf("\t***Chosen Option***\n"
+				+ "Model: " + this.model + "\n");
+		
+		while(it.hasNext()) {
+			String key = it.next();
+			System.out.printf("   " + choices.get(key).getName() + "\t"
+					+ choices.get(key).getPrice() + "\n");
 		}
 	}
 }
