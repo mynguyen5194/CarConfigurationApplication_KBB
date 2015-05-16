@@ -62,9 +62,8 @@ public class AutoUtil {
 								auto.setOption(optSetIndex, optIndex, Name.toString(), Price);
 							}	
 						}
-					}
-					
-					fleet.setFleet(model, auto);
+						fleet.setFleet(model, auto);
+					}	
 				}
 				file.close();
 				reader.close();

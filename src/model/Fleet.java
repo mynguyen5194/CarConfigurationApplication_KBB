@@ -25,6 +25,10 @@ public class Fleet {
 		fleet.put(model, auto);
 	}
 	
+	public void setOptionChoice(String model, String optName, String Name) {
+		fleet.get(model).setOptionChoice(optName, Name);
+	}
+	
 	
 	// GETTERS
 	public LinkedHashMap<String, Automobile> getFleet() {
@@ -32,9 +36,7 @@ public class Fleet {
 	}
 	
 	
-	public void setOptionChoice(String model, String optName, String Name) {
-		fleet.get(model).setOptionChoice(optName, Name);
-	}
+	
 	
 	
 	public Automobile getAuto(String Model) {

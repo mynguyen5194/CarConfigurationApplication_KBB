@@ -415,13 +415,15 @@ public class Automobile implements Serializable{
 	// PRINT
 	// Print the whole optionSet[]
 	public void printOptionSet() {
-		System.out.printf("Model: " + this.model +
-				"\nMaker: " + this.maker +
-				"\nBase Price: " + this.basePrice + "\n\n");
+		System.out.printf("\n********************************\n"
+				+ "Model: " + this.model 
+				+ "\nMaker: " + this.maker
+				+ "\nBase Price: " + this.basePrice + "\n\n");
 		for(int i = 0; i < optionSet.size(); i++) {
 			optionSet.get(i).printOption();
 			System.out.printf("\n");
 		}
+		System.out.printf("********************************\n");
 	}
 	
 	// Print the option[] based on optSetIndex
