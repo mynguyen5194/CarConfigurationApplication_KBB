@@ -27,18 +27,19 @@ public class KBBDriver extends BuildAuto {
 	public static void main(String[] args) {
 		KBBDriver driver = new KBBDriver();
 		
-		driver.buildAuto("FordZTW.txt");
+		driver.buildFleet("FordZTW.txt");
 		
-		driver.printAuto("Ford's Focus Wagon ZTW");
-		driver.printAuto("Honda Accord 2001");
+//		driver.printAuto("Ford's Focus Wagon ZTW");
+//		driver.printAuto("Honda Accord 2001");
 		
-		driver.addChoice("Transmission", "Manual");
-		driver.addChoice("Brakes/Traction Control", "ABS with Advance Trac");
-		driver.addChoice("Power Moonroof", "Power Moonroof Present");
+		driver.addOptionChoice("Ford's Focus Wagon ZTW", "Transmission", "Manual");
+		driver.addOptionChoice("Ford's Focus Wagon ZTW", "Brakes/Traction Control", "ABS with Advance Trac");
+		driver.addOptionChoice("Ford's Focus Wagon ZTW","Power Moonroof", "Power Moonroof Present");
 		
-		System.out.printf("TOTAL PRICE: " + driver.getTotalPrice());
+		System.out.printf("TOTAL PRICE: " + driver.getTotalPrice("Ford's Focus Wagon ZTW"));
 		
-		driver.addAuto("Ford's Focus Wagon ZTW");
+//		driver.addAuto("Ford's Focus Wagon ZTW");
+		driver.printFleet();
 		
 		
 //		driver.addAuto("Ford's Focus Wagon ZTW");

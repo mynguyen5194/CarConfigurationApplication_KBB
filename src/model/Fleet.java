@@ -31,6 +31,12 @@ public class Fleet {
 		return fleet;
 	}
 	
+	
+	public void setOptionChoice(String model, String optName, String Name) {
+		fleet.get(model).setOptionChoice(optName, Name);
+	}
+	
+	
 	public Automobile getAuto(String Model) {
 		Automobile auto = null;
 		
@@ -39,6 +45,10 @@ public class Fleet {
 		}
 		
 		return auto;
+	}
+	
+	public double getModelTotalPrice(String Model) {
+		return fleet.get(Model).getTotalPrice();
 	}
 	
 	
@@ -63,14 +73,25 @@ public class Fleet {
 	
 // NEED TO ADD MORE UPDATE OR SEARCH FUNCTION TO ACCESS optionSet or Option	
 	
-	public boolean removeAuto(String modelName) {
+	// Remove
+	public boolean removeAuto(String Model) {
 		boolean removed = false;
 		
-		if(fleet.containsKey(modelName)) {
-			fleet.remove(modelName);
+		if(fleet.containsKey(Model)) {
+			fleet.remove(Model);
 			removed = true;
 		}
 		
 		return removed;
-	}	
+	}
+	
+	// Print
+	public void printFleet() {
+		Set set = fleet.keySet();
+		Iterator it = set.iterator();
+		
+		while(it.hasNext()) {
+			fleet.get(it.next()).printOptionSet();
+		}
+	}
 }

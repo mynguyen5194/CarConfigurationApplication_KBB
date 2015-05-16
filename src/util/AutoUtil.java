@@ -14,7 +14,9 @@ import model.*;
 import exceptionHandler.*;
 
 public class AutoUtil {
-	public Automobile readFile(Automobile auto, String fileName) {		
+	public Fleet readFile(Fleet fleet, String fileName) {		
+		Automobile auto = new Automobile();
+		String model = "";
 		
 		boolean problemFixed = false;	
 		ProblemGenerator newProblem = new ProblemGenerator("noneExitFileName.txt");
@@ -23,45 +25,47 @@ public class AutoUtil {
 		do {
 			try {
 				problemFixed = newProblem.openFile();
-			
 				FileReader file = new FileReader(fileName);
 				BufferedReader reader = new BufferedReader(file);
 				boolean eof = false;
-			while(!eof) {
-				
-				
-				// Get model, basePrice, and autoSize and instantiate new Automotive
-				String model = reader.readLine();
-				if(model == null) {
-					eof = true;
-				}
-				else {
-				String maker = reader.readLine();
-				double basePrice = Double.parseDouble(reader.readLine());
-				int optSetSize = Integer.parseInt(reader.readLine());
-				
-				auto = new Automobile(model, maker, basePrice, optSetSize);
-				
-				for(int optSetIndex = 0; optSetIndex < optSetSize; optSetIndex++) {
-					// Get optSetName and optSetSize and instantiate new Option
-					String optName = reader.readLine();
-					int optSize = Integer.parseInt(reader.readLine());
-				
-					auto.setOption(optSetIndex, optSize, optName);
-				
-					for(int optIndex = 0; optIndex < optSize; optIndex++) {
-						StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
-						StringBuffer Name = new StringBuffer("");
+			
+				while(!eof) {
+					// Get model, basePrice, and autoSize and instantiate new Automotive
+					model = reader.readLine();
 					
-						// Get the name and price and set them at the appropriate position
-						Name.append(tokenizer.nextToken(","));
-						double Price = Double.parseDouble(tokenizer.nextToken());
+					if(model == null) {
+						eof = true;
+					}
 					
-						auto.setOption(optSetIndex, optIndex, Name.toString(), Price);
-					}	
+					else {
+						String maker = reader.readLine();
+						double basePrice = Double.parseDouble(reader.readLine());
+						int optSetSize = Integer.parseInt(reader.readLine());
+						
+						auto = new Automobile(model, maker, basePrice, optSetSize);
+						
+						for(int optSetIndex = 0; optSetIndex < optSetSize; optSetIndex++) {
+							// Get optSetName and optSetSize and instantiate new Option
+							String optName = reader.readLine();
+							int optSize = Integer.parseInt(reader.readLine());
+						
+							auto.setOption(optSetIndex, optSize, optName);
+						
+							for(int optIndex = 0; optIndex < optSize; optIndex++) {
+								StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
+								StringBuffer Name = new StringBuffer("");
+							
+								// Get the name and price and set them at the appropriate position
+								Name.append(tokenizer.nextToken(","));
+								double Price = Double.parseDouble(tokenizer.nextToken());
+							
+								auto.setOption(optSetIndex, optIndex, Name.toString(), Price);
+							}	
+						}
+					}
+					
+					fleet.setFleet(model, auto);
 				}
-				}
-			}	
 				file.close();
 				reader.close();
 	
@@ -72,10 +76,10 @@ public class AutoUtil {
 			catch (IOException err) {
 			
 			}
-	}
-	while(problemFixed == false);
+		}
+		while(problemFixed == false);
 
-		return auto;
+		return fleet;
 	}
 	
 	public void serializeAuto(Automobile auto) {
