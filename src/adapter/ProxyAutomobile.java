@@ -50,16 +50,32 @@ public abstract class ProxyAutomobile {
 			System.out.printf("* Unable to update " + oldModelName + "\n\n");
 		}
 	}
+	
+	public void updateOptionName(String Model, String oldName, String newName) {
+		boolean updated = fleet.updateOptionName(Model, oldName, newName);
+		
+		if(updated) {
+			System.out.printf("* " + oldName + " in " + Model + " is found\n"
+					+ "* Successfully updating to " + newName + "\n\n");
+		}
+		else {
+			System.out.printf("* " + oldName + " in " + Model + " cannot be found\n"
+					+ "* Fail updating to " + newName + "\n\n");
+		}
+		
+	}
 		
 	//This function searches the Model for a given OptionSet and Option name, and sets the price to newPrice.
 	public void updateOptionPrice(String Model, String Name, double newPrice) {
 		boolean updated = fleet.updateOptionPrice(Model, Name, newPrice);
 			
 		if(updated) {
-			System.out.printf("* " + Name + " is found\n" + "* Successfully updating new price\n\n");
+			System.out.printf("* " + Name + " in " + Model + " is found\n"
+					+ "* Successfully updating " + Name + " to " + newPrice + "\n\n");
 		}
 		else {
-			System.out.printf("* " + Name + " cannot be found\n" + "* Fail updating new price\n\n");
+			System.out.printf("* " + Name + " in " + Model + " cannot be found\n"
+					+ "* Fail updating " + Name + " to " + newPrice + "\n\n");
 		}
 	}
 	

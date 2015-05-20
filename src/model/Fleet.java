@@ -87,6 +87,18 @@ public class Fleet {
 		return updated;
 	}
 	
+	// Update old option name to new option name
+	public boolean updateOptionName(String Model, String oldName, String newName) {
+		boolean updated = false;
+		
+		if(fleet.containsKey(Model)) {
+			fleet.get(Model).updateOptionName(oldName, newName);
+			updated = true;
+		}
+		
+		return updated;
+	}
+	
 	// update new price based on Model name and Name
 	public boolean updateOptionPrice(String Model, String Name, double newPrice) {
 		boolean updated = false;
