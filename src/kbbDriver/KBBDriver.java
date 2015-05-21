@@ -22,12 +22,13 @@
 package kbbDriver;
 
 import adapter.*;
+import scale.EditOptions;
 
 public class KBBDriver extends BuildAuto {
 	public static void main(String[] args) {
-//		KBBDriver driver = new KBBDriver();
-//		
-//		driver.buildFleet("FordZTW.txt");
+		KBBDriver driver = new KBBDriver();
+		
+		driver.buildFleet("FordZTW.txt");
 //		
 //		driver.addOptionChoice("Ford's Focus Wagon ZTW", "Transmission", "Manual");
 //		driver.addOptionChoice("Ford's Focus Wagon ZTW", "Brakes/Traction Control", "ABS with Advance Trac");
@@ -36,8 +37,40 @@ public class KBBDriver extends BuildAuto {
 //		driver.printTotalPrice("Ford's Focus Wagon ZTW");
 //
 //		driver.printFleet();
+
+		// String [0] Model/oldModelName, String [1] newModelName, String [2] Name/oldName,
+		// String [3] newName, String [4] newPrice = double
 		
-		ScaleThread s1 = new EditOptions(1);
+		String [] name = new String[5];
+		name[0] = "Ford's Focus Wagon ZTW";
+		name[1] = "Honda";
+		name[2] = "Automatic";
+		name[3] = "Automatic Transimission";
+		name[4] = "130";
+		
+		
+			
+		ScaleThread t1 = new EditOptions(name);
+		
+//	try {
+//		Thread.sleep(2000);
+//		System.out.printf("Sleeping\n");
+//	} catch(InterruptedException e) {
+//		
+//	}
+		
+		ScaleThread t2 = new EditOptions(name);
+		
+		
+		
+		driver.printFleet();
+		
+
+//			
+		
+		
+			
+		
 		
 	}
 }
