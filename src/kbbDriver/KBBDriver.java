@@ -48,22 +48,20 @@ public class KBBDriver extends BuildAuto {
 		name[3] = "Automatic Transimission";
 		name[4] = "130";
 		
+		ScaleThread t1 = new EditOptions(1, name);
 		
-			
-		ScaleThread t1 = new EditOptions(name);
-		
-//	try {
-//		Thread.sleep(2000);
-//		System.out.printf("Sleeping\n");
-//	} catch(InterruptedException e) {
+//		try {
+//			Thread.sleep(1000);
+//			System.out.printf("Sleeping\n");
+//		} catch(InterruptedException e) {
 //		
-//	}
+//		}
 		
-		ScaleThread t2 = new EditOptions(name);
+		EditOptions t2 = new EditOptions(1, name);
+
 		
 		
-		
-		driver.printFleet();
+//		driver.printFleet();
 		
 
 //			
