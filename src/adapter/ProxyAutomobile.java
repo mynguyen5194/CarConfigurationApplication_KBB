@@ -24,9 +24,11 @@ public abstract class ProxyAutomobile {
 	}
 	
 	// Build the whole fleet by reading from file
-	public void buildFleet(String fileName) {
+//	public void buildFleet(String fileName) {
+	public Fleet buildFleet(String fileName) {
 		AutoUtil autoUtil = new AutoUtil();	
 		fleet = autoUtil.readFile(fleet, fileName);
+		return fleet;
 	}
 	
 	// Add new model into the fleet
@@ -41,7 +43,7 @@ public abstract class ProxyAutomobile {
 	
 	//This function searches the Model for a given OptionSet and sets the name of OptionSet to newName.
 	public void updateModelName(String oldModelName, String newModelName) {
-		boolean updated = fleet.updateModelname(oldModelName, newModelName);
+		boolean updated = fleet.updateModelName(oldModelName, newModelName);
 			
 		if(updated) {
 			System.out.printf("* " + newModelName + " is updated\n\n");

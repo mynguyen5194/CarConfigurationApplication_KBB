@@ -21,6 +21,7 @@
 
 package kbbDriver;
 
+import model.Fleet;
 import adapter.*;
 import scale.EditOptions;
 
@@ -28,19 +29,10 @@ public class KBBDriver extends BuildAuto {
 	public static void main(String[] args) {
 		KBBDriver driver = new KBBDriver();
 		
-		driver.buildFleet("FordZTW.txt");
-//		
-//		driver.addOptionChoice("Ford's Focus Wagon ZTW", "Transmission", "Manual");
-//		driver.addOptionChoice("Ford's Focus Wagon ZTW", "Brakes/Traction Control", "ABS with Advance Trac");
-//		driver.addOptionChoice("Ford's Focus Wagon ZTW","Power Moonroof", "Power Moonroof Present");
-//		driver.printChoices("Ford's Focus Wagon ZTW");
-//		driver.printTotalPrice("Ford's Focus Wagon ZTW");
-//
-//		driver.printFleet();
-
-		// String [0] Model/oldModelName, String [1] newModelName, String [2] Name/oldName,
-		// String [3] newName, String [4] newPrice = double
+		Fleet fleet = driver.buildFleet("FordZTW.txt");
 		
+		// [0] Model/oldModelName, [1] newModelName, [2] Name/oldName,
+		// [3] newName, [4] newPrice (double)
 		String [] name = new String[5];
 		name[0] = "Ford's Focus Wagon ZTW";
 		name[1] = "Honda";
@@ -48,20 +40,12 @@ public class KBBDriver extends BuildAuto {
 		name[3] = "Automatic Transimission";
 		name[4] = "130";
 		
-		ScaleThread t1 = new EditOptions(0, name);
 		
-//		try {
-//			Thread.sleep(1000);
-//			System.out.printf("Sleeping\n");
-//		} catch(InterruptedException e) {
-//		
-//		}
 		
-		EditOptions t2 = new EditOptions(0, name);
+		ScaleThread t1 = new EditOptions(1, name, fleet);
+		
+		ScaleThread t2 = new EditOptions(1, name, fleet);
 
-		
-		
-//		driver.printFleet();		
 	}
 }
 
@@ -69,15 +53,10 @@ public class KBBDriver extends BuildAuto {
  * OUTPUT:
 Done!
 
-	***Chosen Option***
-Model: Ford's Focus Wagon ZTW
-   Manual	-815.0
-   ABS with Advance Trac	1625.0
-   Power Moonroof Present	595.0
-********************************
-Model: Ford's Focus Wagon ZTW
-Total Price: 19850.0
-********************************
+Thread-0 is starting
+Thread-1 is starting
+  * Thread-0 is running
+  * Thread-1 is running
 ********************************
 Model: Ford's Focus Wagon ZTW
 Maker: Ford
@@ -96,7 +75,7 @@ Option Name: Color
    Cloud 9 White Clearcoat	0.0 
 
 Option Name: Transmission
-   Automatic	0.0 
+   Automatic Transimission	0.0 
    Manual	-815.0 
 
 Option Name: Brakes/Traction Control
@@ -145,4 +124,77 @@ Option Name: Power Moonroof
    Power Moonroof Not Present	0.0 
 
 ********************************
+Thread-0 finished updating option name
+  * Thread-0 stopped
+
+********************************
+Model: Ford's Focus Wagon ZTW
+Maker: Ford
+Base Price: 18445.0
+
+Option Name: Color
+   Fort Knox Gold Clearcoat Metallic	0.0 
+   Liquid Grey Clearcoat Metallic	0.0 
+   Infra-Red Clearcoat	0.0 
+   Grabber Green Clearcoat Metallic	0.0 
+   Sangria Red Clearcoat Metallic	0.0 
+   French Blue Clearcoat Metallic	0.0 
+   Twilight Blue Clearcoat Metallic	0.0 
+   CD Silver Clearcoat Metallic	0.0 
+   Pitch Black Clearcoat	0.0 
+   Cloud 9 White Clearcoat	0.0 
+
+Option Name: Transmission
+   Automatic Transimission	0.0 
+   Manual	-815.0 
+
+Option Name: Brakes/Traction Control
+   Standard	0.0 
+   ABS	400.0 
+   ABS with Advance Trac	1625.0 
+
+Option Name: Side Impact Air Bags
+   Air Bags Present	350.0 
+   Air Bags Not Present	0.0 
+
+Option Name: Power Moonroof
+   Power Moonroof Present	595.0 
+   Power Moonroof Not Present	0.0 
+
+********************************
+********************************
+Model: Honda Accord 2001
+Maker: Honda
+Base Price: 20000.0
+
+Option Name: Color
+   Basque Red Pearl II	0.0 
+   Hematite Metallic	0.0 
+   Obsidian Blue Pearl	0.0 
+   Crystal Black Pearl	0.0 
+   Modern Steel Metallic	0.0 
+   White Orchid Pearl	0.0 
+   Alabaster Silver Metallic	0.0 
+
+Option Name: Transmission
+   Automatic	0.0 
+   Manual	-815.0 
+
+Option Name: Brakes/Traction Control
+   Standard	0.0 
+   ABS	400.0 
+   ABS with Advance Trac	1625.0 
+
+Option Name: Side Impact Air Bags
+   Air Bags Present	350.0 
+   Air Bags Not Present	0.0 
+
+Option Name: Power Moonroof
+   Power Moonroof Present	405.0 
+   Power Moonroof Not Present	0.0 
+
+********************************
+Thread-1 finished updating option name
+  * Thread-1 stopped
+
  */

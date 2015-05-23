@@ -76,7 +76,7 @@ public class Fleet {
 	}
 	
 	// update oldModelName based on newModelName
-	public boolean updateModelname(String oldModelName, String newModelName) {
+	public boolean updateModelName(String oldModelName, String newModelName) {
 		boolean updated = false;
 		
 		if(fleet.containsKey(oldModelName)) {
