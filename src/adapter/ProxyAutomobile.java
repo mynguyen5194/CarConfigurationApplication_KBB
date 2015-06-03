@@ -1,5 +1,6 @@
 package adapter;
 
+import java.util.*;
 import model.*;
 import util.*;
 import exceptionHandler.*;
@@ -24,7 +25,6 @@ public abstract class ProxyAutomobile {
 	}
 	
 	// Build the whole fleet by reading from file
-//	public void buildFleet(String fileName) {
 	public Fleet buildFleet(String fileName) {
 		AutoUtil autoUtil = new AutoUtil();	
 		fleet = autoUtil.readFile(fleet, fileName);
@@ -35,6 +35,12 @@ public abstract class ProxyAutomobile {
 	public void addAuto(String Model, Automobile Auto) {
 		fleet.setFleet(Model, Auto);
 	}
+	
+	public void addAuto(Properties pro) {
+		
+	}
+	
+	
 
 	// Add choice to the Choices LinkedHashMap
 	public void addOptionChoice(String Model, String optName, String Name) {
