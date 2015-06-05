@@ -101,8 +101,23 @@ public class Automobile implements Serializable{
 			if(this.findOptionSetIndex(optName) != -1) {
 				choices.put(optName, this.getOption(Name));
 			}
+			else {
+				System.out.printf("Unable to set new option choice\n");
+			}
 		}
 	}	
+	
+	// Set OptionName
+	public void setOptionName(int optSetIndex, String optName) {
+		if(optionSet.get(optSetIndex) != null) {
+			optionSet.get(optSetIndex).setOptionName(optName);
+		}
+		else {
+			System.out.printf("Unable to set new option choice\n");
+		}
+	}
+	
+	
 	
 	
 	// GETTERS
