@@ -4,6 +4,7 @@ import java.util.*;
 import model.*;
 import util.*;
 import exceptionHandler.*;
+import server.*;
 
 public abstract class ProxyAutomobile {
 	private static Fleet fleet;
@@ -36,18 +37,12 @@ public abstract class ProxyAutomobile {
 		fleet.setFleet(Model, Auto);
 	}
 	
-	
-	
-	
-	public void addAuto(Properties pro) {
-		// CALL METHODS FROM BuildCarModelOptions
+	public void addAuto(Properties pro, String fileName) {
+		BuildCarModelOptions builder = new BuildCarModelOptions();
 		
-		
-		
+		builder.addAutoToLHM(builder.createAuto(pro, fileName));
 	}
 	
-	
-
 	// Add choice to the Choices LinkedHashMap
 	public void addOptionChoice(String Model, String optName, String Name) {
 		fleet.setOptionChoice(Model, optName, Name);

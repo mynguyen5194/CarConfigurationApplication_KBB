@@ -25,6 +25,7 @@ import model.*;
 import adapter.*;
 import scale.*;
 import util.*;
+import java.util.*;
 
 public class KBBDriver extends BuildAuto {
 	public static void main(String[] args) {
@@ -32,8 +33,9 @@ public class KBBDriver extends BuildAuto {
 		
 		Automobile auto = new Automobile();
 		FileIO util = new FileIO();
+		Properties pro = new Properties();
 
-		auto = util.parsePropertiesFile("auto.properties");
+		auto = util.parsePropertiesFile(pro, "auto.properties");
 		
 		auto.printOptionSet();
 	}
