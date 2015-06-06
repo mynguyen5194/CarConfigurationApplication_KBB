@@ -21,31 +21,21 @@
 
 package kbbDriver;
 
-import model.Fleet;
+import model.*;
 import adapter.*;
-import scale.EditOptions;
+import scale.*;
+import util.*;
 
 public class KBBDriver extends BuildAuto {
 	public static void main(String[] args) {
 		KBBDriver driver = new KBBDriver();
 		
-		Fleet fleet = driver.buildFleet("FordZTW.txt");
-		
-		// [0] Model/oldModelName, [1] newModelName, [2] Name/oldName,
-		// [3] newName, [4] newPrice (double)
-		String [] name = new String[5];
-		name[0] = "Ford's Focus Wagon ZTW";
-		name[1] = "Honda";
-		name[2] = "Automatic";
-		name[3] = "Automatic Transimission";
-		name[4] = "130";
-		
-		
-		
-		ScaleThread t1 = new EditOptions(1, name, fleet);
-		
-		ScaleThread t2 = new EditOptions(1, name, fleet);
+		Automobile auto = new Automobile();
+		FileIO util = new FileIO();
 
+		auto = util.parsePropertiesFile("auto.properties");
+		
+		auto.printOptionSet();
 	}
 }
 
