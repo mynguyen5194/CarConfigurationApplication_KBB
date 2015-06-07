@@ -2,10 +2,14 @@ package server;
 
 import java.net.*;
 import java.io.*;
+import java.util.*;
 
 public class DefaultSocketClient extends Thread implements SocketClientInterface, SocketClientConstants {
 	private BufferedReader reader;
 	private BufferedWriter writer;
+	
+	private PrintWriter printWriter;
+	
 	private Socket socket;
 	private String strHost;
 	private int iPort;
@@ -60,6 +64,8 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 		try {
 			reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+			printWriter = new PrintWriter(socket.getOutputStream(), true);
+			
 		} catch(Exception e) {
 			if(DEBUG) {
 				System.out.printf("\nUnable to obtain stream to/from " + strHost + "\n");
@@ -71,21 +77,50 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 	}
 	
 	public void handleSession() {
-		String strInput = "";
-		
-		if(DEBUG) {
-			System.out.printf("Handling session with " + strHost + ": " + iPort);
-		}
-		
 		try {
-			while((strInput  = reader.readLine()) != null) {
-				handleInput(strInput);
+			System.out.printf("Please enter your command - upload or config: ");
+			
+			Scanner scanner = new Scanner(System.in);
+			String command = scanner.nextLine();
+		
+			if(command.equalsIgnoreCase("upload")) {
+		
+		
+		
+		
 			}
-		} catch(IOException e) {
-			if(DEBUG) {
-				System.out.printf("Handling session with " + strHost + ": " + iPort);
+			else if(command.equalsIgnoreCase("config")) {
+		
+				
+				
 			}
+		
+			scanner.close();
+		} catch (Exception e) {
+			e.getMessage();
 		}
+		
+		
+		
+		
+		
+		
+		
+//		String strInput = "";
+//		
+//		if(DEBUG) {
+//			System.out.printf("Handling session with " + strHost + ": " + iPort);
+//		}
+//		
+//		try {
+//			while((strInput  = reader.readLine()) != null) {
+//				handleInput(strInput);
+//			}
+//		} catch(IOException e) {
+//			if(DEBUG) {
+//				System.out.printf("Handling session with " + strHost + ": " + iPort);
+//			}
+//		}
 	}
 	
 	public void sendOutput(String strOutput) {

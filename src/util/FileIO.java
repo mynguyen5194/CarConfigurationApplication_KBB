@@ -11,8 +11,6 @@ public class FileIO {
 	public Automobile parsePropertiesFile(Properties pro, String fileName) {
 		Automobile auto = new Automobile();
 
-//		Properties pro = new Properties();
-
 		try {
 			FileInputStream in = new FileInputStream(fileName);
 			pro.load(in);

@@ -40,7 +40,7 @@ public abstract class ProxyAutomobile {
 	public void addAuto(Properties pro, String fileName) {
 		BuildCarModelOptions builder = new BuildCarModelOptions();
 		
-		builder.addAutoToLHM(builder.createAuto(pro, fileName));
+		fleet = builder.addAutoToLHM(builder.createAuto(pro, fileName));
 	}
 	
 	// Add choice to the Choices LinkedHashMap

@@ -31,13 +31,19 @@ public class KBBDriver extends BuildAuto {
 	public static void main(String[] args) {
 		KBBDriver driver = new KBBDriver();
 		
+		
+		
 		Automobile auto = new Automobile();
 		FileIO util = new FileIO();
 		Properties pro = new Properties();
 
-		auto = util.parsePropertiesFile(pro, "auto.properties");
+		driver.addAuto(pro, "auto.properties");
 		
-		auto.printOptionSet();
+		driver.printFleet();
+		
+//		auto = util.parsePropertiesFile(pro, "auto.properties");
+		
+//		auto.printOptionSet();
 	}
 }
 

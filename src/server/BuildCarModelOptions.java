@@ -15,7 +15,11 @@ public class BuildCarModelOptions {
 		return auto;
 	}
 	
-	public void addAutoToLHM(Automobile auto) {
-		new Fleet().setFleet(auto.getModel(), auto);
+	public Fleet addAutoToLHM(Automobile auto) {
+		Fleet fleet = new Fleet();
+		
+		fleet.setFleet(auto.getModel(), auto);
+		
+		return fleet;
 	}
 }
