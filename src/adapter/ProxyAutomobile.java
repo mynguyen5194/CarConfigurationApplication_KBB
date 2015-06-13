@@ -37,10 +37,10 @@ public abstract class ProxyAutomobile {
 		fleet.setFleet(Model, Auto);
 	}
 	
-	public void addAuto(Properties pro, String fileName) {
+	public void addAuto(Properties pro) {
 		BuildCarModelOptions builder = new BuildCarModelOptions();
 		
-		fleet = builder.addAutoToLHM(builder.createAuto(pro, fileName));
+		fleet = builder.addAutoToLHM(builder.createAuto(pro));
 	}
 	
 	// Add choice to the Choices LinkedHashMap

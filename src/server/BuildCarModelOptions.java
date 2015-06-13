@@ -7,10 +7,10 @@ import java.util.*;
 import util.FileIO;
 
 public class BuildCarModelOptions {
-	public static Automobile auto;
-	
-	public Automobile createAuto(Properties pro, String fileName) {
-		auto = new FileIO().parsePropertiesFile(pro, fileName); 
+	public Automobile createAuto(Properties pro) {
+		Automobile auto = new Automobile();
+		
+		auto = new FileIO().parsePropertiesFile(pro); 
 		
 		return auto;
 	}

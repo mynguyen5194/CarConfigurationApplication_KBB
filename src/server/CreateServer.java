@@ -2,45 +2,24 @@ package server;
 
 import java.net.*;
 import java.io.*;
+import java.util.*;
+
+import model.*;
+import util.*;
 
 public class CreateServer {
 	private ServerSocket serverSocket;
+	private ObjectInputStream inputObj;
+	private ObjectOutputStream outputObj;
 	private DefaultSocketClient clientSocket;
-	private PrintWriter writer;
-	private BufferedReader reader;
+	private Socket socket;
 	
-	public CreateServer() {}
-	public CreateServer(ServerSocket ServerSocket, DefaultSocketClient ClientSocket) {
+	public CreateServer(ServerSocket ServerSocket) {
 		serverSocket = ServerSocket;
-		clientSocket = ClientSocket;
 	}
-	
-	public ServerSocket getServerSocket() {
-		return serverSocket;
-	}
-	public DefaultSocketClient getClientSocket() {
-		return clientSocket;
-	}
-	public PrintWriter getWriter() {
-		return writer;
-	}
-	public BufferedReader getReader() {
-		return reader;
-	}
-	public void setServerSocket(ServerSocket serverSocket) {
-		this.serverSocket = serverSocket;
-	}
-	public void setClientSocket(DefaultSocketClient clientSocket) {
-		this.clientSocket = clientSocket;
-	}
-	public void setWriter(PrintWriter writer) {
-		this.writer = writer;
-	}
-	public void setReader(BufferedReader reader) {
-		this.reader = reader;
-	}
-	
-	public void createServer() {
+	public CreateServer() {
+		serverSocket = null;
+		socket = new Socket();
         try {
             serverSocket = new ServerSocket(4444);
         } catch (IOException e) {
@@ -49,34 +28,76 @@ public class CreateServer {
         }
 	}
 	
+	public ServerSocket getServerSocket() {
+		return serverSocket;
+	}
+	public ObjectInputStream getInputObj() {
+		return inputObj;
+	}
+	public ObjectOutputStream getOutputObj() {
+		return outputObj;
+	}
+	public void setServerSocket(ServerSocket serverSocket) {
+		this.serverSocket = serverSocket;
+	}
+	public void setInputObj(ObjectInputStream inputObj) {
+		this.inputObj = inputObj;
+	}
+	public void setOutputObj(ObjectOutputStream outputObj) {
+		this.outputObj = outputObj;
+	}
+
+	
 	public void startServer() {
-		while(true) {
-	        try {
-	            clientSocket = serverSocket.accept();
-	        } catch (IOException e) {
-	            System.err.println("Accept failed.");
-	            System.exit(1);
-	        }
-		}
-		
-		writer = new PrintWriter(clientSocket.getOutputStream(), true);
-        reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+		socket = null;
+			
+		try {
+			socket = serverSocket.accept();
+	        clientSocket = new DefaultSocketClient(socket);
+	        clientSocket.openConnection();
+        } catch (IOException e) {
+        	System.err.println("Accept failed.");
+        	System.exit(1);
+        }
+	        
+	    try {    	
+	    	PrintWriter out = new PrintWriter(clientSocket.getSocket().getOutputStream(), true);
+	        BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getSocket().getInputStream()));
+	    } catch(IOException e) {
+	    	e.getStackTrace();
+	    }
 	}
 	
 	public void handleConnection() {
+		try {
+			inputObj = new ObjectInputStream(clientSocket.getSocket().getInputStream());
+		} catch(IOException e) {
+			e.getStackTrace();
+		}
 		
+		try {
+			Properties pro = (Properties) inputObj.readObject();
+			
+			BuildCarModelOptions modelOptions = new BuildCarModelOptions();
+			modelOptions.createAuto(pro);
+			
+		} catch(IOException e) {
+			e.getStackTrace();
+		} catch (ClassNotFoundException err) {
+			err.printStackTrace();
+		}
 	}
 	
 	public void stopServer() {
 		try {
 			serverSocket.close();
 			clientSocket.closeSession();
-			writer.close();
-			reader.close();
+			inputObj.close();
+			outputObj.close();
+			
+			System.out.printf("Server stopped!\n");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		
-	}
-	
+		}	
+	}	
 }

@@ -8,12 +8,8 @@ import java.util.Properties;
 import model.*;
 
 public class FileIO {
-	public Automobile parsePropertiesFile(Properties pro, String fileName) {
+	public Automobile parsePropertiesFile(Properties pro) {
 		Automobile auto = new Automobile();
-
-		try {
-			FileInputStream in = new FileInputStream(fileName);
-			pro.load(in);
 
 			String maker = pro.getProperty("Maker");
 
@@ -108,11 +104,6 @@ public class FileIO {
 				auto.setOption(4, 1, powerMoonroofOption2, powerMoonroofPrice2);
 			}
 
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		return auto;
 	}
 }
