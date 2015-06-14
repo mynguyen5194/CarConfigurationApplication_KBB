@@ -27,7 +27,6 @@ import server.*;
 public class KBBDriver_Server extends BuildAuto {
 	public static void main(String[] args) {
 		CreateServer newServer = new CreateServer();
-		
 		newServer.startServer();
 		newServer.handleConnection();
 	}

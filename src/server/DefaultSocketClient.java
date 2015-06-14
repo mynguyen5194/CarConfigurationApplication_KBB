@@ -3,6 +3,7 @@ package server;
 import java.net.*;
 import java.io.*;
 import java.util.*;
+
 import util.*;
 import model.*;
 
@@ -68,9 +69,9 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 		
 		try {
 			socket = new Socket(strHost, iPort);
-			System.out.printf("get socket");
 		} catch (IOException socketError) {
 			if(DEBUG) {
+				System.out.println("\nCONNECT CONNECT\n");
 				System.err.printf("Unable to connect to " + strHost + "\n");
 			}
 			opened = false;
@@ -92,7 +93,6 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 	
 	public void handleSession() {
 		String strInput = "";
-		System.out.println("Running handle Session");
 		if(DEBUG) {
 			System.out.printf("Handling session with " + strHost + ": " + iPort);	
 		}
@@ -126,16 +126,22 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 			OutputStream output = socket.getOutputStream();
 			ObjectOutputStream objOutput = new ObjectOutputStream(output);
 			objOutput.writeObject(pro);
-			
-			FileIO fileIO = new FileIO();
-			
-			Automobile auto = new Automobile(); 
-			auto = fileIO.parsePropertiesFile(pro);
-			
-			auto.printOptionSet();
-			
-			System.out.printf("Received\n");
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void sendCommand(String command) {
+		try {
+			OutputStream output = socket.getOutputStream();
+			ObjectOutputStream objOutput = new ObjectOutputStream(output);
+			objOutput.writeObject(command);
+			
+//			if(command.equals("display")) {
+//				Fleet fleet = new Fleet();
+//				fleet.printFleet();
+//			}
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -148,7 +154,5 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 		} catch (IOException e) {
 			e.getMessage();
 		}
-	}
-	
-	
+	}	
 }

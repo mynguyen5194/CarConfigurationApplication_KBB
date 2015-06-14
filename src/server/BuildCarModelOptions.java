@@ -15,9 +15,7 @@ public class BuildCarModelOptions {
 		return auto;
 	}
 	
-	public Fleet addAutoToLHM(Automobile auto) {
-		Fleet fleet = new Fleet();
-		
+	public Fleet addAutoToLHM(Fleet fleet, Automobile auto) {
 		fleet.setFleet(auto.getModel(), auto);
 		
 		return fleet;

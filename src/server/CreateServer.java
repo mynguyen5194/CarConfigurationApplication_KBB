@@ -13,6 +13,7 @@ public class CreateServer {
 	private ObjectOutputStream outputObj;
 	private DefaultSocketClient clientSocket;
 	private Socket socket;
+	private static Fleet fleet;
 	
 	public CreateServer(ServerSocket ServerSocket) {
 		serverSocket = ServerSocket;
@@ -20,6 +21,7 @@ public class CreateServer {
 	public CreateServer() {
 		serverSocket = null;
 		socket = new Socket();
+		fleet = new Fleet();
         try {
             serverSocket = new ServerSocket(4444);
         } catch (IOException e) {
@@ -49,12 +51,12 @@ public class CreateServer {
 
 	
 	public void startServer() {
-		socket = null;
-			
+		socket = null;	
 		try {
 			socket = serverSocket.accept();
 	        clientSocket = new DefaultSocketClient(socket);
 	        clientSocket.openConnection();
+	        
         } catch (IOException e) {
         	System.err.println("Accept failed.");
         	System.exit(1);
@@ -69,6 +71,9 @@ public class CreateServer {
 	}
 	
 	public void handleConnection() {
+		Automobile auto = new Automobile();
+		BuildCarModelOptions modelOptions = new BuildCarModelOptions();
+		
 		try {
 			inputObj = new ObjectInputStream(clientSocket.getSocket().getInputStream());
 		} catch(IOException e) {
@@ -76,14 +81,18 @@ public class CreateServer {
 		}
 		
 		try {
-			Properties pro = (Properties) inputObj.readObject();
+			if(inputObj != null) {
+				Properties pro = (Properties) inputObj.readObject();
+				
+				auto = modelOptions.createAuto(pro);
+				
+				fleet = modelOptions.addAutoToLHM(fleet, auto);
+//				fleet.printFleet();
+			}
 			
-			BuildCarModelOptions modelOptions = new BuildCarModelOptions();
-			Automobile auto = modelOptions.createAuto(pro);
-			
-			auto.printOptionSet();
-			
-			System.out.printf("SADFKJSAKDJFLS");
+			else if (((String) inputObj.readObject()).equals("display")) {
+				fleet.printFleet();
+			}
 			
 		} catch(IOException e) {
 			e.getStackTrace();
