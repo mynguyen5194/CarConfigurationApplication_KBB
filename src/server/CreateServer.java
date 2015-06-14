@@ -79,7 +79,11 @@ public class CreateServer {
 			Properties pro = (Properties) inputObj.readObject();
 			
 			BuildCarModelOptions modelOptions = new BuildCarModelOptions();
-			modelOptions.createAuto(pro);
+			Automobile auto = modelOptions.createAuto(pro);
+			
+			auto.printOptionSet();
+			
+			System.out.printf("SADFKJSAKDJFLS");
 			
 		} catch(IOException e) {
 			e.getStackTrace();

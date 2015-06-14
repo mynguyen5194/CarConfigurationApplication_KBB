@@ -3,6 +3,8 @@ package server;
 import java.net.*;
 import java.io.*;
 import java.util.*;
+import util.*;
+import model.*;
 
 public class DefaultSocketClient extends Thread implements SocketClientInterface, SocketClientConstants {
 	private ObjectInputStream reader;
@@ -13,11 +15,9 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 	
 	
 	public DefaultSocketClient() {}
-	
 	public DefaultSocketClient(Socket Socket) {
 		socket = Socket;
 	}
-	
 	public DefaultSocketClient(String StrHost, int IPort) {
 		strHost = StrHost;
 		iPort = IPort;
@@ -68,6 +68,7 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 		
 		try {
 			socket = new Socket(strHost, iPort);
+			System.out.printf("get socket");
 		} catch (IOException socketError) {
 			if(DEBUG) {
 				System.err.printf("Unable to connect to " + strHost + "\n");
@@ -77,9 +78,10 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 		
 		try {
 			writer = new ObjectOutputStream(socket.getOutputStream());
-			reader = new ObjectInputStream(socket.getInputStream());
-		} catch(Exception e) {
+			reader = new ObjectInputStream(socket.getInputStream());			
+		} catch(IOException e) {
 			if(DEBUG) {
+				e.printStackTrace();
 				System.err.printf("Unable to obtain stream to/from " + strHost + "\n");
 			}
 			opened = false;
@@ -90,7 +92,7 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 	
 	public void handleSession() {
 		String strInput = "";
-		
+		System.out.println("Running handle Session");
 		if(DEBUG) {
 			System.out.printf("Handling session with " + strHost + ": " + iPort);	
 		}
@@ -107,8 +109,6 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 	
 	public void sendOutput(String strOutput) {
 		try {
-			
-//			writer.write(strOutput, 0, strOutput.length());
 			writer.writeObject(strOutput);
 		} catch(IOException e) {
 			if(DEBUG) {
@@ -127,7 +127,14 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 			ObjectOutputStream objOutput = new ObjectOutputStream(output);
 			objOutput.writeObject(pro);
 			
+			FileIO fileIO = new FileIO();
 			
+			Automobile auto = new Automobile(); 
+			auto = fileIO.parsePropertiesFile(pro);
+			
+			auto.printOptionSet();
+			
+			System.out.printf("Received\n");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
