@@ -61,7 +61,7 @@ public class CreateServer {
         	System.err.println("Accept failed.");
         	System.exit(1);
         }
-	        
+	       
 	    try {    	
 	    	PrintWriter out = new PrintWriter(clientSocket.getSocket().getOutputStream(), true);
 	        BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getSocket().getInputStream()));
@@ -80,24 +80,67 @@ public class CreateServer {
 			e.getStackTrace();
 		}
 		
-		try {
-			if(inputObj != null) {
-				Properties pro = (Properties) inputObj.readObject();
-				
-				auto = modelOptions.createAuto(pro);
-				
-				fleet = modelOptions.addAutoToLHM(fleet, auto);
+//		while(true) {
+			try {
+//				Properties pro = (Properties) inputObj.readObject();
+//				
+//				auto = modelOptions.createAuto(pro);
+//				
+//				fleet = modelOptions.addAutoToLHM(fleet, auto);
 //				fleet.printFleet();
+				
+				
+				System.out.println("command received");
+				String command = (String) inputObj.readObject();
+				
+				switch(command) {
+				case "update":
+					Properties pro = (Properties) inputObj.readObject();
+					
+					auto = modelOptions.createAuto(pro);
+					
+					fleet = modelOptions.addAutoToLHM(fleet, auto);
+					fleet.printFleet();
+					this.respond("received");
+//					outputObj.flush();
+					break;
+//					
+//				case "display":
+//					System.out.println("Fleet is printed out here");
+//					this.sendRequest(fleet);
+//					break;
+				}
+				
+			} catch (ClassNotFoundException | IOException e) {
+				e.printStackTrace();
 			}
-			
-			else if (((String) inputObj.readObject()).equals("display")) {
-				fleet.printFleet();
-			}
-			
-		} catch(IOException e) {
+//		}
+	}
+	
+//	public void process() {
+		
+	
+	public void respond(Object commandObj) {
+		try {
+			OutputStream output = socket.getOutputStream();
+			ObjectOutputStream objOutput = new ObjectOutputStream(output);
+			objOutput.writeObject(commandObj);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void sendRequest(Object output) {
+//		try {
+//			outputObj = new ObjectOutputStream(clientSocket.getSocket().getOutputStream());
+//		} catch(IOException e) {
+//			e.getStackTrace();
+//		}
+		
+		try {
+			outputObj.writeObject(output);
+		} catch (IOException e) {
 			e.getStackTrace();
-		} catch (ClassNotFoundException err) {
-			err.printStackTrace();
 		}
 	}
 	
