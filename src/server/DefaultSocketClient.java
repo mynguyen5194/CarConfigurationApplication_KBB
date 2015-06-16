@@ -2,10 +2,6 @@ package server;
 
 import java.net.*;
 import java.io.*;
-import java.util.*;
-
-import util.*;
-import model.*;
 
 public class DefaultSocketClient extends Thread implements SocketClientInterface, SocketClientConstants {
 	private ObjectInputStream reader;
@@ -24,12 +20,7 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 		iPort = IPort;
 	}
 	
-	public void send(Object x) throws IOException {
-		writer.writeObject(x);
-	}
-	public Object get() throws IOException, ClassNotFoundException{
-		return reader.readObject();
-	}
+	
 	public Socket getSocket() {
 		return socket;
 	}
@@ -60,7 +51,6 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 	public boolean openConnection() {
 		boolean opened = true;
 		try {
-			System.out.println("creating sockets");
 			writer = new ObjectOutputStream(socket.getOutputStream());
 			reader = new ObjectInputStream(socket.getInputStream());			
 		} catch(IOException e) {
@@ -76,75 +66,48 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 	
 	public void handleSession() {
 		String strInput = "";
-		System.out.println("Running handle Session");
 		
 		if(DEBUG) {
 			System.out.printf("Handling session with " + strHost + ": " + iPort);	
 		}
 		try {
-			while((strInput = reader.readLine()) != null) {
+			while((strInput = (String) reader.readObject()) != null) {
 				handleInput(strInput);
 			}
 		} catch(IOException e) {
 			if(DEBUG) {
 				System.out.printf("Handling session with " + strHost + ": " + iPort);
 			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
-
-	public void sendOutput(String strOutput) {
+	
+	public void sendObject(Object obj) {
 		try {
-			writer.writeObject(strOutput);
-		} catch(IOException e) {
+			writer.writeObject(obj);
+		} catch (IOException e) {
 			if(DEBUG) {
 				System.out.printf("Error writing to " + strHost + "\n");
 			}
+			e.printStackTrace();
 		}
+	}
+
+	public Object getObject() {
+		Object receivedObj = null;
+		try {
+			receivedObj = reader.readObject();
+		} catch (ClassNotFoundException | IOException e) {
+			e.printStackTrace();
+		}
+		return receivedObj;
 	}
 	
 	public void handleInput(String strInput) {
 		System.out.printf(" " + strInput + " \n");
 	}
-	
-	public void sendPropertiesObj(Properties pro) {
-		try {
-			OutputStream output = socket.getOutputStream();
-			ObjectOutputStream objOutput = new ObjectOutputStream(output);
-			objOutput.writeObject(pro);
-			
-			FileIO fileIO = new FileIO();
-			Automobile auto = fileIO.parsePropertiesFile(pro);
-			
-			auto.printOptionSet();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void sendCommand(String command) {
-		try {
-			OutputStream output = socket.getOutputStream();
-			ObjectOutputStream objOutput = new ObjectOutputStream(output);
-			this.sendOutput(command);
-//			objOutput.writeObject(command);
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public String receiveCommand() {
-		String command = "";
-		try {
-			command = (String) reader.readObject();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
-		
-		return command;
-	}
-	
+
 	public void closeSession() {
 		try {
 			writer = null;
