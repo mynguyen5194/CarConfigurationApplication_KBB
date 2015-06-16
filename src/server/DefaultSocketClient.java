@@ -18,25 +18,17 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 	public DefaultSocketClient() {}
 	public DefaultSocketClient(Socket Socket) {
 		socket = Socket;
-		
-//		try {
-//			writer = new ObjectOutputStream(socket.getOutputStream());
-//			reader = new ObjectInputStream(socket.getInputStream());
-//		} catch(IOException e) {
-//			e.printStackTrace();
-//		}
 	}
 	public DefaultSocketClient(String StrHost, int IPort) {
 		strHost = StrHost;
 		iPort = IPort;
 	}
 	
-	
-	public ObjectInputStream getReader() {
-		return reader;
+	public void send(Object x) throws IOException {
+		writer.writeObject(x);
 	}
-	public ObjectOutputStream getWriter() {
-		return writer;
+	public Object get() throws IOException, ClassNotFoundException{
+		return reader.readObject();
 	}
 	public Socket getSocket() {
 		return socket;
@@ -46,12 +38,6 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 	}
 	public int getiPort() {
 		return iPort;
-	}
-	public void setReader(ObjectInputStream reader) {
-		this.reader = reader;
-	}
-	public void setWriter(ObjectOutputStream writer) {
-		this.writer = writer;
 	}
 	public void setSocket(Socket socket) {
 		this.socket = socket;
@@ -73,17 +59,8 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 	
 	public boolean openConnection() {
 		boolean opened = true;
-		
 		try {
-			socket = new Socket(strHost, iPort);
-		} catch (IOException socketError) {
-			if(DEBUG) {
-				System.err.printf("Unable to connect to " + strHost + "\n");
-			}
-			opened = false;
-		}
-		
-		try {
+			System.out.println("creating sockets");
 			writer = new ObjectOutputStream(socket.getOutputStream());
 			reader = new ObjectInputStream(socket.getInputStream());			
 		} catch(IOException e) {
@@ -177,6 +154,5 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 			e.getMessage();
 		}
 	}
-	
 	
 }
