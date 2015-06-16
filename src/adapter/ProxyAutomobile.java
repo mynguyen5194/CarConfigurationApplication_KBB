@@ -42,13 +42,12 @@ public abstract class ProxyAutomobile {
 		
 		fleet = builder.addAutoToLHM(fleet, builder.createAuto(pro));
 	}
-
-	
 	
 	// Add choice to the Choices LinkedHashMap
 	public void addOptionChoice(String Model, String optName, String Name) {
 		fleet.setOptionChoice(Model, optName, Name);
 	}
+	
 	
 	//This function searches the Model for a given OptionSet and sets the name of OptionSet to newName.
 	public void updateModelName(String oldModelName, String newModelName) {

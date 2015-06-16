@@ -29,5 +29,6 @@ public class KBBDriver_Server extends BuildAuto {
 		CreateServer newServer = new CreateServer();
 		newServer.startServer();
 		newServer.handleConnection();
+//		newServer.stopServer();
 	}
 }

@@ -51,22 +51,27 @@ public class CreateServer {
 		BuildCarModelOptions modelOptions = new BuildCarModelOptions();
 		
 		while(true) {
-			Object recievedObject = clientSocket.getObject();
+			Object receivedObject = clientSocket.getObject();
 			Properties pro = new Properties();
 			
-			if(recievedObject.getClass().equals(pro.getClass())){
-				pro = (Properties) recievedObject;
+			// Upload properties file
+			if(receivedObject.getClass().equals(pro.getClass())){
+				pro = (Properties) receivedObject;
 				
 				auto = modelOptions.createAuto(pro);
 				
 				fleet = modelOptions.addAutoToLHM(fleet, auto);
 				
 				clientSocket.sendObject("success");
-			} else {
-				if(recievedObject.equals("display")){
-					fleet.printFleet();
+			} else {	// display the fleet, config a car, and quit
+				if(receivedObject.equals("display")){
 					clientSocket.sendObject(fleet);
-				} else {
+				} else if(receivedObject.equals("quit")){
+					clientSocket.sendObject("terminated");
+					this.stopServer();
+				} else {	//if(receivedObject.equals("config")) {
+					
+					
 					
 				}
 			}
@@ -78,7 +83,6 @@ public class CreateServer {
 		try {
 			serverSocket.close();
 			clientSocket.closeSession();
-			System.out.printf("Server stopped!\n");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
