@@ -9,7 +9,7 @@ public class CreateServer {
 	private ServerSocket serverSocket;
 	private DefaultSocketClient clientSocket;
 	private Socket socket;
-	private static Fleet fleet;
+	private Fleet fleet;
 	
 	public CreateServer(ServerSocket ServerSocket) {
 		serverSocket = ServerSocket;
@@ -59,10 +59,9 @@ public class CreateServer {
 				pro = (Properties) receivedObject;
 				
 				auto = modelOptions.createAuto(pro);
+				auto.printOptionSet();
 				
 				fleet = modelOptions.addAutoToLHM(fleet, auto);
-				
-				fleet.printFleet();
 				
 				clientSocket.sendObject("success");
 			} else {	// display the fleet, config a car, and quit

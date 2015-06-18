@@ -34,7 +34,7 @@ public class FileIO {
 			auto.setOption(1, transmissionOptionSize, transmission);
 				
 			for(int i = 1; i <= transmissionOptionSize; i++) {
-				String transmissionOptionI = "TramissionOption" + i;
+				String transmissionOptionI = "TransmissionOption" + i;
 				String transmissionOptionPriceI = "TransmissionOptionPrice" + i;
 				
 				auto.setOption(1, i-1, pro.getProperty(transmissionOptionI), Double.parseDouble(pro.getProperty(transmissionOptionPriceI)));
