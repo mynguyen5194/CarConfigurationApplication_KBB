@@ -70,9 +70,9 @@ public class CreateServer {
 					clientSocket.sendObject("terminated");
 					this.stopServer();
 				} else {	//if(receivedObject.equals("config")) {
+					String userChoice = (String) clientSocket.getObject(); 
 					
-					
-					
+					System.out.printf(" " + userChoice + "\n");
 				}
 			}
 		}
