@@ -62,6 +62,8 @@ public class CreateServer {
 				
 				fleet = modelOptions.addAutoToLHM(fleet, auto);
 				
+				fleet.printFleet();
+				
 				clientSocket.sendObject("success");
 			} else {	// display the fleet, config a car, and quit
 				if(receivedObject.equals("display")){
