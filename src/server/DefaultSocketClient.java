@@ -86,6 +86,7 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 	public void sendObject(Object obj) {
 		try {
 			writer.writeObject(obj);
+			writer.flush();
 		} catch (IOException e) {
 			if(DEBUG) {
 				System.out.printf("Error writing to " + strHost + "\n");
@@ -110,6 +111,8 @@ public class DefaultSocketClient extends Thread implements SocketClientInterface
 
 	public void closeSession() {
 		try {
+			reader.close();
+			writer.close();
 			writer = null;
 			reader = null;
 			socket.close();

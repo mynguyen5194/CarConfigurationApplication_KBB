@@ -9,7 +9,7 @@ public class CreateServer {
 	private ServerSocket serverSocket;
 	private DefaultSocketClient clientSocket;
 	private Socket socket;
-	private Fleet fleet;
+	private static Fleet fleet;
 	
 	public CreateServer(ServerSocket ServerSocket) {
 		serverSocket = ServerSocket;
@@ -36,14 +36,18 @@ public class CreateServer {
 	
 	public void startServer() {
 		socket = null;	
-		try {
-			socket = serverSocket.accept();
-	        clientSocket = new DefaultSocketClient(socket);
-	        clientSocket.openConnection();
-        } catch (IOException e) {
-        	System.err.println("Accept failed.");
-        	System.exit(1);
-        }   
+//		while(true) {
+			try {
+				socket = serverSocket.accept();
+	        	clientSocket = new DefaultSocketClient(socket);
+//	        	Thread thread = new Thread(clientSocket);
+//	        	thread.start();
+	        	clientSocket.openConnection();
+        	} catch (IOException e) {
+        		System.err.println("Accept failed.");
+        		System.exit(1);
+        	}   
+//		}
 	}
 	
 	public void handleConnection() {
@@ -59,21 +63,31 @@ public class CreateServer {
 				pro = (Properties) receivedObject;
 				
 				auto = modelOptions.createAuto(pro);
-				auto.printOptionSet();
-				
 				fleet = modelOptions.addAutoToLHM(fleet, auto);
 				
 				clientSocket.sendObject("success");
-			} else {	// display the fleet, config a car, and quit
+				System.out.printf("*** Properties file uploaded from client ***\n");
+			} else {
 				if(receivedObject.equals("display")){
 					clientSocket.sendObject(fleet);
+					System.out.printf("*** Fleet is sent to client to diplay ***\n");
 				} else if(receivedObject.equals("quit")){
-					clientSocket.sendObject("terminated");
-					this.stopServer();
-				} else {	//if(receivedObject.equals("config")) {
-					String userChoice = (String) clientSocket.getObject(); 
+					clientSocket.closeSession();
+					System.out.printf("*** Client quit ***\n");
+					break;
+				} else if(receivedObject.equals("config")) {
+					clientSocket.sendObject("start configuring");
 					
-					System.out.printf(" " + userChoice + "\n");
+					System.out.printf("*** Client is requesting fleet ***\n");
+					clientSocket.sendObject(fleet);
+				} else {
+					String model = (String) receivedObject;
+				
+					if(fleet.containsKey(model)) {
+						clientSocket.sendObject(fleet.getAuto(model));
+					} else {
+						clientSocket.sendObject("fail");
+					}
 				}
 			}
 		}
@@ -83,7 +97,6 @@ public class CreateServer {
 	public void stopServer() {
 		try {
 			serverSocket.close();
-			clientSocket.closeSession();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
