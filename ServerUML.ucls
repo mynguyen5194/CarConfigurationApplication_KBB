@@ -3,7 +3,7 @@
   generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
   <interface id="1" language="java" name="adapter.UpdateAuto" project="CarConfigurationApplication_KBB_Server" 
     file="/CarConfigurationApplication_KBB_Server/src/adapter/UpdateAuto.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="98" width="270" x="653" y="745"/>    
+    <position height="98" width="270" x="960" y="763"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </interface>  
   <interface id="2" language="java" name="adapter.FixAuto" project="CarConfigurationApplication_KBB_Server" 
     file="/CarConfigurationApplication_KBB_Server/src/adapter/FixAuto.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="80" width="216" x="397" y="745"/>    
+    <position height="80" width="216" x="312" y="763"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </interface>  
   <class id="3" language="java" name="adapter.ProxyAutomobile" project="CarConfigurationApplication_KBB_Server" 
     file="/CarConfigurationApplication_KBB_Server/src/adapter/ProxyAutomobile.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="350" width="270" x="1431" y="37"/>    
+    <position height="368" width="270" x="1251" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <interface id="4" language="java" name="adapter.CreateAuto" project="CarConfigurationApplication_KBB_Server" 
     file="/CarConfigurationApplication_KBB_Server/src/adapter/CreateAuto.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="98" width="150" x="42" y="745"/>    
+    <position height="98" width="150" x="568" y="763"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </interface>  
   <class id="5" language="java" name="adapter.BuildAuto" project="CarConfigurationApplication_KBB_Server" 
     file="/CarConfigurationApplication_KBB_Server/src/adapter/BuildAuto.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="80" width="98" x="653" y="427"/>    
+    <position height="80" width="98" x="857" y="445"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -50,7 +50,7 @@
     project="CarConfigurationApplication_KBB_Server" 
     file="/CarConfigurationApplication_KBB_Server/src/exceptionHandler/ExceptionHandler.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="296" width="231" x="944" y="1171"/>    
+    <position height="296" width="231" x="154" y="1243"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -61,7 +61,7 @@
     project="CarConfigurationApplication_KBB_Server" 
     file="/CarConfigurationApplication_KBB_Server/src/exceptionHandler/ProblemGenerator.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="170" width="167" x="984" y="745"/>    
+    <position height="170" width="167" x="63" y="763"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -72,7 +72,7 @@
     project="CarConfigurationApplication_KBB_Server" 
     file="/CarConfigurationApplication_KBB_Server/src/kbbDriver_Server/KBBDriver_Server.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="98" width="125" x="232" y="745"/>    
+    <position height="98" width="145" x="818" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -81,7 +81,7 @@
   </class>  
   <class id="9" language="java" name="model.OptionSet.Option" project="CarConfigurationApplication_KBB_Server" 
     file="/CarConfigurationApplication_KBB_Server/src/model/OptionSet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="242" width="149" x="1470" y="2941"/>    
+    <position height="242" width="149" x="1251" y="3031"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -90,7 +90,7 @@
   </class>  
   <class id="10" language="java" name="model.OptionSet" project="CarConfigurationApplication_KBB_Server" 
     file="/CarConfigurationApplication_KBB_Server/src/model/OptionSet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="620" width="264" x="1185" y="2281"/>    
+    <position height="620" width="264" x="966" y="2371"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -99,7 +99,7 @@
   </class>  
   <class id="11" language="java" name="model.Automobile" project="CarConfigurationApplication_KBB_Server" 
     file="/CarConfigurationApplication_KBB_Server/src/model/Automobile.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="1070" width="398" x="1470" y="1171"/>    
+    <position height="1088" width="398" x="1251" y="1243"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -108,7 +108,7 @@
   </class>  
   <class id="12" language="java" name="model.Fleet" project="CarConfigurationApplication_KBB_Server" 
     file="/CarConfigurationApplication_KBB_Server/src/model/Fleet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="386" width="304" x="1543" y="745"/>    
+    <position height="422" width="304" x="1601" y="763"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -117,7 +117,7 @@
   </class>  
   <class id="13" language="java" name="util.AutoUtil" project="CarConfigurationApplication_KBB_Server" 
     file="/CarConfigurationApplication_KBB_Server/src/util/AutoUtil.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="134" width="219" x="1172" y="427"/>    
+    <position height="134" width="219" x="272" y="445"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -126,7 +126,7 @@
   </class>  
   <class id="14" language="java" name="scale.EditOptions" project="CarConfigurationApplication_KBB_Server" 
     file="/CarConfigurationApplication_KBB_Server/src/scale/EditOptions.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="278" width="270" x="1431" y="427"/>    
+    <position height="278" width="270" x="1291" y="445"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -135,157 +135,245 @@
   </class>  
   <interface id="15" language="java" name="adapter.ScaleThread" project="CarConfigurationApplication_KBB_Server" 
     file="/CarConfigurationApplication_KBB_Server/src/adapter/ScaleThread.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="116" width="270" x="1233" y="745"/>    
+    <position height="116" width="270" x="1291" y="763"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <association id="16">    
-    <bendpoint x="1731" y="427"/>    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="17" name="fleet">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="18" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="19">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="20" name="fleet">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="21" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="22">    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="23" name="fleet">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="24" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="25">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <dependency id="26">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <realization id="27">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="28">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="1"/>  
-  </realization>  
-  <dependency id="29">    
-    <bendpoint x="1181" y="745"/>    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <generalization id="30">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <dependency id="31">    
-    <bendpoint x="1202" y="745"/>    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="11"/>  
-  </dependency>  
-  <realization id="32">    
+  <interface id="16" language="java" name="server.AutoServer" project="CarConfigurationApplication_KBB_Server" 
+    file="/CarConfigurationApplication_KBB_Server/src/server/AutoServer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="80" width="162" x="758" y="763"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="17" language="java" name="server.DefaultSocketClient" project="CarConfigurationApplication_KBB_Server" 
+    file="/CarConfigurationApplication_KBB_Server/src/server/DefaultSocketClient.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="440" width="190" x="1945" y="763"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="server.CreateServer" project="CarConfigurationApplication_KBB_Server" 
+    file="/CarConfigurationApplication_KBB_Server/src/server/CreateServer.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="224" width="222" x="1773" y="445"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="19" language="java" name="server.SocketClientConstants" 
+    project="CarConfigurationApplication_KBB_Server" 
+    file="/CarConfigurationApplication_KBB_Server/src/server/SocketClientConstants.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="134" width="182" x="1953" y="1243"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="20" language="java" name="server.SocketClientInterface" 
+    project="CarConfigurationApplication_KBB_Server" 
+    file="/CarConfigurationApplication_KBB_Server/src/server/SocketClientInterface.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="173" x="1740" y="1243"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="21" language="java" name="server.BuildCarModelOptions" project="CarConfigurationApplication_KBB_Server" 
+    file="/CarConfigurationApplication_KBB_Server/src/server/BuildCarModelOptions.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="116" width="242" x="289" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="22">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="2"/>  
   </realization>  
-  <dependency id="33">    
-    <bendpoint x="1877" y="427"/>    
-    <bendpoint x="1877" y="745"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="11"/>  
-  </dependency>  
-  <dependency id="34">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="13"/>  
-  </dependency>  
-  <realization id="35">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="15"/>  
-  </realization>  
-  <dependency id="36">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <association id="37">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="38" name="optionSet">        
+  <association id="23">    
+    <bendpoint x="1591" y="445"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="24" name="fleet">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="39" minimum="0" maximum="2147483647">        
+      <multiplicity id="25" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="26">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
+  <association id="27">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="28" name="fleet"/>      
+      <multiplicity id="29" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="30">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="20"/>  
+  </realization>  
+  <association id="31">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="32" name="optionSet">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="33" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="40">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="41" name="option">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="42" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="43">    
+  <dependency id="34">    
     <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="12"/>  
+    <end type="TARGET" refId="7"/>  
   </dependency>  
-  <association id="44">    
-    <bendpoint x="1479" y="2281"/>    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="45" name="choices">        
+  <association id="35">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="36" name="fleet">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="46" minimum="0" maximum="2147483647">        
+      <multiplicity id="37" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
+    <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="47">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="15"/>  
+  <realization id="38">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="19"/>  
   </realization>  
-  <dependency id="48">    
+  <realization id="39">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <realization id="40">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <dependency id="41">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <association id="42">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="43" name="fleet">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="44" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="45">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="6"/>  
   </dependency>  
+  <association id="46">    
+    <bendpoint x="1260" y="2371"/>    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="47" name="choices">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="48" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <dependency id="49">    
-    <bendpoint x="953" y="427"/>    
-    <bendpoint x="953" y="745"/>    
+    <bendpoint x="260" y="763"/>    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <realization id="50">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
+  <dependency id="51">    
+    <bendpoint x="32" y="445"/>    
+    <bendpoint x="32" y="763"/>    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="6"/>  
   </dependency>  
+  <generalization id="52">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <dependency id="53">    
+    <bendpoint x="281" y="763"/>    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <realization id="54">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="16"/>  
+  </realization>  
+  <dependency id="55">    
+    <bendpoint x="1260" y="445"/>    
+    <bendpoint x="1260" y="763"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <dependency id="56">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="13"/>  
+  </dependency>  
+  <dependency id="57">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <generalization id="58">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="3"/>  
+  </generalization>  
+  <association id="59">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="60" name="clientSocket"/>      
+      <multiplicity id="61" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="62">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="63" name="option">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="64" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

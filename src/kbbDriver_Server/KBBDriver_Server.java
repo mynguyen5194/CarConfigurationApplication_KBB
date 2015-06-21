@@ -32,3 +32,15 @@ public class KBBDriver_Server extends BuildAuto {
 		newServer.stopServer();
 	}
 }
+
+/*
+ * OUTPUT:
+*** Properties file uploaded from client ***
+*** Properties file uploaded from client ***
+*** Fleet is sent to client to display ***
+*** Client is requesting fleet ***
+*** Client is requesting fleet ***
+*** Client is requesting fleet ***
+*** Client is requesting a model ***
+*** Client quit ***
+ */

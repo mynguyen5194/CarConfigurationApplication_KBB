@@ -35,19 +35,15 @@ public class CreateServer {
 
 	
 	public void startServer() {
-		socket = null;	
-//		while(true) {
-			try {
-				socket = serverSocket.accept();
-	        	clientSocket = new DefaultSocketClient(socket);
-//	        	Thread thread = new Thread(clientSocket);
-//	        	thread.start();
-	        	clientSocket.openConnection();
-        	} catch (IOException e) {
-        		System.err.println("Accept failed.");
-        		System.exit(1);
-        	}   
-//		}
+		socket = null;
+		try {
+			socket = serverSocket.accept();
+        	clientSocket = new DefaultSocketClient(socket);
+        	clientSocket.openConnection();
+       	} catch (IOException e) {
+       		System.err.println("Accept failed.");
+       		System.exit(1);
+       	}
 	}
 	
 	public void handleConnection() {
@@ -68,19 +64,19 @@ public class CreateServer {
 				clientSocket.sendObject("success");
 				System.out.printf("*** Properties file uploaded from client ***\n");
 			} else {
-				if(receivedObject.equals("display")){
+				if(receivedObject.equals("display")) {	// display fleet
 					clientSocket.sendObject(fleet);
-					System.out.printf("*** Fleet is sent to client to diplay ***\n");
-				} else if(receivedObject.equals("quit")){
+					System.out.printf("*** Fleet is sent to client to display ***\n");
+				} else if(receivedObject.equals("quit")) {	// quit client
 					clientSocket.closeSession();
 					System.out.printf("*** Client quit ***\n");
 					break;
-				} else if(receivedObject.equals("config")) {
+				} else if(receivedObject.equals("config")) {	// config a car
 					clientSocket.sendObject("start configuring");
-					
 					System.out.printf("*** Client is requesting fleet ***\n");
 					clientSocket.sendObject(fleet);
-				} else {
+				} else {	// display a specific model
+					System.out.printf("*** Client is requesting a model ***\n");
 					String model = (String) receivedObject;
 				
 					if(fleet.containsKey(model)) {
